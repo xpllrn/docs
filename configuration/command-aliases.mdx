@@ -31,8 +31,8 @@ You're able to use predefined arguments in your aliases, however, if you want to
 Keep in mind that the first argument is `{0}`, the second argument is `{1}`, and so on, it doesn't start at `{1}`.
 
 ```javascript
-,ban @jonathan Harassing Members
-// {0} would be @jonathan
+,ban @melvin Harassing Members
+// {0} would be @melvin
 // {1} would be Harassing Members
 ```
 
@@ -40,10 +40,10 @@ Below is an example of an alias that uses predefined arguments:
 
 ```javascript
 ,alias add shh timeout {0} 10m
-,shh @jonathan
+,shh @melvin
 ```
 
-This alias would run the `timeout` command with the first argument being `@jonathan` from the user's input and the second argument being `10m` as predefined.
+This alias would run the `timeout` command with the first argument being `@melvin` from the user's input and the second argument being `10m` as predefined.
 
 ### Making a command to grant image permissions
 
@@ -51,7 +51,7 @@ If you're interested in creating a command that grants image permissions to a us
 
 ```javascript
 ,alias add pic role {0} @image-role
-,pic @jonathan
+,pic @melvin
 ```
 
 ## Removing an alias

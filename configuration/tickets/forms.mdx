@@ -1,122 +1,113 @@
 ---
 title: Forms
-description: Reusable intake flows shown to users before they can create a ticket.
-icon: list-radio
+description: Collect intake questions before a ticket channel is created.
+icon: clipboard-list
 ---
 
-## Form Rules
+Forms let you ask questions in a Discord modal before adore creates the ticket channel. Responses are posted in the new ticket as a summary embed.
 
-<CardGroup cols={2}>
-  <Card title="Server Level" icon="server">
-    Forms are owned and managed at the server level.
-  </Card>
-  <Card title="Many-to-One" icon="diagram-project">
-    A single form can be attached to many different ticket options across various panels.
-  </Card>
-  <Card title="One per Option" icon="lock">
-    An individual option can have at most **one** intake form attached to it at a time.
-  </Card>
-  <Card title="Answer Snapshots" icon="camera">
-    Form answers are snapshotted onto the ticket. Old tickets keep the exact answers submitted at that time.
-  </Card>
-</CardGroup>
+## Limits
 
-## Form Limits
-
-Due to Discord's modal constraints, the following limits apply:
-- Up to `25` forms per server.
-- Up to `5` fields per form.
-- Up to `25` static options per `select` field.
+- **25** forms per server
+- **5** fields per form (Discord modal limit)
+- Form title max **45 characters** (Discord limit)
+- Form name max **50 characters**
 
 ---
 
-## Attaching a Form
+## Create a form
 
-Once you have created a form, you must attach it to an option so that it triggers when users interact with the panel. 
+```javascript
+,ticket form create BugReport "Bug Report"
+```
 
-<Steps>
-  <Step title="Open Ticket Forms">
-    Run the `tickets forms` command. Click `Add` to create a new form.
-  </Step>
-  <Step title="Configure Form Settings">
-    Configure the form settings using the information below.
-  </Step>
-  <Step title="Select Your Form">
-    Run the `tickets options` command. Choose your panel and option, then select `Form`.
-  </Step>
-  <Step title="Bind the Form">
-    Choose the form you just created from the dropdown. You're done!
-  </Step>
-</Steps>
+- `name` — internal identifier used in commands
+- `title` — shown at the top of the modal members see
 
-## Form Settings
+List existing forms:
 
-- **Name:** Internal form name (for your reference).
-- **Title:** Visible modal title shown to users.
-- **Filtering Enabled:** Whether server word filters and AutoMod keyword checks run against the text answers before a ticket is formally opened.
+```javascript
+,ticket form
+```
+
+Delete a form:
+
+```javascript
+,ticket form delete BugReport
+```
 
 ---
 
-## Supported Field Types
+## Add fields
 
-All form fields share a few baseline attributes:
-- `Label`
-- `Key`
-- `Required`
+After creating a form, the bot prompts you to add fields:
 
-### Field Type Options
+```javascript
+,ticket form field BugReport add "What happened?"
+,ticket form field BugReport add "Steps to reproduce" long
+```
 
-<AccordionGroup>
-  <Accordion title="short_text" icon="minus">
-    Includes:
-    - description
-    - placeholder
-    - min length
-    - max length
-  </Accordion>
+```javascript
+,ticket form field BugReport delete steps_to_reproduce
+```
 
-  <Accordion title="long_text" icon="align-left">
-    Includes:
-    - description
-    - placeholder
-    - min length
-    - max length
-  </Accordion>
+List fields on a form:
 
-  <Accordion title="checkbox" icon="square-check">
-    Includes:
-    - description
-    - checked text
-    - unchecked text
-  </Accordion>
+```javascript
+,ticket form field BugReport
+```
 
-  <Accordion title="select" icon="list">
-    Includes:
-    - description
-    - placeholder
-    - min values
-    - max values
-    - static child options
-  </Accordion>
+Each field becomes one question in the modal. You can add up to **5** fields per form.
 
-  <Accordion title="role_select" icon="users">
-    Includes:
-    - description
-    - placeholder
-    - single-select
-  </Accordion>
-  
-  <Accordion title="user_select" icon="user">
-    Includes:
-    - description
-    - placeholder
-    - single-select
-  </Accordion>
+Field types:
 
-  <Accordion title="channel_select" icon="hashtag">
-    Includes:
-    - description
-    - placeholder
-    - single-select
-  </Accordion>
-</AccordionGroup>
+| Type | Behaviour |
+| ---- | --------- |
+| Short (default) | Single-line answer |
+| Long | Paragraph answer |
+
+---
+
+## Attach a form to an option
+
+Forms are linked **per option**, not per panel.
+
+1. Run `,ticket panel`
+2. Select your panel → **Options**
+3. Select the option → **Form**
+4. Pick the form from the dropdown (or **No Form** to remove)
+
+When a member clicks that option:
+
+1. If the form has fields → modal opens with your questions
+2. If the form has no fields → ticket opens immediately (no modal)
+3. After submit → ticket channel is created and responses are summarized in the greeting
+
+---
+
+## Example workflow
+
+```javascript
+,ticket form create Report "User Report"
+```
+
+```javascript
+,ticket form field Report add "Who are you reporting?"
+,ticket form field Report add "What rule did they break?"
+,ticket form field Report add "Evidence (links)"
+```
+
+Then attach **Report** to your "Report User" option in the panel manager and redeploy:
+
+```javascript
+,ticket panel send Support #support
+```
+
+---
+
+## Tips
+
+- Keep labels short — Discord limits modal field labels to 45 characters.
+- Put the most important question first.
+- Forms are reusable: one "Application" form can be attached to multiple options on different panels.
+- Deleting a form does not delete options that referenced it — re-link them in the option manager.

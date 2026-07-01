@@ -1,100 +1,138 @@
 ---
 title: Overview
-description: Introduce a way for your server members to contact staff privately for support, reports, inquiries, applications, and more.
+description: Let members contact staff privately for support, reports, applications, and more.
 icon: magnifying-glass
 ---
 
-## What The System Supports
+adore's ticket system lets you post a panel in a channel. Members click a button or pick from a dropdown to open a private channel with your team.
 
-The ticket system supports scaling and customizations to fit your server's needs.
+Setup uses **prefix commands** plus an **interactive panel manager** — there are no slash commands for tickets.
 
 <Note>
-  Most options and toggles listed below can be configured per panel, meaning you can have different configurations for each panel you make.
+  All ticket commands use the `ticket` group (alias `tickets`). They require **Manage Server** unless noted otherwise.
 </Note>
+
+## What you can configure
 
 <AccordionGroup>
   <Accordion title="Limits" icon="server">
-    - Up to `15` ticket panels per server.
-    - Up to `10` active options per panel.
-    - Up to `10` standby options saved in inactive mode per panel.
-    - Up to `150` total active options at once (`10 * 15`).
-    - Up to `25` reusable forms per server.
-   </Accordion>
-
-  <Accordion title="Messages & Communication" icon="message">
-    - Custom messages for greetings, required roles, claims, moves, closing, reopening, inactivity, auto-closing, auto-deleting, and logs.
-    - <Badge stroke color="gray">Optional</Badge> DMs for greetings, closures, and reopenings. 
-    - Ticket transcripts.
-  </Accordion>
-  
-  <Accordion title="Automations & Timers" icon="robot">
-    - Inactivity reminders.
-    - Auto-close timers.
-    - Auto-delete timers.
-    - Close-on-leave automation.
+    - Up to **15** ticket panels per server
+    - Up to **5 active** options per panel (more can be saved on standby)
+    - Up to **25** forms per server, **5** fields per form
+    - Up to **25** options shown on a deployed panel (Discord component limit)
   </Accordion>
 
-  <Accordion title="Roles & Access" icon="shield">
-    - Support roles.
-    - Trainee roles.
-    - Personal ticket claim profiles for staff, support, and trainees.
-    - Server-wide ticket profile enable/disable controls.
-    - Required-role gating (any-role or all-role matching).
-    - Trainee toggles (claim, close, speak).
-    - System blacklists.
-    - Lifecycle-aware manual ticket access (`allow` / `deny`).
+  <Accordion title="Panels" icon="table-columns">
+    - Button or dropdown display mode
+    - Custom panel embed/message
+    - Default and overflow categories
+    - Per-user open ticket limits
+    - Channel naming format and case IDs
   </Accordion>
 
-  <Accordion title="Interface & Customization" icon="palette">
-    - Claim, close, reopen, and delete button colors.
-    - Claim, close, reopen, and delete reason popup toggles.
-    - Channel name format overrides.
-    - Claim categories and claim rename templates.
-    - Close categories and close rename templates.
-    - Toggles controlling whether a creator can close their own ticket.
-    - Staff visibility toggles for claimed tickets.
-    - Support for button panels and dropdown panels.
+  <Accordion title="Options" icon="list">
+    - Label, emoji, button color, and dropdown description
+    - Support and trainee roles
+    - Required roles to open a ticket
+    - Intake forms
+    - Custom greeting, close, claim, reopen, and automation messages
+    - Claim/close/reopen/delete button labels and styles
+    - Category moves on claim or close
+    - Channel rename templates
+  </Accordion>
+
+  <Accordion title="Server-wide settings" icon="gear">
+    - Transcript channel (`,ticket transcript`)
+    - Log channel (`,ticket log`)
+    - Global staff role (`,ticket staff`)
   </Accordion>
 </AccordionGroup>
 
 ---
 
-## Quick Setup
+## Quick setup
 
-Follow these steps to create your first ticket panel. While there are many customization options available, this will get you started.
 <Steps>
   <Step title="Create a panel">
-    Create a panel using the `tickets panels` command. Click `Add`, then add the panel's name, channel, and type (`Buttons` or `Dropdown`)
+    ```javascript
+    ,ticket panel create Support
+    ```
+
+    Or run `,ticket panel` and click **Add** in the interactive manager.
   </Step>
-  <Step title="Configure the panel settings">
-   Go back to the dropdown and select the panel you just created. You can adjust the panel's behavior, categories, display, and messages.
+
+  <Step title="Add at least one option">
+    ```javascript
+    ,ticket option create Support "General Help"
+    ```
+
+    You can also open the panel in the manager → **Options** → **Add**.
   </Step>
-  <Step title="Configure ticket options">
-    Use `tickets options`. Choose the option from the dropdown. Configure that option's settings - there are a lot!
+
+  <Step title="Configure (optional)">
+    Run `,ticket panel`, select your panel, and use the buttons:
+
+    - **Behaviour** — delete delay, max open tickets, claims toggle
+    - **Categories** — where new ticket channels are created
+    - **Display** — button vs dropdown mode, channel name format
+    - **Message** — custom panel embed
+    - **Options** — per-option roles, forms, messages, and behaviour
   </Step>
-  <Step title="Setup intake questions (Optional)"> 
-  If you want intake questions, create a form with `tickets forms` and attach it to the option.
+
+  <Step title="Deploy the panel">
+    ```javascript
+    ,ticket panel send Support #support
+    ```
+
+    This posts the panel with your active options. Redeploy after changing options or display mode.
   </Step>
-  <Step title="You're all set!">
-    Use `tickets resend` if you want to recreate the panel message with its new configurations. You can now add more options to the ticket panel with `tickets options`.
+
+  <Step title="Set transcript channel (recommended)">
+    ```javascript
+    ,ticket transcript #ticket-transcripts
+    ```
+  </Step>
+
+  <Step title="Set log channel (recommended)">
+    ```javascript
+    ,ticket log #ticket-logs
+    ```
+  </Step>
+
+  <Step title="Set staff role (recommended)">
+    ```javascript
+    ,ticket staff @Support
+    ```
   </Step>
 </Steps>
 
 ---
 
-## Next Steps
+## How it works
 
-<CardGroup cols={2}>
-  <Card title="Commands & Permissions" icon="terminal" href="/configuration/tickets/commands">
-    Understand the ticket commands and set up role permissions.
-  </Card>
-  <Card title="Configure Panels" icon="layer-group" href="/configuration/tickets/panels">
-    Set up your user-facing interfaces with custom styling.
-  </Card>
-  <Card title="Detailed Options" icon="sliders" href="/configuration/tickets/options">
-    Configure forms, categories, automations, behavior, and more.
-  </Card>
-  <Card title="Variables" icon="brackets-curly" href="/configuration/tickets/variables">
-    Use dynamic variables inside your custom embeds and messages.
-  </Card>
-</CardGroup>
+```mermaid
+flowchart LR
+    A[Member clicks panel] --> B{Form attached?}
+    B -->|Yes| C[Modal questions]
+    B -->|No| D[Create channel]
+    C --> D
+    D --> E[Greeting message]
+    E --> F[Staff handles in channel]
+```
+
+1. A member uses your deployed panel (button or dropdown).
+2. If the option has a form with fields, they answer questions in a Discord modal first.
+3. adore creates a private channel, sets permissions for the creator and support roles, and sends a greeting.
+4. Staff work in the channel. Action buttons (claim, close, reopen, delete) are configured per option in the panel manager.
+
+---
+
+## Next steps
+
+| Guide | What it covers |
+| ----- | -------------- |
+| [Setup](/configuration/tickets/setup) | Panels, options, and the interactive manager in detail |
+| [Commands](/configuration/tickets/commands) | Full command reference |
+| [Forms](/configuration/tickets/forms) | Intake questions before a ticket opens |
+| [Messages](/configuration/tickets/messages) | Custom embeds and template variables |
+| [Staff & operations](/configuration/tickets/staff) | Roles, transcripts, logs, and ticket lifecycle |

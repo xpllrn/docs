@@ -1,0 +1,159 @@
+---
+title: Staff & Operations
+description: Roles, transcripts, logs, and how tickets work after they are opened.
+icon: user-shield
+---
+
+## Role hierarchy
+
+When adore checks permissions inside a ticket, roles are resolved in this order:
+
+1. **Administrator** / server owner / [fake owner](/security/fake-owner)
+2. **Support role** (set per option in Behaviour)
+3. **Trainee role** (per option — usually view-only)
+4. **Global staff role** (`,ticket staff`)
+
+<Note>
+  Option-specific support and trainee roles take priority over the global staff role. A user with both trainee and staff is treated as trainee for that option.
+</Note>
+
+### Support role
+
+Set per option: `,ticket panel` → **Options** → **Behaviour** → support role.
+
+Support can view the ticket channel, send messages, and use action buttons (based on behaviour toggles).
+
+### Trainee role
+
+Set per option in Behaviour. Trainees typically have read-only access. Toggle whether trainees can claim, close, or send messages.
+
+### Global staff role
+
+```javascript
+,ticket staff @Support
+,ticket staff remove
+```
+
+Used as a fallback when no option-specific support role matches. Does not override trainee restrictions on an option.
+
+---
+
+## Opening tickets (members)
+
+1. Member clicks a button or selects from the dropdown on your deployed panel.
+2. adore checks:
+   - Ticket blacklist (if configured in the database for your server)
+   - Required roles for that option
+   - How many open tickets the user already has on this panel
+3. If a form is attached with fields, a modal collects answers first.
+4. A private channel is created with permissions for the creator, bot, and support roles.
+5. A greeting message is sent (custom or default).
+
+---
+
+## Working tickets (staff)
+
+Ticket actions use **buttons in the channel**, not prefix commands. Configure button labels, colors, and behaviour per option:
+
+`,ticket panel` → **Options** → **Behaviour** → **Button UX**
+
+| Action | Typical use |
+| ------ | ----------- |
+| **Claim** | Mark yourself as handling the ticket; optional category move and rename |
+| **Close** | Lock the ticket; optional reason prompt and category move |
+| **Reopen** | Restore a closed ticket for the creator |
+| **Delete** | Permanently remove the channel after close |
+
+Permission checks for reopen and delete include: administrator, claimer, option support role, or global staff role.
+
+---
+
+## Transcripts
+
+When a ticket is closed or deleted, adore can save a `.txt` transcript.
+
+### Set transcript channel
+
+```javascript
+,ticket transcript #ticket-transcripts
+,ticket transcript remove
+```
+
+Transcripts include:
+
+- Server and case ID
+- Channel name and creator
+- Claimer (if any)
+- Full message log with timestamps
+
+---
+
+## Logs
+
+Event logs (opens, closes, claims) can be sent to a dedicated channel:
+
+```javascript
+,ticket log #ticket-logs
+,ticket log remove
+```
+
+---
+
+## Ticket blacklist
+
+Users or roles can be blocked from **creating** new tickets. The check runs when someone clicks a panel option.
+
+<Warning>
+  Ticket blacklist is enforced by adore but managed through internal tooling — there is no `,ticket blacklist` command. Contact support if you need a user or role blocked from opening tickets.
+</Warning>
+
+---
+
+## Auto-close and auto-delete
+
+Configure per option in **Behaviour** and **Message**:
+
+- **Auto-close** — warn after inactivity, then close the ticket
+- **Auto-delete** — delete the channel after close (uses panel delete delay)
+- **Close on leave** — close when the creator leaves the server
+
+Set custom warning messages under **Message** → Auto-Close / Auto-Delete / Inactivity.
+
+---
+
+## Redeploy after changes
+
+| Change | Action needed |
+| ------ | ------------- |
+| Option label, emoji, or style | `,ticket panel send (name)` |
+| Panel mode (button/dropdown) | Redeploy panel |
+| Panel embed message | Redeploy panel |
+| Behaviour, roles, or messages | No redeploy — applies to new actions |
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Panel shows no buttons">
+    - Ensure at least one option is **active** (not standby)
+    - Run `,ticket panel send (name)` to deploy or refresh
+  </Accordion>
+
+  <Accordion title="Staff cannot see tickets">
+    - Confirm support role is set on the option in Behaviour
+    - Check channel category permissions — adore sets overwrites, but category defaults can conflict
+    - Verify adore's role is above support roles in the hierarchy
+  </Accordion>
+
+  <Accordion title="Member cannot open a ticket">
+    - Check required roles on the option
+    - Check max open tickets per user on the panel (Behaviour)
+    - User may be ticket-blacklisted
+  </Accordion>
+
+  <Accordion title="Form modal does not appear">
+    - Form must have at least one field added
+    - Form must be linked to the option (Form button in option settings)
+  </Accordion>
+</AccordionGroup>

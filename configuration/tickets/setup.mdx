@@ -1,0 +1,173 @@
+---
+title: Panels & Options
+description: Create panels, add options, and configure everything through commands or the interactive manager.
+icon: table-columns
+---
+
+## Interactive panel manager
+
+The easiest way to manage tickets is the built-in UI:
+
+```javascript
+,ticket panel
+```
+
+This opens a message with:
+
+- A **dropdown** to select an existing panel
+- **Add** — create a panel (name, channel, button/dropdown mode)
+- **Done** — end the session
+
+Selecting a panel shows **Panel Settings**:
+
+| Button | What it configures |
+| ------ | ------------------ |
+| **Behaviour** | Delete delay after close, max open tickets per user, auto-pin controls, claims enabled |
+| **Categories** | Default category for new tickets, overflow category when default is full (50 channels) |
+| **Display** | Button vs dropdown mode, channel name format, dropdown placeholder |
+| **Message** | Custom panel embed (supports adore embed syntax) |
+| **Options** | Opens the option manager for this panel |
+| **Remove** | Delete the panel and all its options |
+| **Back** | Return to the panel list |
+
+<Warning>
+  Only the person who ran `,ticket panel` can use the buttons. The session times out after 5 minutes.
+</Warning>
+
+---
+
+## Panel commands
+
+You can do the same setup with prefix commands if you prefer.
+
+### Create and delete
+
+```javascript
+,ticket panel create Support
+,ticket panel delete Support
+```
+
+Deleting a panel also removes its options and deletes the deployed panel message if one exists.
+
+### Deploy to a channel
+
+```javascript
+,ticket panel send Support
+,ticket panel send Support #support
+```
+
+- Requires at least one **active** option on the panel.
+- Replaces any previously deployed message for that panel.
+- Run again after changing options, labels, emojis, or display mode.
+
+### Display mode
+
+```javascript
+,ticket panel mode Support
+,ticket panel mode Support button
+,ticket panel mode Support dropdown
+```
+
+| Mode | Behaviour |
+| ---- | --------- |
+| `button` | One button per option (default) |
+| `dropdown` | Single select menu with all options |
+
+### Category
+
+```javascript
+,ticket panel category Support
+,ticket panel category Support Tickets
+,ticket panel category Support remove
+```
+
+Sets where new ticket channels are created. Without a category, channels appear at the top of the server.
+
+---
+
+## Options
+
+Each panel needs at least one **option** — the ticket type members choose (e.g. "General Help", "Report User").
+
+### List options
+
+```javascript
+,ticket option Support
+```
+
+Shows option IDs, status, linked support role, and form.
+
+### Create and delete
+
+```javascript
+,ticket option create Support "Bug Report"
+,ticket option delete 12
+```
+
+- Labels can be up to **80 characters**.
+- Each panel allows up to **5 active** options at once. Additional options can be kept on **standby** (inactive) in the manager.
+- After deleting an option, redeploy the panel.
+
+### Option manager (interactive)
+
+From `,ticket panel` → select panel → **Options**:
+
+- **Dropdown** — pick an option to edit
+- **Add** — create via modal (label, emoji, description)
+- **Back** — return to panel settings
+
+Selecting an option opens **Option Settings**:
+
+| Button | What it configures |
+| ------ | ------------------ |
+| **Behaviour** | Categories, naming, claim/close permissions, support & trainee roles, required roles, button UX |
+| **Form** | Link a reusable intake form |
+| **Message** | Greeting, close, claim, reopen, auto-close, and other lifecycle messages |
+| **Style** | Button label, emoji, and color (for button mode) |
+| **Toggle Status** | Switch between active and standby |
+| **Remove** | Delete this option |
+| **Back** | Return to option list |
+
+---
+
+## Behaviour settings (per option)
+
+Inside **Behaviour** you can configure:
+
+### Categories & naming
+
+- **Category** — override the panel's default category for this option
+- **Claim category** / **Close category** — move the channel when claimed or closed
+- **Channel name format** — how the ticket channel is named (e.g. `ticket-{case_id}`)
+- **Rename on claim** / **Rename on close** — rename templates when those actions happen
+
+### Roles
+
+- **Support role** — can see and respond in the ticket
+- **Trainee role** — view-only access (configurable speak/claim/close toggles)
+- **Required role** — members must have this role to open this option
+
+### Button UX
+
+Customize the in-channel action buttons:
+
+- **Claim** — label, emoji, style
+- **Close** — label, emoji, style, reason popup
+- **Delete** — label, emoji, style
+- **Reopen** — label, emoji, style
+
+### Permissions toggles
+
+- Creator can close their own ticket
+- Staff visibility when ticket is claimed
+- Who can claim or close (support, trainee, staff)
+
+---
+
+## Check your configuration
+
+```javascript
+,ticket overview
+```
+
+Shows panel count, form count, open/closed stats, and configured log/transcript channels.

@@ -1,82 +1,157 @@
 ---
-title: Custom Messages
-description: Learn how to utilize custom messages & embeds inside the tickets system.
+title: Messages & Variables
+description: Customize panel embeds, greetings, and lifecycle messages with template variables.
 icon: message
 ---
 
-# Overview
-The ticket system supports plain messages, embed blocks via `{embed}`, variables, and conditional logic.
-<Tip>When a message field is left blank, the system falls back to the built-in default code (which matches exactly what the editor shows initially).</Tip>
-
-## Base Customization
-
-<Callout icon="terminal" color="#ff5d8f" iconType="regular">You can learn how to create your own embeds on the [Embeds](/resources/scripting/embeds) documentation page.</Callout>
-<Callout icon="images" color="#ff5d8f" iconType="regular">Don't want to make your own? Check out our community-created [Showcase](https://discord.com/channels/721627270527188995/1306162710815313921) channel.</Callout>
-
-### Basic Embed Example
-
-```txt
-{embed}
-$v{title: Ticket Intake}
-$v{description: A new ticket has been opened.}
-$v{field: Case && #{ticket.case} inline}
-$v{field: Creator && {ticket.creator.full} inline}
-$v{field: Option && {ticket.option.label} inline}
-```
-
-### Form Submission Example
-
-```txt
-{embed}
-$v{title: Ticket Intake}
-$v{description: A new ticket was opened with the submitted form info.}
-$v{field: User && {ticket.form.field.user} inline}
-$v{field: Reason && {ticket.form.field.reason}}
-```
-
-### Required Roles Message
-Each option has its own `Required Roles` message inside the `messages` section of the option settings. Use this to explain to a member why they are not permitted to open that option.
-- It is always sent <Tooltip headline="Ephemeral Messages" tip="Ephemeral messages are only visible to the user who triggered the command." cta="Learn more" href="https://support-apps.discord.com/hc/en-us/articles/26501839512855-Ephemeral-Messages-FAQ">ephemerally</Tooltip>.
-- Role mentions and `@everyone` are suppressed.
-- Only the pinged member can be mentioned.
+adore supports custom messages at the **panel** level and per **option**. Messages use adore's [embed syntax](/resources/scripting/embeds) plus ticket-specific variables.
 
 ---
 
-## Conditional Blocks <Badge stroke color="orange">Advanced</Badge>
+## Where to edit messages
 
-Conditional blocks control what gets displayed based on the evaluation value (useful for dynamic flow handling). With conditionals, you can turn your embeds into a program that is able to change values based on given inputs.
+### Panel message
 
-<Danger>
-Conditional blocks do not support nesting at this time.
-</Danger>
+`,ticket panel` → select panel → **Message**
 
-### Supported Syntax
-```txt
-{if CONDITION}
-code here that displays if condition is met
-{elseif OTHER_CONDITION}
-other code here that displays if elseif condition is met
-{else}
-other code here if nothing else matches
-{/if}
+This is the embed/text shown above the ticket buttons or dropdown on your deployed panel.
+
+Default if unset:
+
+```javascript
+{embed}
+$v{title: Panel Name}
+$v{description: Select an option below to create a ticket.}
 ```
 
-### Condition Types
-- `{ticket.var} == value`
-- `{ticket.var} != value`
-- Truthy checks: `{if {ticket.form.id}}`
+### Option messages
 
-### Auto-Close Example
-```txt
+`,ticket panel` → **Options** → select option → **Message**
+
+| Message type | When it sends |
+| ------------ | ------------- |
+| **Greeting** | Ticket channel is created |
+| **Close** | Ticket is closed |
+| **Claim** | Staff claims the ticket |
+| **Reopen** | Ticket is reopened |
+| **Auto-Close** | Inactivity warning before auto-close |
+| **Auto-Delete** | Warning before channel deletion |
+| **Inactivity** | Inactivity notice |
+| **Move** | Ticket moved to another category |
+| **Required Roles** | Member lacks a required role |
+
+Each message can be toggled on or off in the manager.
+
+---
+
+## Template variables
+
+Use `{object.property}` in message templates. Conditionals use `{if:variable}text{/if}`.
+
+### User (ticket creator)
+
+| Variable | Description |
+| -------- | ----------- |
+| `{user.name}` | Username |
+| `{user.display_name}` | Server nickname |
+| `{user.id}` | User ID |
+| `{user.mention}` | @mention |
+| `{user.avatar}` | Avatar URL |
+
+Aliases: `{member.*}`, `{creator.*}`
+
+### Server
+
+| Variable | Description |
+| -------- | ----------- |
+| `{guild.name}` | Server name |
+| `{guild.id}` | Server ID |
+| `{guild.membercount}` | Member count |
+
+Alias: `{server.*}`
+
+### Ticket
+
+| Variable | Description |
+| -------- | ----------- |
+| `{ticket.id}` | Internal ticket ID |
+| `{ticket.case_id}` | Case number shown in channel name |
+| `{ticket.created}` | Open timestamp (UTC) |
+
+### Option & panel
+
+| Variable | Description |
+| -------- | ----------- |
+| `{option.label}` | Option label |
+| `{option.id}` | Option ID |
+| `{panel.name}` | Panel name |
+
+### Staff actions
+
+| Variable | Description |
+| -------- | ----------- |
+| `{staff.mention}` | Staff member involved |
+| `{staff.name}` | Staff display name |
+| `{claimer.mention}` | Who claimed |
+| `{closer.mention}` | Who closed |
+| `{reopener.mention}` | Who reopened |
+| `{reason}` | Close/claim reason text |
+| `{category}` | Category name after a move |
+| `{time}` | Formatted time (auto-close/delete warnings) |
+| `{roles}` | Required roles list |
+
+### Form responses
+
+| Variable | Description |
+| -------- | ----------- |
+| `{form.field_key}` | Value from a form field (use the field's key) |
+
+---
+
+## Example greeting
+
+```javascript
+{embed}
+$v{title: Ticket #{ticket.case_id}}
+$v{description: Welcome {user.mention}!
+
+**Type:** {option.label}
+**Opened:** {ticket.created}
+
+A staff member will assist you shortly.}
+$v{color: #ff5d8f}
+```
+
+---
+
+## Example close message
+
+```javascript
 {embed}
 $v{title: Ticket Closed}
-$v{description: This ticket has been closed.}
+$v{description: Closed by {staff.mention}
 
-{if {ticket.closed_automatically} == yes}
-$v{message: This ticket was closed automatically due to inactivity.}
-{else}
-$v{message: This ticket was closed by staff.}
-{/if}
+{if:reason}**Reason:** {reason}{/if}
 
-$v{field: Reason && {ticket.reason.closed}}
+Thank you for contacting support!}
+$v{color: #f87171}
 ```
+
+---
+
+## Conditionals
+
+Show content only when a variable has a value:
+
+```javascript
+{if:reason}**Reason:** {reason}{/if}
+{if:claimer.mention}Handled by {claimer.mention}{/if}
+```
+
+---
+
+## Tips
+
+- Test messages in a private channel before deploying to your support panel.
+- Keep greeting messages concise — members already see form responses as a separate embed.
+- Redeploy the panel after changing only the panel message; option messages apply to new tickets automatically.

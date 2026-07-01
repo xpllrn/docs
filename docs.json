@@ -46,14 +46,11 @@
             "icon": "tickets",
             "pages": [
               "configuration/tickets/overview",
+              "configuration/tickets/setup",
               "configuration/tickets/commands",
-              "configuration/tickets/panels",
-              "configuration/tickets/options",
               "configuration/tickets/forms",
-              "configuration/tickets/access",
-              "configuration/tickets/lifecycle",
               "configuration/tickets/messages",
-              "configuration/tickets/variables"
+              "configuration/tickets/staff"
             ]
           },
           {
@@ -142,7 +139,7 @@
     "links": [
       {
         "label": "Support Server",
-        "href": "https://discord.gg/2JYMZWeu9s"
+        "href": "https://discord.gg/q3e53k4qKQ"
       }
     ],
     "primary": {
@@ -160,7 +157,7 @@
   },
   "footer": {
     "socials": {
-      "discord": "https://discord.gg/2JYMZWeu9s",
+      "discord": "https://discord.gg/q3e53k4qKQ",
       "github": "https://github.com/xpllrn/adore-public"
     }
   },
@@ -179,7 +176,7 @@
     },
     {
       "source": "/discord",
-      "destination": "https://discord.gg/2JYMZWeu9s"
+      "destination": "https://discord.gg/q3e53k4qKQ"
     }
   ]
 }

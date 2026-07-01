@@ -13,9 +13,11 @@ Follow this order when securing a new server:
     ```javascript
     ,setme
     ,setmute
+    ```
+    ```javascript
     ,logs add #mod-log mod
     ```
-    See [Moderation](/security/moderation).
+    See [Moderation](/security/moderation) and [Logging](/configuration/logging).
   </Step>
   <Step title="2. Fake permissions">
     ```javascript
@@ -45,6 +47,8 @@ Follow this order when securing a new server:
   <Step title="5. Delegate access">
     ```javascript
     ,security admin @trusted-admin
+    ```
+    ```javascript
     ,setup fakeowner @co-owner
     ```
     See [Security Admins](/security/security-admins) and [Fake Owner](/security/fake-owner).
@@ -52,6 +56,8 @@ Follow this order when securing a new server:
   <Step title="6. Command gating">
     ```javascript
     ,restrictcommand add ban @Admin
+    ```
+    ```javascript
     ,filter add slur
     ```
     See [Restrict Commands](/security/restrictcommand) and [Word Filter](/security/filter).

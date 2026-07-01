@@ -14,4 +14,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md). Screenshots go in `images/` — see [i
 
 ## Join our community
 
-[Discord Server](https://discord.gg/2JYMZWeu9s)
+[Discord Server](https://discord.gg/q3e53k4qKQ)
