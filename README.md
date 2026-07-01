@@ -1,6 +1,6 @@
 # adore documentation
 
-Documentation for [adore](https://adore.rest), hosted at [docs.adore.rest](https://docs.adore.rest).
+Documentation for [adore](https://adore.rest), hosted at [wiki.adore.rest](https://wiki.adore.rest).
 
 Built with [Mintlify](https://mintlify.com). Run locally:
 
