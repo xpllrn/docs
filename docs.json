@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "adore",
   "colors": {
-    "primary": "#ff5d8f",
-    "light": "#ff89ab",
-    "dark": "#e23e72"
+    "primary": "#6d84a0",
+    "light": "#95a8be",
+    "dark": "#4a5d73"
   },
   "favicon": "favicon.png",
   "navigation": {
@@ -128,8 +128,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/logo.png",
+    "dark": "/logo/logo.png"
   },
   "appearance": {
     "default": "dark",
@@ -150,7 +150,7 @@
   },
   "seo": {
     "metatags": {
-      "theme-color": "#ff5d8f",
+      "theme-color": "#080a0f",
       "og:site_name": "adore.rest"
     },
     "indexing": "navigable"

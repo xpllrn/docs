@@ -1,11 +1,14 @@
-/* adore docs custom styles */
+/* adore docs — Spider-Man Noir theme */
 
 ::-webkit-scrollbar {
   display: none;
 }
 
 :root {
-  --adore-primary: #ff5d8f;
-  --adore-primary-soft: #ff89ab;
-  --adore-primary-deep: #e23e72;
+  --adore-primary: #6d84a0;
+  --adore-primary-soft: #95a8be;
+  --adore-primary-deep: #4a5d73;
+  --adore-noir-bg: #080a0f;
+  --adore-noir-surface: #131820;
+  --adore-noir-accent: #c5d0de;
 }
