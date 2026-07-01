@@ -1,0 +1,72 @@
+---
+title: "System Messages"
+description: "Automatically send messages when certain member events occur."
+icon: hand-wave
+---
+
+## Commands
+
+There are three system message commands, each with the same subcommands:
+
+| Command | Event |
+| ------- | ----- |
+| `,welcome` | Member joins the server |
+| `,leave` | Member leaves the server |
+| `,boost` | Member boosts the server |
+
+<Info>
+  The following examples use `welcome`, but the same syntax applies to `leave` and `boost`.
+</Info>
+
+## Creating a system message
+
+<CodeGroup>
+
+```javascript Syntax
+,welcome add (channel) (message) [--self_destruct [6-60]]
+,leave add (channel) (message)
+,boost add (channel) (message)
+```
+
+```javascript Example
+,welcome add #general welcome to {guild} {user.mention} --self_destruct 30
+,welcome add #general {embed}$v{message: {user.mention}}$v{description: welcome to {guild.name}}
+,leave add #general {user.name} has left the server
+,boost add #boosts thank you {user.mention} for boosting!
+```
+
+</CodeGroup>
+
+<Tip>
+  The `message` parameter can be raw text or an [embed script](/resources/scripting/embeds) with [variables](/resources/scripting/variables).
+</Tip>
+
+<Info>
+  `--self_destruct` schedules the message for deletion after 6–60 seconds.
+</Info>
+
+## Removing a system message
+
+```javascript
+,welcome remove (channel)
+,leave remove (channel)
+,boost remove (channel)
+```
+
+## Other subcommands
+
+| Subcommand | Description |
+| ---------- | ----------- |
+| `view (channel)` | Preview a system message |
+| `list` | List all configured messages |
+
+## Boost award role
+
+Automatically give a role when someone boosts:
+
+```javascript
+,boost award (role)
+,boost award remove
+```
+
+See [Booster Roles](/configuration/roles/booster) for custom per-booster roles.

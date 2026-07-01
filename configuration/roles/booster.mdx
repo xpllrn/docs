@@ -1,0 +1,54 @@
+---
+title: "Booster Roles"
+description: "Let boosters create and customize their own roles."
+icon: hands-holding-diamond
+---
+
+## What are booster roles?
+
+Boosters can create a personal role with a custom name, color, and icon. Roles are placed below the server's **baserole** in the hierarchy.
+
+## Setup
+
+Set the baserole first — all booster roles appear below it:
+
+```javascript
+,setup baserole @Booster Base
+```
+
+<Tip>
+  The baserole should be above any colored roles, otherwise booster role colors won't show due to Discord's hierarchy.
+</Tip>
+
+## Booster commands
+
+Members with the Server Booster perk can use:
+
+| Command | Description |
+| ------- | ----------- |
+| `,boosterrole create (name)` | Create your booster role |
+| `,boosterrole color (hex)` | Change role color |
+| `,boosterrole icon (emoji or url)` | Set a role icon |
+| `,boosterrole name (name)` | Rename your role |
+| `,boosterrole share (user)` | Share your role with someone |
+| `,boosterrole unshare (user)` | Remove shared access |
+| `,boosterrole remove` | Remove your booster role |
+| `,boosterrole delete` | Delete your booster role entirely |
+
+## Admin commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,boosterrole list` | View all booster roles |
+| `,boosterrole cleanup` | Remove orphaned booster roles |
+
+## Boost award role
+
+Automatically give a role when someone boosts (separate from custom booster roles):
+
+```javascript
+,boost award (role)
+,boost award remove
+```
+
+See [System Messages](/configuration/messages/system) for boost thank-you messages.

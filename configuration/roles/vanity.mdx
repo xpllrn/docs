@@ -1,0 +1,99 @@
+---
+title: "Vanity Roles"
+description: "Reward your members for advertising your server in their status."
+icon: user-crown
+---
+
+## Getting started
+
+Vanity roles reward members who advertise your server in their custom status. This feature uses a **dedicated companion bot** (`adore-vanity`) because Discord limits what the main bot can monitor.
+
+<Warning>
+  Your server must be **Level 3** with at least **14 boosts** before inviting
+  the vanity bot. The main **adore** bot must also be in your server.
+</Warning>
+
+Invite the vanity bot [here](https://discord.com/oauth2/authorize?client_id=996638412675227668&permissions=8&scope=bot%20applications.commands).
+<Info>
+  All commands are **slash commands** and can be accessed by typing `/vanity` in
+  a text channel.
+</Info>
+
+## Setting the vanity to be monitored
+
+You'll need to set what vanity you want to monitor. You can do this by using the `/vanity set` command.
+
+<Tip>It's recommended to prefix the substring with a `/` (e.g. `/adore`).</Tip>
+<CodeGroup>
+```javascript Syntax
+/vanity set (substring)
+```
+
+```javascript Example
+/vanity set /adore
+```
+
+</CodeGroup>
+<br />
+
+## Setting up roles to reward
+
+You can use the `/vanity role add` command to add a vanity reward.
+
+<Info>
+  If you no longer want to reward a role for a vanity, you can use the `/vanity
+  role remove` command.
+</Info>
+<CodeGroup>
+```javascript Syntax
+/vanity role add (role)
+/vanity role remove (role)
+```
+
+```javascript Example
+/vanity role add @Vanity
+/vanity role remove @Vanity
+```
+
+</CodeGroup>
+<br />
+
+### Viewing all roles being rewarded
+
+You can use the `/vanity role list` command to view all roles being rewarded.
+
+## Setting up the award message
+
+You can set a thank you message for when a user advertises your server in their status.
+
+<Info>
+  The `message` parameter can be raw text or an [embed](/resources/scripting)
+  with dynamic [variables](/resources/scripting/variables).
+</Info>
+
+<CodeGroup>
+```javascript Syntax
+/vanity message (message)
+```
+
+```javascript Example
+/vanity message thank you {user.mention}
+/vanity message {embed}$v{message: {user.mention}}$v{description: thank you for advertising our server!}
+```
+
+</CodeGroup>
+
+### Setting where the message is sent
+
+You can use the `/vanity award channel` command to set where the message is sent.
+
+<CodeGroup>
+```javascript Syntax
+/vanity award channel (channel)
+```
+
+```javascript Example
+/vanity award channel #general
+```
+
+</CodeGroup>

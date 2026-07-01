@@ -1,0 +1,41 @@
+---
+title: "Sticky Messages"
+description: "Keep a message pinned to the bottom of a channel."
+icon: thumbtack
+---
+
+## Overview
+
+Sticky messages re-post at the bottom of a channel whenever new messages push them up. Useful for rules, links, or channel guidelines.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,stickymessage add (channel) (message) [flags]
+,stickymessage remove (channel)
+,stickymessage list
+,stickymessage view (channel)
+,stickymessage reset
+```
+
+```javascript Example
+,stickymessage add #rules Read the rules before chatting!
+,stickymessage add #announcements {embed}$v{title: Important}$v{description: Check pinned messages} --mention
+```
+
+</CodeGroup>
+
+## Flags
+
+| Flag | Description |
+| ---- | ----------- |
+| `--mention` | Allow @everyone and role pings in the sticky |
+| `--reply` | Reply to the last message when re-posting |
+| `--role (role)` | Only re-post when a member with this role sends a message |
+| `--ignore (role)` | Skip re-posting when a member with this role sends a message |
+
+## Message format
+
+The message can be plain text or an [embed script](/resources/scripting/embeds) with [variables](/resources/scripting/variables).

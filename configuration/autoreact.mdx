@@ -1,0 +1,39 @@
+---
+title: "Autoreact"
+description: "Automatically react to messages containing trigger words."
+icon: face-smile
+---
+
+## Overview
+
+Autoreact adds emoji reactions when a message contains a specific trigger word. Different from [channel reactions](/configuration/channel-reactions), which react to every message in a channel.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,autoreact add (emoji) (trigger)
+,autoreact remove (emoji) (trigger)
+,autoreact list
+,autoreact reset
+```
+
+```javascript Example
+,autoreact add 👍 good
+,autoreact add ❤️ love
+,autoreact add 👋 hello
+```
+
+</CodeGroup>
+
+## Rules
+
+- Trigger words are case-insensitive, max **50 characters**
+- Up to **5 emojis** per trigger word
+- Custom emojis must be from a server adore is in
+- `,autoreact remove` with only a trigger removes all emojis for that trigger
+
+## Example
+
+When someone types "good job everyone", adore reacts with 👍 because the message contains the trigger `good`.

@@ -1,0 +1,81 @@
+---
+title: "Fake Owner"
+description: "Grant a trusted co-owner full command access without transferring server ownership."
+icon: crown
+---
+
+## What is a fake owner?
+
+A **fake owner** is a trusted user who receives the same command-level access as the real server owner inside adore. They can run owner-restricted commands, bypass permission checks, and configure the server — without actually being the Discord server owner.
+
+<Warning>
+  Fake owners have enormous power. Only assign this to someone you trust as
+  much as yourself. There can only be **one** fake owner per server at a time.
+</Warning>
+
+## Setting a fake owner
+
+Only the **real server owner** can manage the fake owner (not the fake owner themselves).
+
+<CodeGroup>
+
+```javascript Syntax
+,setup fakeowner (user)
+```
+
+```javascript Example
+,setup fakeowner @co-owner
+```
+
+</CodeGroup>
+
+adore will ask you to confirm before granting fake owner. Run the same command again on the current fake owner to remove them.
+
+<Info>
+  You cannot set yourself, a bot, or the real server owner as fake owner.
+</Info>
+
+## What fake owners can do
+
+Fake owners are treated as the server owner for almost all adore commands:
+
+- **Bypass command permissions** — run any command that normally requires Discord perms, administrator, or server owner
+- **Configure security** — manage antinuke, antiraid, fake permissions, and security admins
+- **Full moderation access** — ban, kick, jail, stripstaff, hardban, and all other mod commands
+- **Server configuration** — prefix, welcome messages, tickets, leveling, and more
+
+## What fake owners cannot do
+
+Some commands are restricted to the **real owner only** (`real_owner` permission):
+
+| Command | Why |
+| ------- | --- |
+| `,setup fakeowner` | Only the real owner can assign or remove the fake owner |
+| Other `real_owner` commands | Explicitly locked to the Discord server owner |
+
+## Protection
+
+Fake owners receive special protections:
+
+- **Antinuke immune** — actions by the fake owner never trigger antinuke punishments
+- **Cannot be moderated** — staff (including security admins) cannot ban, kick, mute, or jail the fake owner. Only the **real server owner** can moderate them
+- **Role protection** — only the real server owner can add or remove roles from the fake owner
+
+## Fake owner vs security admin
+
+| | Fake owner | Security admin |
+| --- | --- | --- |
+| **Set by** | Real owner via `,setup fakeowner` | Real owner via `,security admin` |
+| **Scope** | Full owner-level command access | Antinuke & antiraid config only |
+| **Antinuke immune** | Yes | Yes |
+| **Can moderate** | Yes (almost everything) | Only what their Discord/fake perms allow |
+| **Count** | One per server | Multiple allowed |
+
+<Tip>
+  Use a **security admin** when someone only needs to manage antinuke/antiraid.
+  Use a **fake owner** when you want a full co-owner who can run everything.
+</Tip>
+
+## Viewing the current fake owner
+
+Check who is set as fake owner with `,overview` — it appears under **Permission setup**.

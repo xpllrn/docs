@@ -1,0 +1,45 @@
+---
+title: "Bump Reminder"
+description: "Receive reminders to bump your server on DISBOARD."
+icon: bell
+---
+
+## Setup
+
+1. Invite the [DISBOARD bot](https://disboard.org) to your server
+2. Configure adore's bump reminder:
+
+```javascript
+,bumpreminder unlock
+,bumpreminder channel #bump
+```
+
+## Commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,bumpreminder unlock` | Enable the bump reminder system |
+| `,bumpreminder lock` | Disable the bump reminder system |
+| `,bumpreminder channel (channel)` | Set the bump reminder channel |
+| `,bumpreminder message (text)` | Customize the reminder message |
+| `,bumpreminder thankyou (text)` | Customize the post-bump thank you message |
+| `,bumpreminder overview` | View current configuration |
+| `,bumpreminder reset` | Reset all bump reminder settings |
+| `,bumpreminder variables` | View available message variables |
+
+## Customizing messages
+
+Messages support plain text or [embed scripts](/resources/scripting/embeds) with [variables](/resources/scripting/variables).
+
+```javascript
+,bumpreminder message {embed}$v{title: Time to bump!}$v{description: Run /bump in this channel}
+,bumpreminder thankyou thank you {user.mention} for bumping!
+```
+
+Use `--pingable on` if your message includes role or user mentions that should trigger notifications.
+
+## View configuration
+
+```javascript
+,bumpreminder overview
+```

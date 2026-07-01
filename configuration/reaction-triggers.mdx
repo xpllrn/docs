@@ -1,0 +1,35 @@
+---
+title: "Reaction Triggers"
+description: "Autoreact to trigger words and auto-react in channels."
+icon: bolt
+---
+
+adore has two reaction systems:
+
+<CardGroup cols={2}>
+  <Card title="Autoreact" icon="face-smile" href="/configuration/autoreact">
+    React when a message contains a specific trigger word.
+  </Card>
+  <Card title="Channel Reactions" icon="icons" href="/configuration/channel-reactions">
+    React to every message posted in a channel.
+  </Card>
+</CardGroup>
+
+## Quick reference
+
+### Word triggers (autoreact)
+
+```javascript
+,autoreact add 👍 good
+,autoreact add ❤️ love
+,autoreact list
+```
+
+### Channel reactions
+
+```javascript
+,reaction add #suggestions 👍 👎
+,reaction list
+```
+
+See the dedicated guides for full command reference and limits.

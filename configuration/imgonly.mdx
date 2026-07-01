@@ -1,0 +1,37 @@
+---
+title: "Image-Only Channels"
+description: "Auto-delete messages without images or attachments."
+icon: image
+---
+
+## Overview
+
+Image-only channels automatically delete any message that doesn't contain an image, video, or file attachment. Great for media sharing channels.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,imgonly add (channel)
+,imgonly remove (channel)
+,imgonly list
+,imgonly reset
+```
+
+```javascript Example
+,imgonly add #media
+,imgonly add #memes
+,imgonly remove #media
+```
+
+</CodeGroup>
+
+## Limits
+
+- Maximum **25 image-only channels** per server
+- Messages with embeds containing images are also allowed
+
+<Info>
+  Staff with `manage_messages` can still post text in image-only channels.
+</Info>

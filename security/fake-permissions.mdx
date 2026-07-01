@@ -1,0 +1,102 @@
+---
+title: "Fake Permissions"
+description: "Let moderators use adore commands without real Discord permissions."
+icon: shield-check
+---
+
+### Why use fake permissions?
+
+Fake permissions prevent rogue moderators from using native Discord actions — like mass banning through the Discord client or API — while still letting them moderate through adore.
+
+### How do fake permissions work?
+
+When a role is given fake permissions (e.g. `ban_members`), members with that role can use adore's `ban` command but **cannot** use Discord's native ban feature.
+
+### Getting command permissions
+
+Check what permission a command requires with `,help (command)`.
+
+### Setting up fake permissions
+
+<Warning>
+  Only the **server owner** can manage fake permissions.
+</Warning>
+
+<AccordionGroup>
+    <Accordion title="Granting fake permissions to a role">
+        <CodeGroup>
+        ```javascript Syntax
+        ,fakepermissions add (role) (permission1, permission2, ...)
+        ```
+        ```javascript Example
+        ,fakepermissions add @admin ban_members, kick_members
+        ```
+        </CodeGroup>
+        <Info>`add` and `grant` are aliases for the same command.</Info>
+    </Accordion>
+    <Accordion title="Revoking fake permissions from a role">
+        <CodeGroup>
+        ```javascript Syntax
+        ,fakepermissions remove (role) (permission1, permission2, ...)
+        ```
+        ```javascript Example
+        ,fakepermissions remove @admin ban_members
+        ```
+        </CodeGroup>
+    </Accordion>
+    <Accordion title="Viewing fake permissions">
+        <CodeGroup>
+        ```javascript Syntax
+        ,fakepermissions list <role>
+        ```
+        ```javascript Example
+        ,fakepermissions list @admin
+        ```
+        </CodeGroup>
+    </Accordion>
+    <Accordion title="Resetting all fake permissions">
+        ```javascript
+        ,fakepermissions reset
+        ```
+    </Accordion>
+</AccordionGroup>
+
+### Allowed permissions
+
+| Permission | What it enables in adore |
+| ---------- | ----------------------- |
+| `administrator` | All moderation commands |
+| `ban_members` | `ban`, `softban`, `hardban` |
+| `kick_members` | `kick` |
+| `moderate_members` | `mute`, `timeout` |
+| `manage_messages` | `purge`, `botclear` |
+| `manage_nicknames` | `rename`, `forcenick` |
+| `manage_roles` | `role`, `jail`, `stripstaff` |
+| `manage_channels` | `lock`, `hide`, `nuke`, `slowmode` |
+| `manage_guild` | Server configuration commands |
+| `manage_expressions` | `steal`, emoji/sticker commands |
+
+## Recommended configuration
+
+<Tabs>
+    <Tab title="Moderator">
+        ```javascript
+        ,fakepermissions add @Moderator manage_messages, moderate_members, manage_nicknames, kick_members
+        ```
+    </Tab>
+    <Tab title="Administrator">
+        ```javascript
+        ,fakepermissions add @Admin manage_messages, moderate_members, manage_nicknames, manage_roles, ban_members, kick_members
+        ```
+    </Tab>
+    <Tab title="Co-Owner">
+        ```javascript
+        ,fakepermissions add @Co-Owner administrator
+        ```
+        <Info>Or use [,setup fakeowner](/security/fake-owner) for full owner-level bypass.</Info>
+    </Tab>
+</Tabs>
+
+## Emergency: stripstaff
+
+If a moderator goes rogue, use `,stripstaff (user)` to remove all their roles and fake permissions immediately.

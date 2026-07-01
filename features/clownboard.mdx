@@ -1,0 +1,41 @@
+---
+title: "Clownboard"
+description: "Highlight the worst messages in your server."
+icon: face-grin-squint-tears
+---
+
+## Overview
+
+Clownboard is the inverse of starboard — it highlights messages that receive enough clown reactions, surfacing the funniest (or worst) content in your community.
+
+## Setup
+
+<CodeGroup>
+
+```javascript Syntax
+,clownboard set (channel)
+```
+
+```javascript Example
+,clownboard set #clownboard
+```
+
+</CodeGroup>
+
+## Configuration
+
+| Command | Description |
+| ------- | ----------- |
+| `,clownboard emoji (emoji)` | Set the trigger emoji (default: 🤡) |
+| `,clownboard threshold (number)` | Reactions needed to post (default: 3) |
+| `,clownboard selfstar (on\|off)` | Allow self-clowning |
+| `,clownboard attachments (on\|off)` | Show message attachments |
+| `,clownboard timestamp (on\|off)` | Show message timestamp |
+| `,clownboard jumpurl (on\|off)` | Include jump link |
+| `,clownboard ignore (channel)` | Ignore a channel |
+| `,clownboard reset` | Reset all clownboard settings |
+
+<Info>
+  Clownboard works the same way as [starboard](/configuration/starboard) but
+  for negative/funny highlights instead of positive ones.
+</Info>

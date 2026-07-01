@@ -1,0 +1,59 @@
+---
+title: "AI"
+description: "Ask questions and chat with AI directly in Discord."
+icon: robot
+---
+
+## Overview
+
+adore includes AI-powered commands for answering questions, chatting, and transcribing voice messages.
+
+## Ask
+
+Get answers from adore's AI assistant. Uses MINIMAX with Gemini fallback.
+
+<CodeGroup>
+
+```javascript Syntax
+,ask (question)
+```
+
+```javascript Example
+,ask what is the capital of France?
+```
+
+</CodeGroup>
+
+You can also reply to a voice message to have adore transcribe and answer it.
+
+## Grok
+
+Chat with Grok-powered AI. This is a **donator perk**.
+
+<CodeGroup>
+
+```javascript Syntax
+,grok (question)
+```
+
+```javascript Example
+,grok explain how Discord bots work
+```
+
+</CodeGroup>
+
+## Voice transcription
+
+Transcribe voice messages to text. Available to **donators**.
+
+Reply to a voice message with:
+
+```javascript
+,transcribe
+```
+
+Or use `,ask` / `,grok` while replying to a voice message to transcribe and respond in one step.
+
+## Premium benefits
+
+Server Premium users get priority AI response times for `,ask` and `,grok`.

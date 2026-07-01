@@ -1,0 +1,48 @@
+---
+title: "Logging"
+description: "Configure log channels for moderation, members, messages, and server events."
+icon: clipboard-list
+---
+
+## Overview
+
+adore can send logs to dedicated channels for moderation actions, member joins/leaves, message events, and server changes.
+
+## Log types
+
+| Type | Aliases | What gets logged |
+| ---- | ------- | ---------------- |
+| `mod` | moderation, moderator | Bans, kicks, mutes, warns, jails, and other mod actions |
+| `member` | members, joins | Member joins and leaves |
+| `message` | messages | Message edits and deletions |
+| `server` | — | Role changes and member role updates |
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,logs add (channel) (type)
+,logs remove (type)
+,logs list
+```
+
+```javascript Example
+,logs add #mod-log mod
+,logs add #joins member
+,logs add #audit message
+,logs add #server-log server
+,logs remove mod
+```
+
+</CodeGroup>
+
+## Setup example
+
+```javascript
+,logs add #mod-actions mod
+,logs add #member-log member
+,logs add #message-log message
+```
+
+Run `,logs` or `,logs list` to see all configured channels. Stale channels (deleted) are automatically cleaned up.

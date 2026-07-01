@@ -1,0 +1,69 @@
+---
+title: "Level Rewards"
+description: "Reward your members for being active in your server."
+icon: ranking-star
+---
+
+## Getting started
+
+XP tracking is **off by default**. Enable it first:
+
+```javascript
+,levels unlock
+```
+
+To temporarily stop tracking:
+
+```javascript
+,levels lock
+```
+
+## Setting up role rewards
+
+Reward members with roles when they reach a level:
+
+<CodeGroup>
+
+```javascript Syntax
+,levels add (role) (level)
+,levels remove (level)
+,levels sync
+```
+
+```javascript Example
+,levels add @Level5 5
+,levels add @Level10 10
+,levels remove 5
+,levels sync
+```
+
+</CodeGroup>
+
+`sync` ensures all members have the correct reward roles based on their current XP.
+
+## Level-up messages
+
+| Command | Description |
+| ------- | ----------- |
+| `,levels messagemode (channel/pm/context/none)` | Where level-up messages are sent |
+| `,levels channel (channel)` | Set a dedicated level-up channel |
+| `,levels message (text)` | Customize the level-up message |
+| `,levels stackroles (on/off)` | Keep all earned roles or only the highest |
+
+## Other commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,levels list` | View all level rewards |
+| `,levels overview` | Dashboard of leveling settings |
+| `,levels setrate (multiplier)` | Adjust XP gain rate |
+| `,levels cleanup` | Remove reward roles from members who lost levels |
+| `,levels reset` | Reset all XP in the server |
+| `,setlevel (user) (level)` | Manually set a member's level |
+| `,setxp (user) (amount)` | Manually set a member's XP |
+
+## Tips
+
+- Use `,levels messagemode none` to disable level-up messages in busy channels
+- Run `,levels sync` after adding new rewards to an active server
+- Pair with [starboard](/configuration/starboard) and [autorole](/configuration/autorole) for engagement

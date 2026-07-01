@@ -1,0 +1,75 @@
+---
+title: "Security Overview"
+description: "Checklist for setting up adore's security systems."
+icon: shield-halved
+---
+
+## Quick setup checklist
+
+Follow this order when securing a new server:
+
+<Steps>
+  <Step title="1. Moderation foundation">
+    ```javascript
+    ,setme
+    ,setmute
+    ,logs add #mod-log mod
+    ```
+    See [Moderation](/security/moderation).
+  </Step>
+  <Step title="2. Fake permissions">
+    ```javascript
+    ,fakepermissions add @Moderator kick_members, moderate_members, manage_messages
+    ,fakepermissions add @Admin ban_members, manage_roles, kick_members
+    ```
+    See [Fake Permissions](/security/fake-permissions).
+  </Step>
+  <Step title="3. Antinuke">
+    ```javascript
+    ,antinuke ban on --limit 3 --punishment ban
+    ,antinuke kick on --limit 3 --punishment ban
+    ,antinuke role on --limit 3 --punishment ban
+    ,antinuke channel on --limit 3 --punishment ban
+    ,antinuke permissions on --limit 1 --punishment ban
+    ```
+    See [Antinuke](/security/antinuke).
+  </Step>
+  <Step title="4. Antiraid">
+    ```javascript
+    ,antiraid newaccount on --punishment ban
+    ,antiraid avatar on --punishment kick
+    ,antiraid botadd on --punishment ban
+    ```
+    See [Antiraid](/security/antiraid).
+  </Step>
+  <Step title="5. Delegate access">
+    ```javascript
+    ,security admin @trusted-admin
+    ,setup fakeowner @co-owner
+    ```
+    See [Security Admins](/security/security-admins) and [Fake Owner](/security/fake-owner).
+  </Step>
+  <Step title="6. Command gating">
+    ```javascript
+    ,restrictcommand add ban @Admin
+    ,filter add slur
+    ```
+    See [Restrict Commands](/security/restrictcommand) and [Word Filter](/security/filter).
+  </Step>
+</Steps>
+
+## View your config
+
+Run `,overview` in Discord to see a dashboard of your server's moderation status, fake owner, booster roles, and antiraid settings.
+
+Run `,antinuke overview` for detailed antinuke module status.
+
+## Backup
+
+After setup, create a backup:
+
+```javascript
+,backup create secured
+```
+
+See [Backup & Restore](/features/backup).

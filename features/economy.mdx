@@ -1,0 +1,55 @@
+---
+title: "Economy"
+description: "Virtual currency, gambling, shop, and games for your community."
+icon: coins
+---
+
+## Overview
+
+adore includes a full economy system with virtual currency, a bank, gambling, a shop, and mini-games. Members earn coins through daily rewards, work commands, and activities.
+
+## Core commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,balance` | Check wallet and bank balance |
+| `,daily` | Claim daily coins |
+| `,earn` / `,crime` / `,slut` | Work commands to earn coins |
+| `,deposit` / `,withdraw` | Move coins between wallet and bank |
+| `,transfer (user) (amount)` | Send coins to another member |
+| `,leaderboard` | Top richest members |
+
+## Gambling
+
+| Command | Description |
+| ------- | ----------- |
+| `,coinflip (amount)` | 50/50 coin flip |
+| `,slots (amount)` | Slot machine |
+| `,dice (amount)` | Roll dice |
+| `,rob (user)` | Attempt to rob another member |
+
+## Shop & inventory
+
+```javascript
+,shop          // Browse available items
+,inventory     // View your purchased items
+,pick (item)   // Use an item from inventory
+```
+
+## Blacktea
+
+Blacktea is adore's competitive word game with ELO ranking. Start a game in any channel:
+
+```javascript
+,blacktea
+```
+
+Players take turns typing words containing the given fragment. Last player standing wins ELO points.
+
+## Marriage
+
+```javascript
+,marry (user)     // Propose marriage
+,divorce          // End marriage
+,married          // View marriage status
+```

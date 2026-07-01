@@ -1,72 +1,185 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "adore",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#ff5d8f",
+    "light": "#ff89ab",
+    "dark": "#e23e72"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "favicon.png",
   "navigation": {
-    "pages": [
+    "groups": [
       {
-        "group": "Getting Started",
+        "group": "Overview",
         "pages": [
-          "index",
-          "quickstart"
+          "overview/introduction",
+          "overview/premium",
+          "overview/customization"
+        ]
+      },
+      {
+        "group": "Security Setup",
+        "pages": [
+          "security/overview",
+          "security/antinuke",
+          "security/antiraid",
+          "security/fake-owner",
+          "security/fake-permissions",
+          "security/security-admins",
+          "security/moderation",
+          "security/hardban",
+          "security/restrictcommand",
+          "security/command-access",
+          "security/filter"
+        ]
+      },
+      {
+        "group": "Server Configuration",
+        "pages": [
+          "configuration/setup",
+          "configuration/prefix",
+          "configuration/autorole",
+          "configuration/logging",
+          {
+            "group": "Tickets",
+            "icon": "tickets",
+            "pages": [
+              "configuration/tickets/overview",
+              "configuration/tickets/commands",
+              "configuration/tickets/panels",
+              "configuration/tickets/options",
+              "configuration/tickets/forms",
+              "configuration/tickets/access",
+              "configuration/tickets/lifecycle",
+              "configuration/tickets/messages",
+              "configuration/tickets/variables"
+            ]
+          },
+          {
+            "group": "Roles",
+            "icon": "users-gear",
+            "pages": [
+              "configuration/roles/vanity",
+              "configuration/roles/booster",
+              "configuration/roles/reaction",
+              "configuration/roles/button"
+            ]
+          },
+          {
+            "group": "Messages",
+            "icon": "message",
+            "pages": [
+              "configuration/messages/system",
+              "configuration/messages/responder"
+            ]
+          },
+          "configuration/poj",
+          "configuration/stickymessage",
+          "configuration/starboard",
+          "configuration/voicemaster",
+          "configuration/level-rewards",
+          "configuration/bump-reminder",
+          "configuration/autoreact",
+          "configuration/channel-reactions",
+          "configuration/imgonly",
+          "configuration/command-aliases"
+        ]
+      },
+      {
+        "group": "Features",
+        "pages": [
+          "features/economy",
+          "features/ai",
+          "features/clownboard",
+          "features/backup"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "pages": [
+          "integrations/spotify",
+          "integrations/lastfm"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          "resources/syntax",
+          {
+            "group": "Scripting",
+            "icon": "scroll",
+            "pages": [
+              "resources/scripting/embeds",
+              "resources/scripting/variables"
+            ]
+          },
+          "resources/permissions",
+          "resources/events",
+          "resources/voices",
+          "resources/languages"
+        ]
+      },
+      {
+        "group": "Common Issues",
+        "pages": [
+          "common-issues/ios-dash",
+          "common-issues/permissions",
+          "common-issues/server-removal"
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Support Server",
+        "href": "https://discord.gg/2JYMZWeu9s"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Home",
+      "href": "https://adore.rest"
     }
   },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
+  "seo": {
+    "metatags": {
+      "theme-color": "#ff5d8f",
+      "og:site_name": "adore.rest"
+    },
+    "indexing": "navigable"
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "discord": "https://discord.gg/2JYMZWeu9s",
+      "github": "https://github.com/xpllrn/adore-public"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/commands",
+      "destination": "https://adore.rest/commands"
+    },
+    {
+      "source": "/status",
+      "destination": "https://adore.rest/status"
+    },
+    {
+      "source": "/invite",
+      "destination": "https://adore.rest"
+    },
+    {
+      "source": "/discord",
+      "destination": "https://discord.gg/2JYMZWeu9s"
+    }
+  ]
 }

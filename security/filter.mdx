@@ -1,0 +1,58 @@
+---
+title: "Word Filter"
+description: "Block filtered words using Discord AutoMod."
+icon: filter
+---
+
+## Overview
+
+adore's word filter uses Discord's built-in **AutoMod** to block messages containing filtered words. adore creates and manages an AutoMod rule called **"Adore Word Filter"**.
+
+<Info>
+  adore needs **Manage Server** permission to create and edit AutoMod rules.
+</Info>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,filter add (word)
+,filter remove (word)
+,filter list
+,filter exempt (role/user/channel)
+,filter reset
+```
+
+```javascript Example
+,filter add badword
+,filter remove badword
+,filter exempt @Moderator
+,filter exempt #staff-chat
+```
+
+</CodeGroup>
+
+| Subcommand | Description |
+| ---------- | ----------- |
+| `add` | Add a word to the filter (max 1000 words) |
+| `remove` | Remove a word from the filter |
+| `list` | View all filtered words |
+| `exempt` | Toggle exemption for a role, user, or channel |
+| `reset` | Delete all filter rules and clear exemptions |
+
+## Exemptions
+
+Use `,filter exempt` to toggle exemptions:
+
+- **Roles** — exempt up to 20 roles (via Discord AutoMod)
+- **Channels** — exempt up to 50 channels (via Discord AutoMod)
+- **Users** — exempt individual users (stored in adore's database)
+
+Running `,filter exempt` on an already-exempt target removes the exemption.
+
+## Notes
+
+- Words are case-insensitive and limited to 60 characters
+- Filtered messages are blocked by Discord AutoMod before they appear in chat
+- `,filter reset` requires confirmation and removes the entire AutoMod rule

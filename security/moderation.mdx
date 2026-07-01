@@ -1,0 +1,68 @@
+---
+title: Moderation
+description: "Guide to setting up moderation commands in your server."
+icon: hammer
+---
+
+## Overview
+
+Moderation commands require some basic setup before they can be used. This includes **mute roles**, the **jailed role & channel**, and **mod logs**.
+
+<Steps>
+    <Step title="Creating the jail system">
+        <Info>
+            Jail restricts users from all channels except `#jailed`.
+        </Info>
+        Use the `,setme` command to create the jailed role and channel.
+    </Step>
+    <Step title="Creating mute roles">
+        <Info>
+            This creates **muted**, **imuted** (image mute), and **rmuted** (reaction mute) roles.
+        </Info>
+        Use the `,setmute` command to create the necessary mute roles.
+    </Step>
+    <Step title="Setting up mod logs">
+        Use `,logs add #channel mod` to set where moderation actions are logged.
+    </Step>
+</Steps>
+
+Upon completion, you'll have these roles:
+
+- **muted** — Restricts sending messages and speaking in voice
+- **imuted** — Restricts uploading attachments and embeds
+- **rmuted** — Restricts adding reactions
+- **jailed** — Restricts all channels except `#jailed`
+
+## Moderation commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,ban` / `,softban` / `,hardban` | Ban members (hardban is persistent) |
+| `,kick` | Remove a member |
+| `,mute` / `,unmute` | Timeout a member |
+| `,imute` / `,iunmute` | Image mute |
+| `,rmute` / `,runmute` | Reaction mute |
+| `,jail` / `,unjail` | Restrict to jail channel |
+| `,warn` / `,warnings` / `,clearwarns` | Warning system with case tracking |
+| `,purge (amount)` | Bulk delete messages |
+| `,stripstaff (user)` | Emergency: strip all mod roles and fake perms |
+
+## Case history
+
+adore tracks every moderation action with case numbers:
+
+```javascript
+,history (user)     // View a member's mod history
+,modhistory          // View all recent cases
+,modstats            // Moderator statistics
+,reason (case #)     // View or edit a case reason
+```
+
+## stripstaff
+
+`stripstaff` removes all roles with moderation permissions (ban, kick, manage roles, etc.) and revokes fake permissions. Use this in emergencies when a moderator goes rogue.
+
+<Info>
+  Pair moderation with [fake permissions](/security/fake-permissions) so staff
+  can only moderate through adore, not native Discord.
+</Info>

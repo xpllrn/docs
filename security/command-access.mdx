@@ -1,0 +1,58 @@
+---
+title: "Disable & Enable Commands"
+description: "Turn commands off per channel or server-wide."
+icon: ban
+---
+
+## Overview
+
+Disable commands you don't want used in specific channels or across the entire server. Re-enable them anytime with `,enablecommand`.
+
+## Disable a command
+
+### Per channel
+
+```javascript
+,disablecommand #media avatar
+,disablecommand #staff-only economy
+```
+
+### Server-wide
+
+```javascript
+,disablecommand all avatar
+```
+
+## Enable a command
+
+### Per channel
+
+```javascript
+,enablecommand #media avatar
+```
+
+### Server-wide
+
+```javascript
+,enablecommand all avatar
+```
+
+## List disabled commands
+
+```javascript
+,disablecommand list
+```
+
+Shows all disabled commands with their scope (channel or `all`).
+
+<Warning>
+  You cannot disable `disablecommand` or `enablecommand` themselves.
+</Warning>
+
+## Common use cases
+
+| Scenario | Command |
+| -------- | ------- |
+| Block economy in staff channels | `,disablecommand #staff balance` |
+| Disable fun commands server-wide | `,disablecommand all gamble` |
+| Re-allow a command in one channel | `,enablecommand #fun gamble` |

@@ -1,0 +1,44 @@
+---
+title: "Autorole"
+description: "Automatically assign roles when members join."
+icon: user-plus
+---
+
+## Overview
+
+Autoroles are assigned to every new member when they join your server. You can set up to **10 autoroles**.
+
+<Warning>
+  adore will warn you if a role has dangerous permissions (administrator, ban, etc.) before adding it.
+</Warning>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,autorole add (role)
+,autorole remove (role)
+,autorole list
+,autorole reset
+```
+
+```javascript Example
+,autorole add @Member
+,autorole add @Verified
+,autorole remove @Member
+```
+
+</CodeGroup>
+
+## Requirements
+
+- adore's highest role must be **above** the autorole
+- Managed roles (bot/integration roles) cannot be used as autoroles
+- Maximum **10 autoroles** per server
+
+## Tips
+
+- Place autoroles below adore's role in the role hierarchy
+- Avoid giving autoroles dangerous permissions — use [fake permissions](/security/fake-permissions) for staff instead
+- Pair with [welcome messages](/configuration/messages/system) for a complete join experience

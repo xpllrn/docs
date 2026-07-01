@@ -1,0 +1,38 @@
+---
+title: "Server Setup"
+description: "Quick-setup commands for booster roles and content settings."
+icon: wrench
+---
+
+## Baserole
+
+Set the role that custom [booster roles](/configuration/roles/booster) are positioned below in the hierarchy.
+
+```javascript
+,setup baserole (role)
+,setup baserole
+```
+
+The second form shows the current baserole. adore's role must be above the baserole.
+
+## NSFW bypass
+
+Allow or block NSFW content commands in your server.
+
+```javascript
+,setup nsfw on
+,setup nsfw off
+,setup nsfw
+```
+
+Running without `on`/`off` shows the current status.
+
+## Fake owner
+
+Grant a trusted co-owner full command access:
+
+```javascript
+,setup fakeowner (user)
+```
+
+See the [Fake Owner](/security/fake-owner) guide for details.

@@ -1,0 +1,53 @@
+---
+title: Blacklist & Access
+description: Control ticket access and manual attendee permissions.
+icon: user-lock
+---
+
+## Overview
+
+Ticket access is controlled per option through **required roles**, **global staff roles**, and manual **allow/deny** on individual tickets.
+
+<Info>
+  Support visibility is controlled per ticket option. If an option doesn't define support roles, the system falls back to the global ticket staff role set with `,ticket staff`.
+</Info>
+
+## Global ticket staff
+
+Set a default staff role for all tickets:
+
+```javascript
+,ticket staff (role)
+,ticket staff
+```
+
+## Manual ticket access
+
+On an open ticket, staff can grant or revoke extra access:
+
+| Command | Description |
+| ------- | ----------- |
+| `,ticket allow (user)` | Grant a user access to the current ticket |
+| `,ticket deny (user)` | Remove manual access from a user |
+
+<Tip>
+  Manual allow entries persist through claim/unclaim and are restored if a ticket is reopened.
+</Tip>
+
+## Option-level access
+
+When creating ticket options (`,ticket option create`), you can configure:
+
+- **Required roles** — users must have these roles to open the ticket
+- **Support roles** — staff who can see and respond in the ticket
+- **Categories** — which category the ticket channel is created in
+
+See [Ticket Options](/configuration/tickets/options) for full configuration.
+
+## Ticket log
+
+Set where ticket events are logged:
+
+```javascript
+,ticket log (channel)
+```

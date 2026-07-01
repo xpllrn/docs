@@ -1,0 +1,56 @@
+---
+title: "Hardban"
+description: "Permanently ban a user — they are re-banned if they rejoin."
+icon: gavel
+---
+
+## Overview
+
+A **hardban** is a persistent ban. If a hardbanned user rejoins (via invite or vanity URL), adore automatically re-bans them.
+
+## Who can hardban?
+
+- Server owner
+- [Fake owner](/security/fake-owner)
+- [Security admins](/security/security-admins)
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,hardban (user) (reason)
+,hardbans
+```
+
+```javascript Example
+,hardban @raider mass destruction
+,hardban 123456789012345678 repeat offender --silent
+```
+
+</CodeGroup>
+
+| Command | Description |
+| ------- | ----------- |
+| `,hardban` | Ban a user and add them to the hardban list |
+| `,hardbans` | View all hardbanned users in the server |
+
+## Flags
+
+| Flag | Description |
+| ---- | ----------- |
+| `--silent` / `--s` | Skip sending a DM to the user |
+
+## Protections
+
+- Cannot hardban the **server owner**
+- Cannot hardban the **fake owner** (unless you are the real owner)
+- Hardbanned users are stored in adore's database and persist across bot restarts
+
+## Removing a hardban
+
+To remove someone from the hardban list, unban them normally with `,unban`. This removes them from the hardban list and lifts the ban.
+
+<Info>
+  Use hardban for persistent threats. For normal moderation, use `,ban` instead.
+</Info>

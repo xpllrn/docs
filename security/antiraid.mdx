@@ -1,0 +1,89 @@
+---
+title: "Antiraid"
+description: "Protect your server from automated raids and suspicious joins."
+icon: person-to-door
+---
+
+## Why use antiraid?
+
+Raids happen when many malicious accounts join at once — or when a compromised moderator adds bots. adore's antiraid modules catch suspicious joins and bot additions before they can cause damage.
+
+## Available modules
+
+<AccordionGroup>
+  <Accordion title="New account protection">
+    Punishes accounts younger than 7 days when they join.
+    <CodeGroup>
+    ```javascript Syntax
+    ,antiraid newaccount (on | off) [--punishment (kick | ban)]
+    ```
+    ```javascript Example
+    ,antiraid newaccount on --punishment ban
+    ```
+    </CodeGroup>
+  </Accordion>
+  <Accordion title="Default avatar protection">
+    Punishes accounts that join with Discord's default avatar (no custom profile picture).
+    <CodeGroup>
+    ```javascript Syntax
+    ,antiraid avatar (on | off) [--punishment (kick | ban)]
+    ```
+    ```javascript Example
+    ,antiraid avatar on --punishment kick
+    ```
+    </CodeGroup>
+  </Accordion>
+  <Accordion title="Bot protection">
+    Punishes users who add bots without being on the antiraid whitelist.
+    <Info>
+      Whitelist trusted users with `,antiraid whitelist` before they invite bots.
+    </Info>
+    <CodeGroup>
+    ```javascript Syntax
+    ,antiraid botadd (on | off) [--punishment (kick | ban)]
+    ```
+    ```javascript Example
+    ,antiraid botadd on --punishment ban
+    ```
+    </CodeGroup>
+  </Accordion>
+</AccordionGroup>
+
+## Whitelisting users
+
+Users on the antiraid whitelist can add bots and are immune to join-based protections.
+
+<CodeGroup>
+
+```javascript Syntax
+,antiraid whitelist (user)
+```
+
+```javascript Example
+,antiraid whitelist @bot-manager
+```
+
+</CodeGroup>
+
+View the whitelist with `,antiraid whitelists`.
+
+<Warning>
+  The server owner and security admins are automatically immune to antiraid.
+</Warning>
+
+## Viewing configuration
+
+Use `,antiraid overview` to see all enabled modules, punishments, and whitelist counts.
+
+## Recommended setup
+
+For a typical community server:
+
+```javascript
+,antiraid newaccount on --punishment ban
+,antiraid avatar on --punishment kick
+,antiraid botadd on --punishment ban
+,antiraid whitelist @your-bot-manager
+```
+
+Pair this with [antinuke](/security/antinuke) and [fake permissions](/security/fake-permissions) for full protection.

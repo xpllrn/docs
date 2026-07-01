@@ -1,0 +1,41 @@
+---
+title: "Prefix"
+description: "Set the server command prefix."
+icon: terminal
+---
+
+## Overview
+
+adore's default prefix is `,`. You can change it per server or set a personal prefix as a donator perk.
+
+## Server prefix
+
+<CodeGroup>
+
+```javascript Syntax
+,prefix (symbol)
+,prefix remove
+```
+
+```javascript Example
+,prefix !
+,prefix .
+,prefix remove
+```
+
+</CodeGroup>
+
+- Requires **administrator** permission (or owner/fake owner)
+- `,prefix remove` resets to the default `,`
+- Most commands also work as **slash commands** regardless of prefix
+
+## Personal prefix (donator)
+
+Donators can set a prefix that works across all servers:
+
+```javascript
+,selfprefix !
+,selfprefix remove
+```
+
+See [Premium & Donator Perks](/overview/premium) for details.

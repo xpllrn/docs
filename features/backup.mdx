@@ -1,0 +1,48 @@
+---
+title: "Backup & Restore"
+description: "Save and restore your server configuration."
+icon: floppy-disk
+---
+
+## Overview
+
+adore can back up your server's configuration — roles, channels, permissions, and adore-specific settings — so you can restore after a nuke or migrate to a new server.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,backup create (name)
+,backup list
+,backup load (name)
+,backup delete (name)
+```
+
+```javascript Example
+,backup create main-server
+,backup load main-server
+```
+
+</CodeGroup>
+
+<Warning>
+  Backups save server structure and adore settings. They do **not** restore
+  member data, messages, or bans.
+</Warning>
+
+## What's included
+
+- Channel structure and permissions
+- Role hierarchy and permissions
+- adore configuration (prefix, welcome messages, antinuke settings, etc.)
+
+## Best practice
+
+Create a backup after finishing your initial adore setup:
+
+```javascript
+,backup create after-setup
+```
+
+If your server is ever compromised, restore from backup and re-enable [antinuke](/security/antinuke) immediately.

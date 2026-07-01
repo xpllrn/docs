@@ -1,0 +1,38 @@
+---
+title: "Channel Reactions"
+description: "Automatically react to every message in a channel."
+icon: icons
+---
+
+## Overview
+
+Channel reactions add the same emoji(s) to **every message** posted in a configured channel. Useful for voting channels, feedback, or engagement.
+
+<Info>
+  For word-triggered reactions, use [autoreact](/configuration/autoreact) instead.
+</Info>
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,reaction add (channel) (emoji1) (emoji2) ...
+,reaction remove (channel) (emoji)
+,reaction list
+,reaction reset
+```
+
+```javascript Example
+,reaction add #suggestions 👍 👎
+,reaction add #feedback ⭐
+,reaction remove #suggestions 👍
+```
+
+</CodeGroup>
+
+## Limits
+
+- Multiple emojis can be added per channel
+- Custom emojis must be accessible to adore
+- `,reaction reset` removes all channel reaction configs

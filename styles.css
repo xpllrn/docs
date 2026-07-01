@@ -1,0 +1,11 @@
+/* adore docs custom styles */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --adore-primary: #ff5d8f;
+  --adore-primary-soft: #ff89ab;
+  --adore-primary-deep: #e23e72;
+}

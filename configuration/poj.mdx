@@ -1,0 +1,38 @@
+---
+title: "Ping on Join"
+description: "Ghost-ping new members in selected channels."
+icon: bell
+---
+
+## Overview
+
+Ping on join (`,poj`) sends a brief ping when a new member joins, then deletes the message — a "ghost ping" that notifies the channel without leaving a visible ping.
+
+## Commands
+
+<CodeGroup>
+
+```javascript Syntax
+,poj add (channel)
+,poj remove (channel)
+,poj list
+```
+
+```javascript Example
+,poj add #welcome
+,poj add #general
+,poj remove #welcome
+```
+
+</CodeGroup>
+
+## Limits
+
+| Tier | Max channels |
+| ---- | ------------ |
+| Free | 25 |
+| Premium | 50 |
+
+<Info>
+  Pair with [welcome messages](/configuration/messages/system) for a full new-member experience.
+</Info>

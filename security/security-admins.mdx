@@ -1,0 +1,63 @@
+---
+title: "Security Admins"
+description: "Delegate antinuke and antiraid configuration to trusted users."
+icon: user-shield
+---
+
+## Overview
+
+By default, only the **server owner** and **[fake owner](/security/fake-owner)** can configure adore's security systems. Security admins let you delegate **only** antinuke and antiraid management to trusted staff — without giving them full owner access.
+
+<Warning>
+  Security admins can change antinuke and antiraid settings. Only grant this to
+  people you fully trust.
+</Warning>
+
+## Managing security admins
+
+<CodeGroup>
+
+```javascript Syntax
+,security admin (user)
+```
+
+```javascript Example
+,security admin @trusted-admin
+```
+
+</CodeGroup>
+
+Running the command again on the same user removes their admin status (toggle).
+
+List all security admins:
+
+```javascript
+,security admins
+```
+
+## Immunity
+
+Security admins are **automatically immune** to both antinuke and antiraid. They do not need to be whitelisted separately.
+
+## Security admin vs fake owner
+
+| | Security admin | Fake owner |
+| --- | --- | --- |
+| **Command** | `,security admin` | `,setup fakeowner` |
+| **Can configure** | Antinuke & antiraid only | Everything (full owner access) |
+| **Immune to antinuke** | Yes | Yes |
+| **Set by** | Real server owner | Real server owner only |
+| **Count** | Multiple | One per server |
+
+<Tip>
+  Need a co-owner who can run all commands? Use [fake owner](/security/fake-owner) instead.
+</Tip>
+
+## Related commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,setup fakeowner (user)` | Grant full co-owner access — see [Fake Owner](/security/fake-owner) |
+| `,antinuke whitelist (user)` | Exempt a user from antinuke triggers |
+| `,antiraid whitelist (user)` | Exempt a user from antiraid join checks |
+| `,overview` | View your full server security dashboard |
