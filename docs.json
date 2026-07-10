@@ -190,7 +190,7 @@
     "library": "tabler"
   },
   "background": {
-    "decoration": "grid"
+    "decoration": "windows"
   },
   "contextual": {
     "options": [
