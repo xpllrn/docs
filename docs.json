@@ -187,10 +187,10 @@
     }
   ],
   "icons": {
-    "library": "tabler"
+    "library": "fontawesome"
   },
   "background": {
-    "decoration": "windows"
+    "decoration": "gradient"
   },
   "contextual": {
     "options": [
