@@ -1,0 +1,77 @@
+---
+title: "Music"
+description: "Play music in voice channels with search, queue, autoplay, and playback controls."
+icon: music
+---
+
+## Overview
+
+adore can join your voice channel and stream music from a search query or a **YouTube**, **Spotify**, or **SoundCloud** link. Tracks are resolved through Spotify metadata and streamed with **yt-dlp**.
+
+<Info>
+  You must be in a **voice channel** to use music commands. Most controls only work
+  while you are in the **same voice channel** as the bot.
+</Info>
+
+## Getting started
+
+1. Join a voice channel.
+2. Run `,play` with a song name or URL.
+3. The bot joins your channel and starts playback.
+
+```javascript
+,play drake gods plan
+,play https://open.spotify.com/track/...
+,play https://www.youtube.com/watch?v=...
+```
+
+## Playback commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,play (query)` | Queue a song by name or URL |
+| `,skip` | Skip the current track |
+| `,pause` | Pause playback |
+| `,resume` | Resume playback |
+| `,volume [0-100]` | View or set playback volume |
+| `,disconnect` | Stop playback and leave the voice channel |
+
+## Queue
+
+| Command | Description |
+| ------- | ----------- |
+| `,queue` | View the current queue |
+| `,queue remove (position)` | Remove a track by position |
+| `,queue shuffle` | Shuffle queued tracks |
+| `,queue empty` | Clear the queue |
+
+You can also use `,shuffle` as a shortcut for `,queue shuffle`.
+
+## Repeat & autoplay
+
+| Command | Description |
+| ------- | ----------- |
+| `,repeat [off\|song\|queue]` | Toggle repeat mode (off → song → queue) |
+| `,autoplay` | Show whether autoplay is on or off |
+| `,autoplay on` | Keep playing similar songs when the queue ends |
+| `,autoplay off` | Stop when the queue is empty |
+
+**Autoplay is on by default.** When the queue runs out, adore uses Spotify recommendations to queue similar music.
+
+## Voice channel status
+
+While a song is playing, the bot sets the **voice channel status** to the current track title.
+
+## Auto-leave
+
+If everyone leaves the voice channel, the bot waits **10 seconds** and then disconnects automatically.
+
+## Spotify vs voice music
+
+| | Voice music (`play`, `queue`, …) | Spotify integration (`spotify play`, …) |
+| --- | --- | --- |
+| **Where it plays** | In a Discord voice channel | On your linked Spotify account / device |
+| **Requires** | You in a voice channel | Spotify account linked with `,spotify login` |
+| **Premium** | Not required | Spotify Premium required for playback control |
+
+See [Spotify integration](/integrations/spotify) for controlling your personal Spotify playback from Discord.

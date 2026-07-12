@@ -10,7 +10,7 @@ cd docs && npx mintlify dev
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md). Screenshots go in `images/` — see [images/README.md](./images/README.md).
+See [CONTRIBUTING.md](./CONTRIBUTING.md). Screenshots go in `images/` - see [images/README.md](./images/README.md).
 
 ## Join our community
 

@@ -1,0 +1,375 @@
+# only use the default color for all of them unless mentioned, in the newremake we will mostly use forms and select menu + buttons and embeds will be rarely used to none.
+
+---
+
+## Ticket Panels
+
+no embed only select menu and button
+
+**Select menu:** `Select a ticket panel...` - options show title {panel name}, description {button or dropdown}
+
+insice the add panel menu popup
+
+{bot pfp} Add panel
+
+Panel Name
+Panel name...
+
+Channel
+Where the ticket panel message should be posted
+select a channel...
+
+Mode
+How users should open tickets on this panel
+Select a mode....
+
+---
+
+No embed, only buttons 
+
+**Select menu:** `{panel name which we selected}`
+buttons all blue {Behavior Categories Display Messages}
+buttons red { Remove }, grey { Back }
+
+---
+
+## HERE'S ALL THE FORMS WE WILL BE USING FOR TICKET PANEL
+
+1st behavior
+
+Behavior • {panel name}
+
+delete delay
+10s
+
+Max Open
+1
+
+# there will be 2 tick option for yes or no
+Autopin
+automatically pin the ticket control message
+
+Claims
+Allow staff to claim tickets from this panel.
+
+
+
+2nd Categories
+
+Categories • {panel name}
+
+Default Category
+Where new tickets from this panel should be created.
+Select a default category...
+
+Overflow Category
+Fallback category when the default category can't be used.
+Select a overflow category...
+
+
+3rd Display
+
+Display • {panel name}
+
+Panel Name
+
+
+Default Channel Name Format
+case
+
+Padding
+0
+
+Tickets Mode
+Choose whether this panel should use buttons or a dropdown
+select menu: Buttons , Dropdowns
+
+
+4th Panel Message
+
+Edit Panel Message • {panel name}
+
+Panel Message
+---
+
+
+## HERE'S ALL THE FORMS WE WILL BE USING FOR TICKET OPTIONS
+
+select menu: Select a ticket panel...
+Add Done
+
+There will be 4 buttons in ticket options aswell and remove and back in line 2
+Behavior forms messages Style
+
+behavior will have 4 buttons
+Button UX, Cagetories, Naming, Permissions
+
+button UX will have 4 buttons
+Claim, Close, Delete, Reopen with these buttons emote :inbox_tray: :lock: :no_entry: :unlock: 
+
+Each of them have the same menu
+
+Button Label
+Leave black to use default: Reopen
+
+Button Emoji
+Leave black for default or type `none` to remove it.
+
+Button Color
+Choose the button color.
+select menu with these
+Blurple
+Gray
+Green
+Red
+
+
+Select option is the Cagetories, 
+
+Categories
+Where tickets from this button should be created
+Select a Category...
+
+Claim Category
+Move the ticket into this Category when its claimed.
+Select a Claim Category...
+
+Close Category
+Move the ticket into this Category when its closed.
+Select a Close Category...
+
+
+Naming
+Channel Name Format
+Leave Blank to inherit the panel channel name format
+
+Claim Rename Format
+Leave black to clear the claim rename template.
+
+Close Rename format
+Leave black to clear the close rename template.
+
+
+
+Permission
+This will have 3 buttons
+Members Support Traineers
+Back
+
+each menu will have these options
+
+Member permissions
+
+Required Roles
+Only members will these roles can open tickets from this button.
+
+tick option: Required All Roles
+Require every select roles instead of allowing any select role.
+
+Ticket Permission
+Allow these extra permission for the ticket creator in tickets from this option.
+Select menu: Embed Links
+Attach Files
+Add Reactions
+Use Emoji
+Use Sticker 
+Send Voice Messages
+
+
+Support permissions
+
+Support Roles
+Only these roles can see tickets opened from this button
+Select support roles...
+
+Ticket Permission
+Allow these extra permission for the visible support role in tickets from this option.
+Select menu: Embed Links
+Attach Files
+Add Reactions
+Use Emoji
+Use Sticker 
+Send Voice Messages
+
+tick options
+Keep staff visible on claim
+-keep support roles visible.
+
+Staff can speak on claim
+-let visible support roles reply in claimed tickets.
+
+Allow claim takeovers
+-let support roles reclaim tickets from trainee claimers. 
+
+
+Trainee rermissions 
+
+Trainee Roles
+Only these roles can see tickets opened from this button
+Select trainee roles...
+
+Ticket Permission
+Allow these extra permission for the visible trainee role in tickets from this option.
+Select menu: Embed Links
+Attach Files
+Add Reactions
+Use Emoji
+Use Sticker 
+Send Voice Messages
+
+tick options
+trainees can claim
+- allow trainees to claim tickets from this option
+trainees can close
+- allow trainees to close tickets from this option
+
+
+next is form button
+
+
+
+next is messages with drop down menu to select from 
+
+Auto close
+auto delete
+claim 
+close
+Greeting
+Inactivity
+move
+required roles
+reopen
+
+and use the tick option instead of select for enable disbale please
+
+and last option is style which we already have perfect 
+in the style menu, remove the description option, and add a tick option for Disable button, show the button as disabled on the panel
+but if its a dropdown, in the style it will show as
+
+dropdown lable
+
+dropdown description
+
+dropdown emoji
+
+disable dropdown option.
+
+
+
+
+
+----
+
+DEFAULT EMBEDS 
+
+
+# default panel message
+{embed}
+$v{author: pvt}
+$v{title: adore}
+$v{description: Click the button below to open a ticket. A private ticket channel will be created for you when you open one.}
+$v{field: Max Open Tickets && 1 && inline}
+$v{field: What To Include && Be clear about your issue, include screenshots or links when helpful, and wait for a staff response.}
+
+# auto close
+{embed}
+$v{title: Ticket Closed Automatically}
+$v{description: This ticket has been closed automatically after the author was inactive for too long. Use the controls below if it needs to be reopened or deleted.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Claimer && {ticket.claimer.full}\n`({ticket.claimer.id})` inline}
+$v{field: Channel && {ticket.channel.name}\n`({ticket.channel.id})` inline}
+$v{field: Auto-Close After && {ticket.option.auto_close_after.human} inline}
+$v{field: Closed && {ticket.closed_at} inline}
+$v{field: Reason && {ticket.reason.closed}}
+
+# auto delete
+{embed}
+$v{title: Ticket Scheduled For Deletion}
+$v{description: This ticket is closed and will be deleted automatically if it stays closed.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Deletes In && {ticket.auto_delete_after_close.human} inline}
+$v{field: Deletes At && {ticket.auto_delete_at} inline}
+$v{footer: Closed tickets are deleted automatically unless reopened first}
+
+# claim
+{embed}
+$v{title: Ticket Claimed}
+$v{description: This ticket is currently claimed. A team member has taken ownership of it.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Claimer && {ticket.claimer.full}\n`({ticket.claimer.id})` inline}
+$v{field: Channel && {ticket.channel.name}\n`({ticket.channel.id})` inline}
+$v{field: Claimed && {ticket.claimed_at} inline}
+$v{field: Reason && {ticket.reason.claimed}}
+$v{footer: Claimed by {ticket.claimer.full}}
+
+# close 
+{embed}
+$v{title: Ticket Closed}
+$v{description: This ticket has been closed. Use the controls below if it needs to be reopened or deleted.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Claimer && {ticket.claimer.full}\n`({ticket.claimer.id})` inline}
+$v{field: Channel && {ticket.channel.name}\n`({ticket.channel.id})` inline}
+$v{field: Closed && {ticket.closed_at} inline}
+$v{field: Reason && {ticket.reason.closed}}
+$v{footer: Closed by {ticket.closer.full}}
+
+# Greetings
+{embed}
+$v{title: {ticket.opened_label} Ticket}
+$v{description: Thanks for opening a ticket. A member of the team will be with you shortly. Use the controls below if you need to close or manage this ticket.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Channel && {ticket.channel.name}\n`({ticket.channel.id})` inline}
+$v{field: Panel && {ticket.panel.name} inline}
+$v{field: Opened && {ticket.opened_at} inline}
+$v{footer: Opened by {ticket.author.full}}
+$v{message: Welcome {user.mention}. Someone from the team will be with you shortly.}
+
+# Inactivity
+{embed}
+$v{title: Awaiting Your Response}
+$v{description: We haven't heard from you in a bit. Send a message whenever you're ready to continue with this ticket.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Ticket Type && {ticket.opened_label} inline}
+$v{field: Channel && {ticket.channel.name} inline}
+$v{field: Last Author Message && {ticket.last_author_message_at}}
+$v{message: {user.mention}}
+
+# move
+{embed}
+$v{title: Ticket Moved}
+$v{description: This ticket has been moved to a different panel option. Use the controls below to continue managing it.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Claimer && {ticket.claimer.full}\n`({ticket.claimer.id})` inline}
+$v{field: Panel && {ticket.panel.name} inline}
+$v{field: Option && {ticket.opened_label} inline}
+$v{field: Moved && {ticket.migrated_at} inline}
+$v{field: Reason && {ticket.reason.migrated}}
+$v{footer: Ticket moved}
+
+# required roles
+{embed}
+$v{title: Missing Required Roles}
+$v{description: You don't have the required roles to open **{ticket.option.label}** right now.}
+$v{field: Required Roles && {ticket.option.required_roles.mentions}}
+$v{field: Match && {ticket.option.required_roles.mode} inline}
+$v{message: {user.mention}}
+
+# reopen
+{embed}
+$v{title: Ticket Reopened}
+$v{description: This ticket has been reopened and is ready for new messages.}
+$v{field: Case && #{ticket.case} inline}
+$v{field: Creator && {ticket.author.full}\n`({ticket.author.id})` inline}
+$v{field: Claimer && {ticket.claimer.full}\n`({ticket.claimer.id})` inline}
+$v{field: Channel && {ticket.channel.name}\n`({ticket.channel.id})` inline}
+$v{field: Reopened && {ticket.reopened_at} inline}
+$v{field: Last Closed && {ticket.closed_at} inline}
+$v{field: Reason && {ticket.reason.reopened}}
+$v{footer: Reopened by {ticket.reopener.full}}
+

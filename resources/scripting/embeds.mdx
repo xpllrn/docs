@@ -13,6 +13,8 @@ Each parameter in the embed is represented by a key-value pair which is separate
 - `$v` separates the parameters.
 - `}` ends a parameter.
 
+For **Components v2** layouts, see the [containers](/resources/scripting/containers) guide.
+
 ### Parameters
 
 - `url` - The embed URL. (`https://..`)
@@ -22,6 +24,7 @@ Each parameter in the embed is represented by a key-value pair which is separate
 - `image` - The embed image URL. (`https://..`)
 - `thumbnail` - The embed thumbnail URL. (`https://..`)
 - `timestamp` - The embed timestamp. (**NO ARGUMENTS**)
+- `content` / `message` - Plain text sent above the embed.
 
 The following parameters require additional arguments which are separated by `&&`.
 
@@ -43,16 +46,16 @@ The following parameters require additional arguments which are separated by `&&
     <Accordion title="Field">
         - `name` - The field name.
         - `value` - The field value.
-
-        <Info>Include **inline** at the end of the field to make it inline.</Info>
+        - `inline` - Set to `true` or `false` for inline fields. **Optional** (defaults to `false`)
 
         <CodeGroup>
         ```javascript Syntax
-        {field: name && value}
+        {field: name && value && inline}
         ```
 
         ```javascript Example
-        {field: {user} && this is the value}
+        {field: Members && {guild.count} && true}
+        {field: Rules && Read #rules && false}
         ```
         </CodeGroup>
     </Accordion>
@@ -70,18 +73,20 @@ The following parameters require additional arguments which are separated by `&&
         </CodeGroup>
     </Accordion>
     <Accordion title="Button">
-        - `type` - `Link`, `Blurple`, `Green`, `Grey` or `Red`.
+        - `style_or_url` - A button style (`primary`, `secondary`, `success`, `danger`) or a link URL.
         - `label` - The button label.
-        - `url` - The button URL or emoji.
+        - `emoji` - Optional emoji for the button.
         <CodeGroup>
             ```javascript Syntax
-            {button: type && label && url && enabled|disabled}
+            {button: style_or_url && label && emoji}
             ```
             ```javascript Example
-            {button: blurple && heyy && disabled}
-            {button: https://example.com && click this}
+            {button: primary && Click me}
+            {button: https://example.com && Visit site}
             ```
         </CodeGroup>
+
+        Style aliases: `blue` → primary, `gray`/`grey` → secondary, `green` → success, `red` → danger.
     </Accordion>
 
 </AccordionGroup>
@@ -90,8 +95,11 @@ The following parameters require additional arguments which are separated by `&&
 
 You can use dynamic variables in your embeds to display user-specific information. For example, `{user}` will be replaced with the user's display name.
 
-<Info>You can view the available variables by clicking [here](/resources/scripting/variables).</Info>
- ```
+<Info>
+  See [variables](/resources/scripting/variables) for guild, user, channel, and date/time placeholders.
+</Info>
+
+```
 {description: {guild.name}}$v{message: Hello! {user.mention}}
 ```
 
@@ -108,3 +116,7 @@ Some commands allow both raw text and embed code. Because of this, you'll need t
 ```
  welcome add #channel {embed}$v{message: Welcome to /{guild.name} {user.mention}}$v{description: Welcome}
 ```
+
+### When should I use a container instead?
+
+Use `{container}` when you want a Components v2 layout (text blocks, separators, galleries). See [containers](/resources/scripting/containers).

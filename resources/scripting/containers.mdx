@@ -1,0 +1,124 @@
+---
+title: Containers
+description: "Guide to Discord Components v2 container messages in adore."
+icon: box
+---
+
+Containers use Discord's **Components v2** layout instead of classic embeds. They work anywhere adore accepts embed code, including welcome messages, ticket panels, `,lastfm mode`, and more.
+
+Start your template with `{container}` on its own line (or at the beginning of the string), then add parameters separated by `$v`.
+
+<Info>
+  Use [variables](/resources/scripting/variables) inside any text parameter, just like embeds.
+</Info>
+
+## Structure
+
+The same rules as [embeds](/resources/scripting/embeds) apply:
+
+- `{` begins a parameter.
+- `:` separates the parameter name from its content.
+- `$v` separates parameters.
+- `}` ends a parameter.
+
+```
+{container}$v{color: #558184}$v{text: Hello {user.mention}!}$v{separator}$v{text: Welcome to **{guild.name}**}
+```
+
+## Parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| `color` | Accent colour (`#FFFFFF`) |
+| `text` | A block of text inside the container |
+| `separator` | A small divider line |
+| `separator:large` | A larger divider line |
+| `section` | Text with an optional thumbnail (`text && url`) |
+| `image` | A single image in a media gallery |
+| `gallery` | Multiple images (`url && url && url`) |
+| `content` / `message` | Plain text shown **above** the container (not inside it) |
+| `button` | Same syntax as [embed buttons](/resources/scripting/embeds#parameters) |
+
+### Text
+
+```javascript
+{text: **{user.display_name}** joined {guild.name}!}
+```
+
+### Separator
+
+```javascript
+{separator}
+{separator:large}
+```
+
+### Section (text + thumbnail)
+
+<CodeGroup>
+```javascript Syntax
+{section: text && thumbnail_url}
+```
+
+```javascript Example
+{section: Welcome **{user.display_name}**! && {user.avatar}}
+```
+</CodeGroup>
+
+<Note>
+  `{track.*}`, `{artist.*}`, `{album.*}`, and `{lastfm.*}` variables are only available in `,lastfm mode` ; see [Last.fm variables](/integrations/lastfm#custom-now-playing-embed-personal-premium).
+</Note>
+
+### Images
+
+Single image:
+
+```javascript
+{image: https://example.com/cover.png}
+```
+
+Multiple images:
+
+```javascript
+{gallery: https://example.com/1.png && https://example.com/2.png}
+```
+
+### Buttons
+
+Buttons use the same `{button: style_or_url && label && emoji}` format as embeds.
+
+<CodeGroup>
+```javascript Link button
+{button: https://example.com && Visit site}
+```
+
+```javascript Styled button
+{button: primary && Click me}
+```
+</CodeGroup>
+
+Supported styles: `primary`, `secondary`, `success`, `danger` (aliases: `blue`, `gray`/`grey`, `green`, `red`).
+
+## Containers vs embeds
+
+| | Embed (`{embed}`) | Container (`{container}`) |
+| --- | --- | --- |
+| Layout | Classic embed card | Components v2 layout |
+| Fields | `{field: ...}` | Use `{text: ...}` blocks instead |
+| Thumbnail | `{thumbnail: url}` | Use `{section: text && url}` |
+| Message content | `{message: ...}` inside embed | `{message: ...}` above the container |
+
+<Warning>
+  Some commands only accept one format. `,lastfm mode` accepts both `{embed}` and `{container}`.
+</Warning>
+
+## Frequently asked questions
+
+### How do I add a new line?
+
+Press `SHIFT` + `ENTER` inside a `text:` or `section:` block, same as embed descriptions.
+
+### Why isn't my container working?
+
+1. Make sure the template starts with `{container}`.
+2. For commands that accept plain text or embed code, prefix with `{container}$v` so adore knows you're sending a layout message.
+3. Containers cannot use the classic `{title: ...}` or `{field: ...}` embed ; use `{text: ...}` instead.

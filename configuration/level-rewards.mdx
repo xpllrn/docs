@@ -43,19 +43,83 @@ Reward members with roles when they reach a level:
 
 ## Level-up messages
 
+Configure where and how members are notified when they level up. These commands only change message settings - they do **not** turn XP tracking on or off. Run `,levels unlock` once to enable the system; after that, you can change message mode, channel, and text without re-unlocking.
+
+### Recommended setup
+
+<Steps>
+  <Step title="Enable leveling">
+    ```javascript
+    ,levels unlock
+    ```
+  </Step>
+
+  <Step title="Choose where messages go">
+    ```javascript
+    ,levels messagemode channel
+    ```
+
+    | Mode | Behaviour |
+    | ---- | --------- |
+    | `channel` | Send to a dedicated channel (set with `,levels channel`) |
+    | `pm` | Send to the member's DMs |
+    | `context` | Send in the same channel where they leveled up (default) |
+    | `none` | Disable level-up messages |
+  </Step>
+
+  <Step title="Set the level-up channel (if using channel mode)">
+    ```javascript
+    ,levels channel #level-ups
+    ```
+
+    Required when `messagemode` is `channel`. Use `,levels channel remove` to clear it.
+  </Step>
+
+  <Step title="Customize the message (optional)">
+    ```javascript
+    ,levels message {user.mention} reached level **{level}**!
+    ```
+
+    Supports adore [embed syntax](/resources/scripting/embeds). Use `,levels message reset` for the default.
+  </Step>
+</Steps>
+
+### Command reference
+
+<Note>
+  These are **three separate commands** - don't mix them up:
+
+  - `,levels messagemode` - **where** notifications go (`channel`, `pm`, `context`, or `none`)
+  - `,levels channel` - **which channel** to use when mode is `channel`
+  - `,levels message` - the **text or embed** sent on level up (not the channel)
+</Note>
+
 | Command | Description |
 | ------- | ----------- |
 | `,levels messagemode (channel/pm/context/none)` | Where level-up messages are sent |
 | `,levels channel (channel)` | Set a dedicated level-up channel |
-| `,levels message (text)` | Customize the level-up message |
+| `,levels channel remove` | Clear the level-up channel |
+| `,levels message (text)` | Customize the level-up message text or embed |
 | `,levels stackroles (on/off)` | Keep all earned roles or only the highest |
+
+## Check your configuration
+
+Run `,levels overview` to see a dashboard of your current setup:
+
+- **Leveling system** - enabled/disabled, XP multiplier, stack roles
+- **Level-up messages** - message mode and level-up channel (when using `channel` mode)
+- **Reward roles** - configured role rewards by level
+
+```javascript
+,levels overview
+```
 
 ## Other commands
 
 | Command | Description |
 | ------- | ----------- |
 | `,levels list` | View all level rewards |
-| `,levels overview` | Dashboard of leveling settings |
+| `,levels overview` | Dashboard: status, XP rate, message mode, channel, reward roles |
 | `,levels setrate (multiplier)` | Adjust XP gain rate |
 | `,levels cleanup` | Remove reward roles from members who lost levels |
 | `,levels reset` | Reset all XP in the server |
@@ -64,6 +128,7 @@ Reward members with roles when they reach a level:
 
 ## Tips
 
-- Use `,levels messagemode none` to disable level-up messages in busy channels
+- Use `,levels messagemode none` to disable level-up messages in busy channels without disabling XP tracking
+- If you use `messagemode channel`, set `,levels channel` too - otherwise level-ups have nowhere to post
 - Run `,levels sync` after adding new rewards to an active server
 - Pair with [starboard](/configuration/starboard) and [autorole](/configuration/autorole) for engagement

@@ -15,8 +15,8 @@ The easiest way to manage tickets is the built-in UI:
 This opens a message with:
 
 - A **dropdown** to select an existing panel
-- **Add** — create a panel (name, channel, button/dropdown mode)
-- **Done** — end the session
+- **Add** - create a panel (name, channel, button/dropdown mode)
+- **Done** - end the session
 
 Selecting a panel shows **Panel Settings**:
 
@@ -58,7 +58,7 @@ Deleting a panel also removes its options and deletes the deployed panel message
 
 - Requires at least one **active** option on the panel.
 - Replaces any previously deployed message for that panel.
-- Run again after changing options, labels, emojis, or display mode.
+- Run again after changing options, labels, emojis, display mode, **or the panel message embed**.
 
 ### Display mode
 
@@ -87,7 +87,7 @@ Sets where new ticket channels are created. Without a category, channels appear 
 
 ## Options
 
-Each panel needs at least one **option** — the ticket type members choose (e.g. "General Help", "Report User").
+Each panel needs at least one **option** - the ticket type members choose (e.g. "General Help", "Report User").
 
 ### List options
 
@@ -112,9 +112,9 @@ Shows option IDs, status, linked support role, and form.
 
 From `,ticket panel` → select panel → **Options**:
 
-- **Dropdown** — pick an option to edit
-- **Add** — create via modal (label, emoji, description)
-- **Back** — return to panel settings
+- **Dropdown** - pick an option to edit
+- **Add** - create via modal (label, emoji, description)
+- **Back** - return to panel settings
 
 Selecting an option opens **Option Settings**:
 
@@ -136,25 +136,25 @@ Inside **Behaviour** you can configure:
 
 ### Categories & naming
 
-- **Category** — override the panel's default category for this option
-- **Claim category** / **Close category** — move the channel when claimed or closed
-- **Channel name format** — how the ticket channel is named (e.g. `ticket-{case_id}`)
-- **Rename on claim** / **Rename on close** — rename templates when those actions happen
+- **Category** - override the panel's default category for this option
+- **Claim category** / **Close category** - move the channel when claimed or closed
+- **Channel name format** - how the ticket channel is named (e.g. `ticket-{ticket.id}`)
+- **Rename on claim** / **Rename on close** - rename templates when those actions happen
 
 ### Roles
 
-- **Support role** — can see and respond in the ticket
-- **Trainee role** — view-only access (configurable speak/claim/close toggles)
-- **Required role** — members must have this role to open this option
+- **Support role** - can see and respond in the ticket
+- **Trainee role** - view-only access (configurable speak/claim/close toggles)
+- **Required role** - members must have this role to open this option
 
 ### Button UX
 
 Customize the in-channel action buttons:
 
-- **Claim** — label, emoji, style
-- **Close** — label, emoji, style, reason popup
-- **Delete** — label, emoji, style
-- **Reopen** — label, emoji, style
+- **Claim** - label, emoji, style
+- **Close** - label, emoji, style, reason popup
+- **Delete** - label, emoji, style
+- **Reopen** - label, emoji, style
 
 ### Permissions toggles
 

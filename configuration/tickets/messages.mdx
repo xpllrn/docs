@@ -4,7 +4,7 @@ description: Customize panel embeds, greetings, and lifecycle messages with temp
 icon: message
 ---
 
-adore supports custom messages at the **panel** level and per **option**. Messages use adore's [embed syntax](/resources/scripting/embeds) plus ticket-specific variables.
+adore supports custom messages at the **panel** level and per **option**. Messages use adore's [embed syntax](/resources/scripting/embeds) (or [containers](/resources/scripting/containers)) plus ticket-specific variables.
 
 ---
 
@@ -15,6 +15,19 @@ adore supports custom messages at the **panel** level and per **option**. Messag
 `,ticket panel` → select panel → **Message**
 
 This is the embed/text shown above the ticket buttons or dropdown on your deployed panel.
+
+Panel messages use adore's [embed syntax](/resources/scripting/embeds). Start with `{embed}` on its own line, then add fields with `$v`:
+
+```javascript
+{embed}
+$v{title: Create a Ticket}
+$v{description: Click a button below to create a ticket and get support from our team.}
+$v{color: #a78bfa}
+```
+
+<Note>
+  After saving a panel message in the manager, redeploy with `,ticket panel send (name)` so the live panel updates. The panel manager shows your **full** message template in the Message field - not a shortened preview.
+</Note>
 
 Default if unset:
 
@@ -68,14 +81,14 @@ Aliases: `{member.*}`, `{creator.*}`
 | `{guild.id}` | Server ID |
 | `{guild.membercount}` | Member count |
 
-Alias: `{server.*}`
+Alias: `{server.*}`. In embed code you can also use `{guild.count}`.
 
 ### Ticket
 
 | Variable | Description |
 | -------- | ----------- |
-| `{ticket.id}` | Internal ticket ID |
-| `{ticket.case_id}` | Case number shown in channel name |
+| `{ticket.id}` | Ticket number shown in channel name (e.g. `#42`) |
+| `{ticket.internal_id}` | Internal database ID (rarely needed) |
 | `{ticket.created}` | Open timestamp (UTC) |
 
 ### Option & panel
@@ -112,7 +125,7 @@ Alias: `{server.*}`
 
 ```javascript
 {embed}
-$v{title: Ticket #{ticket.case_id}}
+$v{title: Ticket #{ticket.id}}
 $v{description: Welcome {user.mention}!
 
 **Type:** {option.label}
@@ -153,5 +166,5 @@ Show content only when a variable has a value:
 ## Tips
 
 - Test messages in a private channel before deploying to your support panel.
-- Keep greeting messages concise — members already see form responses as a separate embed.
+- Keep greeting messages concise - members already see form responses as a separate embed.
 - Redeploy the panel after changing only the panel message; option messages apply to new tickets automatically.

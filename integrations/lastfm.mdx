@@ -6,52 +6,214 @@ icon: lastfm
 
 ## What is Last.fm?
 
-Last.fm is a website which tracks the music you listen to and provides statistics based on your listening history. You can register for a Last.fm account by clicking [here](https://www.last.fm/join).
+Last.fm tracks the music you listen to and builds listening statistics. Register at [last.fm/join](https://www.last.fm/join).
 
-## Creating a Last.fm account
+After creating an account, connect **Spotify** (or another player) under [Last.fm connections](https://www.last.fm/settings/applications) so scrobbles sync automatically.
 
-<Steps>
-  <Step title="Registration">
-    Visit the [Last.fm registration page](https://www.last.fm/join) and fill in
-    the required information.
-  </Step>
-  <Step title="Verification">
-    Verify your email address by clicking the link sent to your
-    [inbox](https://gmail.com/).
-  </Step>
-</Steps>
+## Connecting your account
 
-After creating your account, you'll likely want to connect your **Spotify account**
-to automatically scrobble your listening activity. You can do this by visiting the
-[Last.fm connections](https://www.last.fm/settings/applications) page and clicking
-the **Connect** button next to **Spotify Scrobbling**.
+Use `,lastfm login` and follow the DM instructions. Disconnect with `,lastfm logout`.
 
-## Connecting your Last.fm account
-
-Use the `lastfm login` command, and follow the instructions sent in your direct messages.
+- `,lastfm` / `,lf` - full Last.fm command group (stats, whoknows, login, etc.)
+- `,fm` / `,np` / `,nowplaying` - show current or last played track only
 
 <Warning>
-  adore will automatically cache your library, please be patient before using
-  any commands that rely on your library, as it may take a few seconds to fully
-  index your library.
+  adore caches your library after login (and when you run `,lastfm update`). Wait a few seconds before running whoknows-style commands so playcounts are warm.
 </Warning>
+
 <Info>
-  Your library will be automatically refreshed every **24 hours**. You can also
-  manually refresh your library early with the `lastfm refresh` command.
+  Run `,lastfm update` anytime to refresh your cached library. There is a **5 minute** cooldown per user to protect the Last.fm API.
 </Info>
+
+Full command catalogue: [adore.rest/commands#lastfm](https://adore.rest/commands#lastfm).
+
+---
+
+## Commands
+
+### Account
+
+| Command | Description |
+| ------- | ----------- |
+| `lastfm login` | Connect your Last.fm account |
+| `lastfm logout` | Disconnect your Last.fm account |
+| `lastfm update` | Refresh your cached library (aliases: `refresh`, `sync`, `index`) |
+
+### Now playing
+
+| Command | Description |
+| ------- | ----------- |
+| `fm` / `np` / `nowplaying` | Show current or last played track (standalone) |
+| `lastfm now` | Same as above, via the `lastfm` group |
+| `lastfm customcommand` / `cc` | Set a trigger message for now playing (**Personal Premium**) |
+| `lastfm mode` | Custom now-playing embed or container template (**Personal Premium**) |
+| `lastfm reaction` | Personal reactions on NP (default: upvote/downvote) |
+| `lastfm color` | Personal accent color for Last.fm embeds |
+| `lastfm serverreact` | Server-wide NP reactions (`Manage Guild`) |
+
+### Stats & charts
+
+| Command | Description |
+| ------- | ----------- |
+| `lastfm count` | Total scrobbles |
+| `lastfm plays` | Plays for an artist |
+| `lastfm playstrack` | Plays for a track (`artist - track`) |
+| `lastfm playsalbum` | Plays for an album (`artist - album`) |
+| `lastfm playsall` | Plays for every track on an album |
+| `lastfm topartists` / `toptracks` / `topalbums` | Top charts (optional period) |
+| `lastfm toptentracks` / `toptenalbums` | Top 10 for an artist |
+| `lastfm recent` / `recentfor` | Recent scrobbles (all / for an artist) |
+| `lastfm overview` | Profile overview, or artist stats if an artist is given |
+| `lastfm whois` | Last.fm profile overview for a user |
+| `lastfm artist` | Artist overview from your library |
+| `lastfm favorites` | Loved tracks |
+| `lastfm streak` | Listening streak |
+| `lastfm recommendation` | Random artist from your top chart |
+| `lastfm crowns` / `mostcrowns` | Your crowns / server crown leaders |
+
+### Social (whoknows)
+
+| Command | Description |
+| ------- | ----------- |
+| `lastfm whoknows` | Who knows an artist in this server |
+| `lastfm globalwhoknows` | Who knows an artist globally |
+| `lastfm wktrack` / `globalwktrack` | Who knows a track |
+| `lastfm wkalbum` / `globalwkalbum` | Who knows an album |
+| `lastfm compare` | Taste compare (optional period) |
+| `lastfm playing` | What the server is listening to |
+| `lastfm hide (member)` | Toggle a member on the guild hide list (`Manage Guild`) |
+| `lastfm hide list` | View hidden members (`Manage Guild`) |
+
+### Links & search
+
+| Command | Description |
+| ------- | ----------- |
+| `lastfm spotify` / `youtube` / `itunes` / `soundcloud` | Links for your current track |
+| `lastfm lyrics` | Lyrics for your current track |
+| `lastfm spotifytrack` / `spotifyalbum` | Search Spotify |
+
+**Periods** for top/compare commands: `week`, `month`, `3month`, `6month`, `year`, `overall`.
+
+---
+
+## Custom now-playing embed (Personal Premium)
+
+`,lastfm mode {embed}...` or `,lastfm mode {container}...` lets donators replace the default now-playing card with adore [embed](/resources/scripting/embeds) or [container](/resources/scripting/containers) syntax.
+
+Reset with `,lastfm mode none`. Check status with `,lastfm mode`.
+
+<Warning>
+  Last.fm account data uses the `{lastfm.*}` prefix, **not** `{user.*}`.
+
+  | Wrong | Correct |
+  | ----- | ------- |
+  | `{user.name}` for Last.fm username | `{lastfm.name}` |
+  | `{user.avatar}` for Last.fm avatar | `{lastfm.avatar}` |
+  | `{user.plays}` | `{lastfm.plays}` |
+  | `{proper(user.plays)}` | `{proper(lastfm.plays)}` |
+  | `{user.artist_crown}` | `{lastfm.artist_crown}` |
+  | `{user.url}` | `{lastfm.url}` |
+  | `{author}` | `{artist.name}` (there is no `{author}` variable) |
+
+  `{user.name}`, `{user.avatar}`, etc. refer to the **Discord** user in `,lastfm mode` templates.
+</Warning>
+
+### Variables
+
+These variables only work in `,lastfm mode` templates (and `,lastfm customcommand` output when using a custom embed).
+
+<Tabs>
+  <Tab title="Last.fm account">
+    | Variable | Output |
+    | -------- | ------ |
+    | `{lastfm.name}` | Last.fm username |
+    | `{lastfm.avatar}` | Last.fm profile picture |
+    | `{lastfm.plays}` | Total scrobbles for the Last.fm account |
+    | `{proper(lastfm.plays)}` | Total scrobbles (formatted number) |
+    | `{lastfm.artist_crown}` | Crown emoji if you lead the current artist in this server |
+    | `{lastfm.url}` | Last.fm profile URL |
+  </Tab>
+  <Tab title="Track">
+    | Variable | Output |
+    | -------- | ------ |
+    | `{track.name}` | Current playing track title |
+    | `{lower(track.name)}` | Track title in lowercase |
+    | `{track.url}` | Last.fm track URL |
+    | `{track.plays}` | Your playcount for the track |
+    | `{proper(track.plays)}` | Track playcount (formatted number) |
+    | `{track.spotify_url}` | Spotify track URL (when Spotify is configured) |
+    | `{track.release_date}` | Release date from Spotify |
+    | `{track.duration}` | Track duration from Spotify |
+  </Tab>
+  <Tab title="Artist & album">
+    | Variable | Output |
+    | -------- | ------ |
+    | `{artist.name}` | Current artist name |
+    | `{lower(artist.name)}` | Artist name in lowercase |
+    | `{artist.plays}` | Your playcount for the artist |
+    | `{proper(artist.plays)}` | Artist playcount (formatted number) |
+    | `{artist.url}` | Last.fm artist URL |
+    | `{artist.image}` | Artist image from Spotify |
+    | `{album.name}` | Current album title |
+    | `{lower(album.name)}` | Album title in lowercase |
+    | `{album.url}` | Last.fm album URL |
+    | `{album.cover}` | Album cover (Last.fm, else Spotify) |
+  </Tab>
+  <Tab title="Discord user">
+    | Variable | Output |
+    | -------- | ------ |
+    | `{user.display_name}` | Discord display name |
+    | `{user.name}` | Discord username |
+    | `{user.mention}` | Discord @mention |
+    | `{user.avatar}` | Discord avatar URL |
+  </Tab>
+</Tabs>
+
+Transforms `{proper(...)}` and `{lower(...)}` work on any supported variable path above.
+
+<CodeGroup>
+
+```javascript Embed example
+,lastfm mode {embed}$v{title: {track.name}}$v{description: **{artist.name}** • {album.name}
+{lastfm.artist_crown} {proper(track.plays)} plays}$v{thumbnail: {album.cover}}$v{color: #d51007}$v{button: {track.spotify_url} && Spotify}
+```
+
+```javascript Container example
+,lastfm mode {container}$v{color: #d51007}$v{section: **{track.name}**
+{artist.name} • {proper(track.plays)} plays && {album.cover}}$v{button: {track.spotify_url} && Spotify}
+```
+
+</CodeGroup>
+
+Spotify fields return `N/A` if Spotify search is unavailable or no match is found.
+
+---
+
+## Performance & caching
+
+adore is built for large servers:
+
+- **Guild linked-user maps** are cached in memory and Redis (about 10 minutes).
+- **Playcounts** are cached per user/artist (about 30 minutes).
+- **Whoknows leaderboards** are cached per guild/artist (about 3 minutes) so repeats are instant.
+- On **50k+ member** guilds, linked accounts are resolved via an indexed Last.fm scan + member-set intersect instead of a single huge `ANY(member_ids)` query.
+- `,lastfm update` warms your top artists and playcounts so the next whoknows/crowns run is faster.
+
+---
 
 ## Known Issues
 
 ### Out of Sync
 
-**Last.fm** and **Spotify** struggle to stay in sync, causing outdated information to be displayed.
+**Last.fm** and **Spotify** can lag.
 
-- Restart your **Spotify application** to force a refresh.
-- Disconnect and reconnect your **Spotify account** in the [Last.fm connections](https://www.last.fm/settings/applications).
+- Restart Spotify to force a refresh.
+- Reconnect Spotify under [Last.fm connections](https://www.last.fm/settings/applications).
+- Run `,lastfm update` after catching up.
 
 ### Last.fm Failure
 
-If you see an unexpected error message, it's possible that **Last.fm** is currently down.
+If commands error unexpectedly, Last.fm may be down.
 
-- Check the [Last.fm status page](https://status.last.fm/) for more information.
-- If the issue persists, please join our [support server](/discord) for further assistance.
+- Check [status.last.fm](https://status.last.fm/).
+- Join our [support server](/discord) if it persists.

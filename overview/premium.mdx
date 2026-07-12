@@ -1,122 +1,223 @@
 ---
-title: "Premium & Donator Perks"
-description: "Unlock extra features with adore Premium or donator perks."
+title: "Premium Plans"
+description: "Pricing and perks for adore Personal Premium, Server Premium, and Private Instance."
 icon: "dollar-sign"
+keywords: ["adore premium", "server premium", "personal premium", "private instance"]
 ---
+
+## How to purchase
+
+<Steps>
+  <Step title="Join the support server">
+    Open a ticket in our [Support Server](https://discord.gg/q3e53k4qKQ).
+  </Step>
+  <Step title="Choose a plan">
+    Pick **Personal Premium**, **Server Premium**, or a **Private Instance** for your server or account.
+  </Step>
+  <Step title="Complete payment">
+    Pay via **PayPal**, **Bank Transfer**, or **Bitcoin / Ethereum / Litecoin**. Our team will activate your subscription or instance.
+  </Step>
+  <Step title="Transfer anytime">
+    You can **transfer** Server Premium or a Private Instance to a different Discord server by opening another ticket.
+  </Step>
+</Steps>
 
 ## Plans
 
-adore is **free** for the full moderation, security, economy, leveling, and integration toolkit. Premium and donator tiers unlock extras.
+adore is **free** for the full moderation, security, economy, leveling, tickets, and integration toolkit. Premium tiers unlock extras.
 
 | Tier | Price | What you get |
-| --- | --- | --- |
-| **Free** | \$0 | Full moderation, security, economy, leveling, tickets, integrations |
-| **Premium** | \$4.99/mo | Per-server bot customization, priority AI, higher limits |
-| **Donator** | Support server | Personal perks like self-prefix, grok, transcribe, transparent |
-|  |  |  |
+| ---- | ----- | ------------ |
+| **Free** | $0 | Full moderation, security, economy, leveling, tickets, integrations |
+| **Personal Premium** | $5/mo | Personal prefix, aliases, Grok AI, transcription, background removal, Last.fm custom embed, and more, perks follow your account everywhere |
+| **Private Instance** | $30 one-time or $10/mo | Your own private adore instance with custom branding, dedicated hosting, 24/7 priority support, and 3 transfers |
+| **Server Premium** | $15/mo | Higher limits, bot customization, premium automod, anti-raid modules, backups, ticket embeds, voicemaster scripts, and full server perks |
+
+<CardGroup cols={3}>
+  <Card title="Personal Premium" icon="user" href="#personal-premium">
+  **$5/mo** - Perks that follow your account everywhere.
+  </Card>
+  <Card title="Private Instance" icon="server" href="#private-instance">
+  **$30** one-time or **$10/mo** - Your own private adore instance. **Most popular.**
+  </Card>
+  <Card title="Server Premium" icon="building" href="#server-premium">
+  **$15/mo** - Supercharge one Discord server with premium modules and higher limits.
+  </Card>
+</CardGroup>
 
 <Info>
-  Upgrade or purchase perks in our [Support Server](https://discord.gg/q3e53k4qKQ).
+  **Payment methods:** PayPal · Bank Transfer · Bitcoin / Ethereum / Litecoin
+
+  See live pricing at [adore.rest/premium](https://adore.rest/premium).
 </Info>
 
-## Server Premium perks
+---
+
+## Personal Premium {#personal-premium}
+
+Perks that follow you everywhere - tied to your **account**, not a single guild.
+
+| | |
+| --- | --- |
+| **Price** | $5/mo |
 
 <AccordionGroup>
-  <Accordion title="Priority AI responses">
-    Faster responses from `,ask` and `,grok` commands.
+  <Accordion title="What's included" defaultOpen>
+    - **3× rate limits** (15/5s)
+    - **1.5× economy multiplier**
+    - **Personal prefix** - `,selfprefix`
+    - **Personal aliases** - `,selfalias`
+    - **Grok AI** - `,grok`
+    - **Voice transcription** - `,transcribe`
+    - **Background removal** - `,transparent`
+    - **Instagram command**
+    - **Selfpurge command**
+    - **Custom AFK embeds**
+    - **Extra giveaway entries**
+    - **Snipe protection**
+    - **Premium badge**
+    - **Priority support**
+    - **Custom command**
+    - **Custom Last.fm embed**
+    - **AI command access**
+    - **Social notifications** (Instagram, TikTok, YouTube, Twitch)
   </Accordion>
 
-  <Accordion title="Higher limits">
-    Increased economy, reminder, and other usage limits.
+  <Accordion title="Custom Last.fm embed">
+    Replace the default now-playing card with your own [embed](/resources/scripting/embeds) or [container](/resources/scripting/containers) template. Also unlocks `,lastfm customcommand` (`cc`).
+    See the full variable list on the [Last.fm integration page](/integrations/lastfm#custom-now-playing-embed-personal-premium).
+    <CodeGroup>
+    ```javascript Syntax
+    ,lastfm mode (embed)
+    ,lastfm cc (trigger)
+    ```
+    ```javascript Example
+    ,lastfm mode {embed}$v{title: {track.name}}$v{description: {artist.name} • {proper(track.plays)} plays}$v{thumbnail: {album.cover}}
+    ,lastfm cc .
+    ```
+    </CodeGroup>
   </Accordion>
 
-  <Accordion title="Priority support">
-    Faster responses in the support server.
-  </Accordion>
-</AccordionGroup>
-
-## Donator perks
-
-Donator perks are personal rewards for supporting adore. They apply across all servers you use adore in.
-
-<AccordionGroup>
   <Accordion title="Self prefix">
     Set your own command prefix across all servers.
-
     <CodeGroup>
-
     ```javascript Syntax
     ,selfprefix (prefix)
     ```
-
     ```javascript Example
     ,selfprefix !
     ```
-
     </CodeGroup>
   </Accordion>
 
   <Accordion title="Self aliases">
     Create personal command aliases that work in any server.
-
     <CodeGroup>
-
     ```javascript Syntax
     ,selfalias add (alias) (command)
     ```
-
     ```javascript Example
     ,selfalias add b balance
     ```
-
     </CodeGroup>
   </Accordion>
 
   <Accordion title="Grok AI">
     Chat with Grok-powered AI via `,grok`.
-
     <CodeGroup>
-
     ```javascript Syntax
     ,grok (question)
     ```
-
     ```javascript Example
     ,grok explain quantum computing simply
     ```
-
     </CodeGroup>
   </Accordion>
 
   <Accordion title="Voice transcription">
     Transcribe voice messages with `,transcribe`.
-
     <CodeGroup>
-
     ```javascript Syntax
     ,transcribe (reply to voice message)
     ```
-
     </CodeGroup>
   </Accordion>
 
   <Accordion title="Background removal">
     Remove the background from an image.
-
     <CodeGroup>
-
     ```javascript Syntax
     ,transparent (image URL)
     ```
-
     ```javascript Example
     ,transparent https://adore.rest/example.png
     ```
-
     </CodeGroup>
   </Accordion>
 </AccordionGroup>
 
-<Warning>
-  **iOS** and **Android** purchases through Discord may include additional App Store or Google Play fees.
-</Warning>
+---
+
+## Private Instance {#private-instance}
+
+<Note>
+  **Most popular** - your own private instance of adore with dedicated hosting, custom branding, and priority support.
+</Note>
+
+| | |
+| --- | --- |
+| **One-time** | $30 |
+| **Monthly** | $10/mo |
+
+<AccordionGroup>
+  <Accordion title="What's included" defaultOpen>
+    - **Instance owner role** in the support server
+    - **Custom branding** - your bot's identity
+    - **Dedicated hosting** - isolated from the public bot
+    - **24/7 priority support**
+    - **3 transfers** - move your instance between servers
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Get a Private Instance" icon="ticket" href="https://discord.gg/q3e53k4qKQ">
+  Open a ticket in the support server to purchase or transfer your instance.
+</Card>
+
+---
+
+## Server Premium {#server-premium}
+
+Premium features for your **entire server** - higher limits, customization, and premium modules.
+
+| | |
+| --- | --- |
+| **Price** | $15/mo |
+
+<AccordionGroup>
+  <Accordion title="What's included" defaultOpen>
+    - **500 autoresponders** (50 free)
+    - **500 auto reactions** (50 free)
+    - **500 reaction roles** (50 free)
+    - **15 log channels** (5 free)
+    - **15 autopfp channels** (1 free)
+    - **2,000 msg purge** (500 free)
+    - **100 starboards** (10 free)
+    - **50 ping-on-join channels** (25 free) via `,poj`
+    - **Full server backups**
+    - **Premium automod filters**
+    - **Anti-raid premium modules**
+    - **Webhook autoresponders** / welcome & leave
+    - **Custom ticket embeds**
+    - **Voicemaster scripts**
+    - **Music autoplay**
+    - **Giveaway editing**
+    - **Embed customization**
+    - **Instagram autorepost**
+    - **Custom bot avatar, banner, bio, nickname & color** via `,customize`
+    <Tip>See the [Customization](/overview/customization) guide for bot identity setup.</Tip>
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Get Server Premium" icon="ticket" href="https://discord.gg/q3e53k4qKQ">
+  Open a ticket in the support server to buy or transfer Server Premium.
+</Card>

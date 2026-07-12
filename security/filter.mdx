@@ -28,6 +28,7 @@ adore's word filter uses Discord's built-in **AutoMod** to block messages contai
 ,filter add badword
 ,filter remove badword
 ,filter exempt @Moderator
+,filter exempt @TrustedUser
 ,filter exempt #staff-chat
 ```
 
@@ -39,15 +40,15 @@ adore's word filter uses Discord's built-in **AutoMod** to block messages contai
 | `remove` | Remove a word from the filter |
 | `list` | View all filtered words |
 | `exempt` | Toggle exemption for a role, user, or channel |
-| `reset` | Delete all filter rules and clear exemptions |
+| `reset` | Delete all filter rules and clear user exemptions |
 
 ## Exemptions
 
 Use `,filter exempt` to toggle exemptions:
 
-- **Roles** — exempt up to 20 roles (via Discord AutoMod)
-- **Channels** — exempt up to 50 channels (via Discord AutoMod)
-- **Users** — exempt individual users (stored in adore's database)
+- **Roles** - exempt up to 20 roles (via Discord AutoMod)
+- **Users** - adore creates an `adore filter exempt` role, adds it to the AutoMod rule, and assigns it to the member
+- **Channels** - exempt up to 50 channels (via Discord AutoMod)
 
 Running `,filter exempt` on an already-exempt target removes the exemption.
 

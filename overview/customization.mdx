@@ -6,7 +6,7 @@ icon: paintbrush
 
 ## Overview
 
-Personalize adore's appearance in your server by setting a custom avatar, banner, and/or bio. This is a **Premium** feature that makes adore feel like your own bot.
+Personalize adore's appearance in your server by setting a custom avatar, banner, bio, nickname, or embed color. Requires **Server Premium**.
 
 <Warning>
   This feature is actively monitored and logged. Uploading inappropriate content
@@ -14,8 +14,8 @@ Personalize adore's appearance in your server by setting a custom avatar, banner
   of access**.
 </Warning>
 
-<Callout icon="key" color="#6d84a0" iconType="regular">
-  Only the **server owner** can use these commands. Requires **server Premium**.
+<Callout icon="key" color="#558184" iconType="regular">
+  Only the **server owner** can use these commands. Requires **Server Premium**.
 </Callout>
 
 ## Customizing adore's avatar
@@ -25,27 +25,28 @@ Change adore's avatar in your server with the `customize avatar` command.
 <CodeGroup>
 
 ```javascript Syntax
-,customize avatar (image URL)
+,customize avatar (url)
+,customize avatar remove
 ```
 
 ```javascript Example
-,customize avatar https://adore.rest/logo.png
+,customize avatar https://example.com/avatar.png
 ```
 
 </CodeGroup>
+<br />
 
 ## Customizing adore's banner
-
-Change adore's banner with the `customize banner` command.
 
 <CodeGroup>
 
 ```javascript Syntax
-,customize banner (image URL)
+,customize banner (url)
+,customize banner remove
 ```
 
 ```javascript Example
-,customize banner https://adore.rest/banner.png
+,customize banner https://example.com/banner.png
 ```
 
 </CodeGroup>
@@ -53,20 +54,15 @@ Change adore's banner with the `customize banner` command.
 
 ## Customizing adore's bio
 
-Set adore's bio with the `customize bio` command.
-
-<Info>
-    If you do not manually include **https://adore.rest** or **discord.gg/q3e53k4qKQ** in the bio, it will be automatically added at the bottom.
-</Info>
-
 <CodeGroup>
 
 ```javascript Syntax
 ,customize bio (text)
+,customize bio remove
 ```
 
 ```javascript Example
-,customize bio Everything your server will adore.
+,customize bio Your server bio here
 ```
 
 </CodeGroup>
@@ -77,6 +73,6 @@ Set adore's bio with the `customize bio` command.
 | Command | Description |
 | ------- | ----------- |
 | `,prefix (symbol)` | Set the server command prefix |
-| `,selfprefix (symbol)` | Set your personal prefix (donator perk) |
+| `,selfprefix (symbol)` | Set your personal prefix (Personal Premium) |
 | `,customize name (name)` | Change adore's nickname in the server |
 | `,customize color (hex)` | Set the default embed color |

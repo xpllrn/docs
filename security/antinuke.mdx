@@ -6,16 +6,16 @@ icon: "fingerprint"
 
 ## Why use an antinuke system?
 
-An antinuke system limits how many destructive actions a user can perform in a short time window. If the limit is exceeded, adore punishes the offender automatically — protecting your server from rogue moderators or compromised accounts.
+An antinuke system limits how many destructive actions a user can perform in a short time window. If the limit is exceeded, adore punishes the offender automatically - protecting your server from rogue moderators or compromised accounts.
 
 ## How antinuke works
 
 When you enable a protection module, adore watches for harmful actions in real time:
 
-1. **Detection** — adore listens to Discord audit logs (and message events for @everyone pings) to identify who performed each action
-2. **Tracking** — each user's actions are counted in a **rolling 1-minute window** per module
-3. **Threshold** — if a user exceeds the configured **limit** within that window, adore triggers a punishment
-4. **Punishment** — the offender is automatically punished and their action counter resets
+1. **Detection** - adore listens to Discord audit logs (and message events for @everyone pings) to identify who performed each action
+2. **Tracking** - each user's actions are counted in a **rolling 1-minute window** per module
+3. **Threshold** - if a user exceeds the configured **limit** within that window, adore triggers a punishment
+4. **Punishment** - the offender is automatically punished and their action counter resets
 
 ```mermaid
 flowchart LR
@@ -37,7 +37,7 @@ flowchart LR
 | `ban` | Bans the user from the server |
 
 <Info>
-  `strip` is the safest default — it neutralizes a rogue moderator without
+  `strip` is the safest default - it neutralizes a rogue moderator without
   removing them from the server entirely.
 </Info>
 
@@ -58,8 +58,8 @@ flowchart LR
 | Role | Access |
 | ---- | ------ |
 | **Server owner** | Full access |
-| **Fake owner** | Full access — see [Fake Owner](/security/fake-owner) |
-| **Security admin** | Can configure antinuke and antiraid — see [Security Admins](/security/security-admins) |
+| **Fake owner** | Full access - see [Fake Owner](/security/fake-owner) |
+| **Security admin** | Can configure antinuke and antiraid - see [Security Admins](/security/security-admins) |
 
 <Warning>
   Discord's **mass ban** feature can ban 100+ members at once. Use [fake
@@ -72,11 +72,11 @@ flowchart LR
 These users will **never** trigger antinuke punishments:
 
 - **Server owner** (Discord owner)
-- **[Fake owner](/security/fake-owner)** — your designated co-owner
-- **Security admins** — automatically immune
-- **Whitelisted users** — added via `,antinuke whitelist`
+- **[Fake owner](/security/fake-owner)** - your designated co-owner
+- **Security admins** - automatically immune
+- **Whitelisted users** - added via `,antinuke whitelist`
 
-Everyone else — including administrators and moderators with full Discord perms — is subject to antinuke if they exceed limits.
+Everyone else - including administrators and moderators with full Discord perms - is subject to antinuke if they exceed limits.
 
 ## Exempting users
 
@@ -134,7 +134,7 @@ Each module is toggled independently with `on` or `off`.
 ### Available modules
 
 <AccordionGroup>
-  <Accordion title="Ban protection — ,antinuke ban">
+  <Accordion title="Ban protection - ,antinuke ban">
     Triggers when a member is banned (via Discord or adore).
     <CodeGroup>
     ```javascript Syntax
@@ -145,7 +145,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Kick protection — ,antinuke kick">
+  <Accordion title="Kick protection - ,antinuke kick">
     Triggers when a member is kicked.
     <CodeGroup>
     ```javascript Syntax
@@ -156,7 +156,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Role protection — ,antinuke role">
+  <Accordion title="Role protection - ,antinuke role">
     Triggers on role creation **or** deletion (both share the same limit).
     <CodeGroup>
     ```javascript Syntax
@@ -167,7 +167,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Channel protection — ,antinuke channel">
+  <Accordion title="Channel protection - ,antinuke channel">
     Triggers on channel creation **or** deletion (both share the same limit).
     <CodeGroup>
     ```javascript Syntax
@@ -178,7 +178,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Webhook protection — ,antinuke webhook">
+  <Accordion title="Webhook protection - ,antinuke webhook">
     Triggers on webhook creation or deletion.
     <CodeGroup>
     ```javascript Syntax
@@ -189,7 +189,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Everyone ping protection — ,antinuke everyone">
+  <Accordion title="Everyone ping protection - ,antinuke everyone">
     Triggers when a user sends a message containing @everyone or @here.
     <CodeGroup>
     ```javascript Syntax
@@ -200,7 +200,7 @@ Each module is toggled independently with `on` or `off`.
     ```
     </CodeGroup>
   </Accordion>
-  <Accordion title="Dangerous permissions — ,antinuke permissions">
+  <Accordion title="Dangerous permissions - ,antinuke permissions">
     Triggers when `administrator` or `manage_guild` is granted to a member via role update.
     <CodeGroup>
     ```javascript Syntax

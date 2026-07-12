@@ -8,7 +8,7 @@ icon: terminal
   The command group is `ticket`. The alias `tickets` also works. Default prefix is `,`.
 </Callout>
 
-All commands below require **Manage Server** (`manage_guild`).
+Setup commands generally need **Manage Server**. In-ticket actions (`close`, `claim`, etc.) use ticket staff permissions.
 
 ---
 
@@ -17,7 +17,9 @@ All commands below require **Manage Server** (`manage_guild`).
 | Command | Description |
 | ------- | ----------- |
 | `,ticket` | Same as `,ticket overview` |
-| `,ticket overview` | Dashboard: panels, forms, stats, log channels |
+| `,ticket overview` | Dashboard: panels, forms, stats, transcript channel |
+| `,ticket stats [member]` | Server ticket stats, or stats for a staff member |
+| `,ticket list` | List open tickets |
 
 ---
 
@@ -29,17 +31,9 @@ All commands below require **Manage Server** (`manage_guild`).
 | `,ticket panel create (name)` | Create a panel |
 | `,ticket panel delete (name)` | Delete a panel and its options |
 | `,ticket panel send (name) [channel]` | Deploy panel to a channel |
+| `,ticket resend (panel) [channel]` | Redeploy / resend a panel message |
 | `,ticket panel mode (name) [button\|dropdown]` | Set or view display mode |
 | `,ticket panel category (name) [category\|remove]` | Set or view ticket category |
-
-**Examples:**
-
-```javascript
-,ticket panel create Support
-,ticket panel send Support #open-ticket
-,ticket panel mode Support dropdown
-,ticket panel category Support Tickets
-```
 
 ---
 
@@ -47,19 +41,10 @@ All commands below require **Manage Server** (`manage_guild`).
 
 | Command | Description |
 | ------- | ----------- |
-| `,ticket option (panel)` | List options for a panel |
+| `,ticket option` | Interactive option manager |
+| `,ticket option (panel)` | Manage options for a panel |
 | `,ticket option create (panel) (label)` | Add a new option |
 | `,ticket option delete (option_id)` | Remove an option by ID |
-
-**Examples:**
-
-```javascript
-,ticket option Support
-,ticket option create Support "Billing Question"
-,ticket option delete 7
-```
-
-Use `,ticket option (panel)` to find option IDs before deleting.
 
 ---
 
@@ -74,48 +59,42 @@ Use `,ticket option (panel)` to find option IDs before deleting.
 | `,ticket form field (name) add (label) [long]` | Add a field |
 | `,ticket form field (name) delete (field_key)` | Remove a field |
 
-**Examples:**
-
-```javascript
-,ticket form create Application "Staff Application"
-,ticket form delete Application
-```
-
-See [Forms](/configuration/tickets/forms) for attaching forms to options and adding fields.
-
 ---
 
 ## Server configuration
 
 | Command | Description |
 | ------- | ----------- |
-| `,ticket transcript [channel\|remove]` | Channel for ticket transcripts |
-| `,ticket log [channel\|remove]` | Channel for ticket event logs |
+| `,ticket transcript [channel\|remove]` | Set transcript destination, or generate one in a ticket |
 | `,ticket staff [role\|remove]` | Global staff role for ticket permissions |
+| `,ticket blacklist [member\|role]` | Toggle (or list) the ticket blacklist |
 
-**Examples:**
-
-```javascript
-,ticket transcript #transcripts
-,ticket transcript remove
-```
-
-```javascript
-,ticket log #ticket-logs
-,ticket log remove
-```
-
-```javascript
-,ticket staff @Moderator
-,ticket staff remove
-```
+There is **no** `,ticket log`; transcripts use the transcript channel.
 
 ---
 
-## What is not a command
+## In-ticket actions
 
-adore does **not** use prefix commands for day-to-day ticket actions like claiming or closing. Those happen through **buttons inside ticket channels**, configured per option in the panel manager.
+| Command | Description |
+| ------- | ----------- |
+| `,ticket close [channel] [reason]` | Close a ticket |
+| `,ticket reopen [channel] [reason]` | Reopen a ticket |
+| `,ticket claim [channel] [reason]` | Claim a ticket |
+| `,ticket unclaim [channel]` | Remove the claimer |
+| `,ticket rename [channel] (name)` | Rename the ticket channel |
+| `,ticket delete [channel] [reason]` | Delete the ticket channel (sends transcript first) |
+| `,ticket move [channel] (option\|category) [reason]` | Move to another option, or into a category |
+| `,ticket reason (claim\|close\|reopen\|delete\|move) [channel] (reason)` | Update a stored action reason |
+| `,ticket allow (member\|role)` | Allow someone to see the ticket |
+| `,ticket allow list` | List explicit allows |
+| `,ticket deny (member\|role)` | Deny someone from seeing the ticket |
+| `,ticket trainee` | Trainee override help |
+| `,ticket trainee grant (member\|role)` | Grant speak/claim/close on this ticket |
+| `,ticket trainee revoke (member\|role)` | Revoke trainee overrides |
+| `,ticket trainee list` | List trainee overrides |
 
-There are also **no slash commands** for the ticket system — setup and management are prefix-only.
+---
 
-Members open tickets by clicking your deployed panel. Staff interact with tickets using channel buttons and normal Discord messaging.
+## Not included
+
+Personal/server **ticket profiles** (`ticket profile` / `ticket profiles`) are not implemented.

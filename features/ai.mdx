@@ -6,7 +6,7 @@ icon: robot
 
 ## Overview
 
-adore includes AI-powered commands for answering questions, chatting, and transcribing voice messages.
+adore includes AI-powered commands for answering questions, chatting, and transcribing voice messages. All AI commands are **free**.
 
 ## Ask
 
@@ -28,7 +28,7 @@ You can also reply to a voice message to have adore transcribe and answer it.
 
 ## Grok
 
-Chat with Grok-powered AI. This is a **donator perk**.
+Chat with Grok-powered AI.
 
 <CodeGroup>
 
@@ -44,7 +44,7 @@ Chat with Grok-powered AI. This is a **donator perk**.
 
 ## Voice transcription
 
-Transcribe voice messages to text. Available to **donators**.
+Transcribe voice messages to text.
 
 Reply to a voice message with:
 
@@ -54,6 +54,18 @@ Reply to a voice message with:
 
 Or use `,ask` / `,grok` while replying to a voice message to transcribe and respond in one step.
 
-## Premium benefits
+## Background removal
 
-Server Premium users get priority AI response times for `,ask` and `,grok`.
+Remove the background from an image with `,transparent`.
+
+<CodeGroup>
+
+```javascript Syntax
+,transparent (user/url/attachment)
+```
+
+```javascript Example
+,transparent https://adore.rest/example.png
+```
+
+</CodeGroup>

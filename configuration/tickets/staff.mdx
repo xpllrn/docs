@@ -10,7 +10,7 @@ When adore checks permissions inside a ticket, roles are resolved in this order:
 
 1. **Administrator** / server owner / [fake owner](/security/fake-owner)
 2. **Support role** (set per option in Behaviour)
-3. **Trainee role** (per option — usually view-only)
+3. **Trainee role** (per option - usually view-only)
 4. **Global staff role** (`,ticket staff`)
 
 <Note>
@@ -104,7 +104,7 @@ Event logs (opens, closes, claims) can be sent to a dedicated channel:
 Users or roles can be blocked from **creating** new tickets. The check runs when someone clicks a panel option.
 
 <Warning>
-  Ticket blacklist is enforced by adore but managed through internal tooling — there is no `,ticket blacklist` command. Contact support if you need a user or role blocked from opening tickets.
+  Ticket blacklist is enforced by adore but managed through internal tooling - there is no `,ticket blacklist` command. Contact support if you need a user or role blocked from opening tickets.
 </Warning>
 
 ---
@@ -113,9 +113,9 @@ Users or roles can be blocked from **creating** new tickets. The check runs when
 
 Configure per option in **Behaviour** and **Message**:
 
-- **Auto-close** — warn after inactivity, then close the ticket
-- **Auto-delete** — delete the channel after close (uses panel delete delay)
-- **Close on leave** — close when the creator leaves the server
+- **Auto-close** - warn after inactivity, then close the ticket
+- **Auto-delete** - delete the channel after close (uses panel delete delay)
+- **Close on leave** - close when the creator leaves the server
 
 Set custom warning messages under **Message** → Auto-Close / Auto-Delete / Inactivity.
 
@@ -128,7 +128,7 @@ Set custom warning messages under **Message** → Auto-Close / Auto-Delete / Ina
 | Option label, emoji, or style | `,ticket panel send (name)` |
 | Panel mode (button/dropdown) | Redeploy panel |
 | Panel embed message | Redeploy panel |
-| Behaviour, roles, or messages | No redeploy — applies to new actions |
+| Behaviour, roles, or messages | No redeploy - applies to new actions |
 
 ---
 
@@ -142,7 +142,7 @@ Set custom warning messages under **Message** → Auto-Close / Auto-Delete / Ina
 
   <Accordion title="Staff cannot see tickets">
     - Confirm support role is set on the option in Behaviour
-    - Check channel category permissions — adore sets overwrites, but category defaults can conflict
+    - Check channel category permissions - adore sets overwrites, but category defaults can conflict
     - Verify adore's role is above support roles in the hierarchy
   </Accordion>
 

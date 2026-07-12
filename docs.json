@@ -7,10 +7,7 @@
     "light": "#6fa3a6",
     "dark": "#456a6d"
   },
-  "favicon": {
-    "light": "/images/adore_logo.png",
-    "dark": "favicon.png"
-  },
+  "favicon": "favicon.png",
   "navigation": {
     "groups": [
       {
@@ -90,6 +87,7 @@
         "group": "Features",
         "pages": [
           "features/economy",
+          "features/music",
           "features/ai",
           "features/clownboard",
           "features/backup"
@@ -111,6 +109,7 @@
             "icon": "scroll",
             "pages": [
               "resources/scripting/embeds",
+              "resources/scripting/containers",
               "resources/scripting/variables"
             ]
           },
@@ -131,7 +130,7 @@
     ]
   },
   "logo": {
-    "light": "/images/adore_logo.png",
+    "light": "/logo/logo.png",
     "dark": "/logo/logo.png"
   },
   "appearance": {
@@ -156,19 +155,15 @@
       "theme-color": "#080a0f",
       "og:site_name": "adore.rest"
     },
-    "indexing": "all"
+    "indexing": "navigable"
   },
   "footer": {
     "socials": {
-      "discord": "https://discord.gg/q3e53k4qKQ"
+      "discord": "https://discord.gg/q3e53k4qKQ",
+      "github": "https://github.com/xpllrn/adore-public"
     }
   },
   "redirects": [
-    {
-      "source": "/premium",
-      "destination": "https://adore.rest/premium",
-      "permanent": true
-    },
     {
       "source": "/commands",
       "destination": "https://adore.rest/commands"
@@ -185,17 +180,5 @@
       "source": "/discord",
       "destination": "https://discord.gg/q3e53k4qKQ"
     }
-  ],
-  "icons": {
-    "library": "fontawesome"
-  },
-  "background": {
-    "decoration": "gradient"
-  },
-  "contextual": {
-    "options": [
-      "assistant"
-    ],
-    "display": "header"
-  }
+  ]
 }

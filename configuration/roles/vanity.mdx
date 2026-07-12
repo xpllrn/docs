@@ -1,32 +1,102 @@
 ---
 title: "Vanity Roles"
-description: "Reward your members for advertising your server in their status."
+description: "Reward your members for advertising your server in their custom status."
 icon: user-crown
 ---
 
-## Getting started
+## What is the vanity bot?
 
-Vanity roles reward members who advertise your server in their custom status. This feature uses a **dedicated companion bot** (`adore-vanity`) because Discord limits what the main bot can monitor.
+Vanity roles reward members who put your server's vanity URL in their **custom status**. Discord does not let the main adore bot monitor custom statuses reliably, so this feature runs on a **separate companion bot** - **adore vanity**.
+
+| Bot | Purpose |
+| --- | ------- |
+| **adore** (main) | Moderation, tickets, leveling, and everything else |
+| **adore vanity** | Watches custom statuses and awards vanity roles |
 
 <Warning>
-  Your server must be **Level 3** with at least **14 boosts** before inviting
-  the vanity bot. The main **adore** bot must also be in your server.
+  Your server needs **Level 3** (14 boosts) and a **custom vanity URL** set in Server Settings before vanity features work. The main **adore** bot must also be in your server.
 </Warning>
 
-Invite the vanity bot [here](https://discord.com/oauth2/authorize?client_id=996638412675227668&permissions=8&scope=bot%20applications.commands).
+## Invite adore vanity
+
+[Invite adore vanity](https://discord.com/oauth2/authorize?client_id=1510217601148518431&permissions=8&scope=bot%20applications.commands) to the same server as adore.
+
 <Info>
-  All commands are **slash commands** and can be accessed by typing `/vanity` in
-  a text channel.
+  All vanity commands are **slash commands**. Type `/vanity` in a text channel, or run `/help` on the vanity bot for the full list.
 </Info>
 
-## Setting the vanity to be monitored
+---
 
-You'll need to set what vanity you want to monitor. You can do this by using the `/vanity set` command.
+## Quick setup
+
+<Steps>
+  <Step title="Invite both bots">
+    Add [adore](https://adore.rest) and [adore vanity](https://discord.com/oauth2/authorize?client_id=1510217601148518431&permissions=8&scope=bot%20applications.commands) to your server.
+  </Step>
+
+  <Step title="Set your server vanity URL">
+    In **Server Settings → Invites**, set your vanity URL (e.g. `discord.gg/adore`). Vanity rewards only work if your server actually has one.
+  </Step>
+
+  <Step title="Enable the system">
+    ```javascript
+    /vanity enable
+    ```
+  </Step>
+
+  <Step title="Set the substring to match">
+    ```javascript
+    /vanity set /adore
+    ```
+
+    Members are rewarded when their custom status contains this text. Prefix with `/` (e.g. `/adore`) so it matches your vanity link.
+  </Step>
+
+  <Step title="Add award roles">
+    ```javascript
+    /vanity role add @Vanity
+    ```
+  </Step>
+
+  <Step title="Set the thank-you channel (optional)">
+    ```javascript
+    /vanity channel #general
+    ```
+  </Step>
+</Steps>
+
+Run `/vanity overview` anytime to see status, vanity URL, award channel, strict mode, and roles.
+
+---
+
+## Commands
+
+| Command | Description |
+| ------- | ----------- |
+| `/vanity enable` | Turn the vanity system on |
+| `/vanity disable` | Turn the vanity system off |
+| `/vanity set (substring)` | Set or reset the status text to match |
+| `/vanity strict (yes/no)` | Require an exact status match vs. substring anywhere |
+| `/vanity role add (role)` | Add a role to award |
+| `/vanity role remove (role)` | Remove an award role |
+| `/vanity role list` | List all award roles |
+| `/vanity channel (channel)` | Set or reset the thank-you notification channel |
+| `/vanity message (text)` | Set a custom thank-you message (text or embed) |
+| `/vanity view message` | Preview the current thank-you message |
+| `/vanity overview` | Dashboard of vanity settings |
+
+---
+
+## Setting the vanity to monitor
+
+Use `/vanity set` with the substring members should put in their custom status.
 
 <Tip>It's recommended to prefix the substring with a `/` (e.g. `/adore`).</Tip>
+
 <CodeGroup>
 ```javascript Syntax
 /vanity set (substring)
+/vanity set
 ```
 
 ```javascript Example
@@ -34,20 +104,29 @@ You'll need to set what vanity you want to monitor. You can do this by using the
 ```
 
 </CodeGroup>
-<br />
 
-## Setting up roles to reward
+Run `/vanity set` with no argument to reset the monitored substring.
 
-You can use the `/vanity role add` command to add a vanity reward.
+---
 
-<Info>
-  If you no longer want to reward a role for a vanity, you can use the `/vanity
-  role remove` command.
-</Info>
+## Strict mode
+
+By default, a member's status only needs to **contain** your vanity substring. With strict mode on, the status must match **exactly**.
+
+```javascript
+/vanity strict yes
+/vanity strict no
+```
+
+---
+
+## Award roles
+
 <CodeGroup>
 ```javascript Syntax
 /vanity role add (role)
 /vanity role remove (role)
+/vanity role list
 ```
 
 ```javascript Example
@@ -56,24 +135,23 @@ You can use the `/vanity role add` command to add a vanity reward.
 ```
 
 </CodeGroup>
-<br />
 
-### Viewing all roles being rewarded
+Award roles cannot have moderation permissions and must be **below** the vanity bot's highest role.
 
-You can use the `/vanity role list` command to view all roles being rewarded.
+---
 
-## Setting up the award message
+## Thank-you message
 
-You can set a thank you message for when a user advertises your server in their status.
+Set a message sent when someone advertises your server in their status.
 
 <Info>
-  The `message` parameter can be raw text or an [embed](/resources/scripting)
-  with dynamic [variables](/resources/scripting/variables).
+  Supports plain text, [embed syntax](/resources/scripting/embeds), and [variables](/resources/scripting/variables) like `{user.mention}` and `{guild.vanity}`.
 </Info>
 
 <CodeGroup>
 ```javascript Syntax
 /vanity message (message)
+/vanity view message
 ```
 
 ```javascript Example
@@ -83,17 +161,20 @@ You can set a thank you message for when a user advertises your server in their 
 
 </CodeGroup>
 
-### Setting where the message is sent
+Run `/vanity message` with no text to reset to the default.
 
-You can use the `/vanity award channel` command to set where the message is sent.
+### Notification channel
 
-<CodeGroup>
-```javascript Syntax
-/vanity award channel (channel)
+```javascript
+/vanity channel #general
 ```
 
-```javascript Example
-/vanity award channel #general
-```
+Run `/vanity channel` with no channel to clear it. If no channel is set, thank-you messages are not posted to a channel (roles are still awarded).
 
-</CodeGroup>
+---
+
+## Tips
+
+- Run `/vanity overview` after changing settings to confirm everything is configured
+- If vanity auto-disables, check that award roles still exist and sit below the bot's role
+- The vanity bot shares the same database as adore - settings persist across both bots

@@ -1,11 +1,14 @@
 ---
 title: "Variables"
-description: "All available variables within adore."
+description: "Global variables available in adore embed and message templates."
 icon: "signature"
 ---
 
-These variables are accessible throughout adore and can be used
-in any command context which contains a `message` or `embed code` parameter (e.g. `welcome`, `leave` & `goodbye`)
+These variables work anywhere adore supports embed code or custom messages - for example `welcome`, `leave`, `boost`, and vanity claim notifications.
+
+<Note>
+  Command-specific variables (bump reminders, level-up messages, punishment DMs, Roblox, YouTube, etc.) are handled by those commands directly.
+</Note>
 
 <Tabs>
   <Tab title="Guild">
@@ -14,7 +17,7 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{guild.name}`                    | The guild's name                                                     |
     | `{guild.id}`                      | The guild's ID                                                       |
     | `{guild.count}`                   | The guild's member count                                             |
-    | `{guild.region}`                  | The guild's voice region                                             |
+    | `{guild.membercount}`             | Alias for `{guild.count}`                                            |
     | `{guild.shard}`                   | The guild's shard ID on bot                                          |
     | `{guild.owner_id}`                | The guild's owner ID                                                 |
     | `{guild.created_at}`              | The guild's creation date in UTC                                     |
@@ -22,7 +25,7 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{guild.emoji_count}`             | The guild's emoji count                                              |
     | `{guild.role_count}`              | The guild's role count                                               |
     | `{guild.boost_count}`             | The guild's boost count                                              |
-    | `{guild.boost_tier}`              | The guild's boost tier, defaults to No Level if none                 |
+    | `{guild.boost_tier}`              | The guild's boost tier, defaults to N/A if none                      |
     | `{guild.preferred_locale}`        | The guild's preferred locale                                         |
     | `{guild.key_features}`            | The guild's list of features (possibly `N/A`)                        |
     | `{guild.icon}`                    | The guild's icon URL as a PNG (possibly `N/A`)                       |
@@ -42,16 +45,20 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{guild.voice_channels_count}`    | The guild's voice channel count                                      |
     | `{guild.category_channels}`       | The guild's list of category channels                                |
     | `{guild.category_channels_count}` | The guild's category channel count                                   |
-    | `{guild.vanity}`                  | The guild's custom vanity url                                        |
+    | `{guild.vanity}`                  | The guild's vanity URL (custom vanity on the vanity bot)             |
   </Tab>
   <Tab title="User">
+    <Warning>
+      These are **Discord** user fields. For Last.fm account data in `,lastfm mode`, use `{lastfm.name}`, `{lastfm.avatar}`, `{lastfm.plays}`, ; see the [Last.fm](/integrations/lastfm#custom-now-playing-embed-personal-premium) page.
+    </Warning>
+
     | Variable                       | Output                                                 |
     | ------------------------------ | ------------------------------------------------------ |
-    | `{user}`                       | The user's name and discriminator                      |
+    | `{user}`                       | The user's name (legacy `name#tag` when a discriminator exists)      |
     | `{user.id}`                    | The user's ID                                          |
     | `{user.mention}`               | The user's mention                                     |
     | `{user.name}`                  | The user's name                                        |
-    | `{user.tag}`                   | The user's discriminator                               |
+    | `{user.tag}`                   | The user's discriminator (`0` for most accounts)                   |
     | `{user.avatar}`                | The user's profile picture                             |
     | `{user.guild_avatar}`          | The user's guild profile picture                       |
     | `{user.display_avatar}`        | The user's available profile picture                   |
@@ -60,6 +67,8 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{user.created_at}`            | The user's account creation date in UTC                |
     | `{user.created_at_timestamp}`  | The user's account creation date in UNIX               |
     | `{user.display_name}`          | The user's current display name                        |
+    | `{user.nick}`                  | The user's server display name                         |
+    | `{user.nickname}`              | Alias for `{user.nick}`                                |
     | `{user.boost}`                 | `Yes`/`No` if the user is boosting the guild           |
     | `{user.boost_since}`           | The user's initial guild boost date                    |
     | `{user.boost_since_timestamp}` | The user's initial guild boost date in UNIX            |
@@ -71,7 +80,7 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{user.badges_icons}`          | The user's profile badges with emotes (possibly `N/A`) |
     | `{user.badges}`                | The user's profile badges in text (possibly `N/A`)     |
     | `{user.join_position}`         | The user's join position                               |
-    | `{user.join_position_suffix}`  | The user's join position with suffix                   |
+    | `{user.join_position_suffix}`  | The user's join position with suffix (e.g. `42nd`)     |
   </Tab>
   <Tab title="Channel">
     | Variable                   | Output                                                    |
@@ -103,123 +112,40 @@ in any command context which contains a `message` or `embed code` parameter (e.g
     | `{time.utc_now}`          | 12 hour timestamp in UTC      |
     | `{time.utc_now_military}` | 24 hour timestamp in UTC      |
   </Tab>
-  <Tab title="Last.fm">
-    <Warning>
-      This section is only available for the `lastfm mode` command which requires a
-      [subscription](/overview/donator-perks).
-    </Warning>
-    | Variable                 | Output                                                 |
-    | ------------------------ | ------------------------------------------------------ |
-    | `{user.name}`            | Last.fm username                                       |
-    | `{user.avatar}`          | Last.fm profile picture                                |
-    | `{user.plays}`           | Total scrobbles for Last.fm account                    |
-    | `{proper(user.plays)}`   | Total scrobbles for Last.fm account (formatted number) |
-    | `{user.artist_crown}`    | Displays crown emoji if user has crown for artist      |
-    | `{user.url}`             | Profile URL for Last.fm account                        |
-    | `{author}`               | Author name and discriminator                          |
-    | `{author.name}`          | Author username                                        |
-    | `{author.nickname}`      | Author nickname                                        |
-    | `{author.discriminator}` | Author discriminator                                   |
-    | `{album.name}`           | Current playing album title                            |
-    | `{lower(album.name)}`    | Current playing album title in all lowercase           |
-    | `{album.url}`            | Current playing album URL                              |
-    | `{album.cover}`          | Current playing album cover                            |
-    | `{track.name}`           | Current playing track title                            |
-    | `{lower(track.name)}`    | Current playing track title in all lowercase           |
-    | `{track.url}`            | Current playing track URL (from Last.fm)               |
-    | `{track.spotify_url}`    | Current playing track URL (from Spotify)               |
-    | `{track.release_date}`   | Current playing track release date (from Spotify)      |
-    | `{track.duration}`       | Current playing track duration (from Spotify)          |
-    | `{track.plays}`          | Current playing track playcount                        |
-    | `{proper(track.plays)}`  | Current playing track playcount (formatted number)     |
-    | `{artist.name}`          | Current playing artist name (from Last.fm)             |
-    | `{lower(artist.name)}`   | Current playing artist name in all lowercase           |
-    | `{artist.plays}`         | Current playing artist plays (from local database)     |
-    | `{artist.url}`           | Current playing artist URL (from Last.fm)              |
-    | `{artist.image}`         | Current playing artist image (from Spotify)            |
-  </Tab>
-  <Tab title="Leveling">
+  <Tab title="Last.fm (`lastfm mode`)">
     <Info>
-      This section is only available for the `level message` command.
+      Only available in `,lastfm mode` and custom now-playing templates. Do **not** use `{user.plays}`, `{user.url}`, or `{author}` - those are not valid.
     </Info>
-    | Variable           | Output                                 |
-    | ------------------ | -------------------------------------- |
-    | `{level.new_rank}` | Member's new level at time of level up |
-    | `{level.user_xp}`  | Member's current XP                    |
-  </Tab>
-  <Tab title="Boost">
-    <Info>
-      This section is only available for the `boost` command.
-    </Info>
-    | Variable              | Output                           |
-    | --------------------- | -------------------------------- |
-    | `{boost.count}`       | Amount of times user has boosted |
-    | `{guild.boost_count}` | Overall guild boost count        |
-  </Tab>
-  <Tab title="Bump Reminder">
-    <Info>
-      This section is only available for the `bumpreminder` command.
-    </Info>
-    | Variable                        | Output                                 |
-    | ------------------------------- | -------------------------------------- |
-    | `{bumpreminder.last_user_bump}` | The last user to bump the server       |
-    | `{bumpreminder.next_bump}`      | A relative timestamp for the next bump |
-  </Tab>
-  <Tab title="Roblox">
-    | Variable                       | Output                                                     |
-    | ------------------------------ | ---------------------------------------------------------- |
-    | `{roblox.name}`                | The Roblox user's username                                 |
-    | `{roblox.id}`                  | The Roblox user's ID                                       |
-    | `{roblox.followers}`           | The user's follower count                                  |
-    | `{roblox.following}`           | The user's following count                                 |
-    | `{roblox.display_name}`        | The Roblox user's current display name                     |
-    | `{roblox.description}`         | The user's profile description/bio                         |
-    | `{roblox.verified}`            | Returns `Yes`/`No` if the user has a verified badge        |
-    | `{roblox.premium}`             | Returns `Yes`/`No` if the user has Roblox Premium          |
-    | `{roblox.rap}`                 | The user's Recent Average Price (RAP) for limited items    |
-    | `{roblox.created}`             | The user's account creation date                           |
-    | `{roblox.created.raw}`         | The user's account creation date in UNIX                   |
-    | `{roblox.created.short}`       | The user's account creation date (short format)            |
-    | `{roblox.age}`                 | The user's account age in days                             |
-    | `{roblox.banned}`              | Returns `Yes`/`No` if the account is currently banned      |
-    | `{roblox.last_online}`         | The user's last online date                                |
-    | `{roblox.last_online.raw}`     | The user's last online date in UNIX                        |
-    | `{roblox.last_online.short}`   | The user's last online date (short format)                 |
-    | `{roblox.avatar}`              | The user's profile avatar image URL                        |
-    | `{roblox.badges}`              | The user's Roblox profile badges                           |
-    | `{roblox.previous_names}`      | A list of the user's past usernames                        |
-    | `{roblox.url}`                 | Profile URL for the Roblox account                         |
-  </Tab>
-  <Tab title="YouTube">
-    <Info>
-      This section is only available for the `youtube message` command.
-    </Info>
-    | Variable                        | Output                        |
-    | ------------------------------- | ----------------------------- |
-    | `{youtube.channel.name}`        | The YouTube channel's name    |
-    | `{youtube.channel.url}`         | The YouTube channel's URL     |
-    | `{youtube.channel.id}`          | The YouTube channel's ID      |
-    | `{youtube.video.url}`           | The YouTube video's URL       |
-    | `{youtube.video.title}`         | The YouTube video's title     |
-    | `{youtube.video.thumbnail_url}` | The YouTube video's thumbnail |
-  </Tab>
-  <Tab title="Punishments">
-    <Info>
-      Only available for `bandm`, `softbandm`, `kickdm`, `warndm`, `jaildm`, `unjaildm`, `timeoutdm`, `ban message`, `kick message`, etc.
-    </Info>
-    | Punishment Variables     | Output                                                                          |
-    | ------------------------ | ------------------------------------------------------------------------------- |
-    | `{moderator}`            | Moderator name who performed action                                             |
-    | `{moderator.name}`       | Moderator username                                                              |
-    | `{moderator.tag}`        | Moderator discriminator (will always return 0 due to removal of discriminators) |
-    | `{moderator.avatar}`     | Moderator avatar                                                                |
-    | `{moderator.bot}`        | Return True or False if mod is a bot                                            |
-    | `{moderator.color}`      | Moderator’s highest role color                                                  |
-    | `{moderator.mention}`    | Mention moderator                                                               |
-    | `{moderator.created_at}` | Moderator discord creation date                                                 |
-    | `{reason}`               | Reason for punishment                                                           |
-    | `{duration}`             | Duration for punishments that use it                                            |
-    | `{invite_url}`           | Invite url generated for punishment (softban)                                   |
-    | `{moderator.id}`         | The ID of the moderator that enacted the punishment                             |
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{lastfm.name}` | Last.fm username |
+    | `{lastfm.avatar}` | Last.fm profile picture |
+    | `{lastfm.plays}` | Total scrobbles |
+    | `{proper(lastfm.plays)}` | Total scrobbles (formatted) |
+    | `{lastfm.artist_crown}` | Crown emoji if you lead the artist in this server |
+    | `{lastfm.url}` | Last.fm profile URL |
+    | `{track.name}` | Current track title |
+    | `{lower(track.name)}` | Track title in lowercase |
+    | `{track.url}` | Last.fm track URL |
+    | `{track.plays}` | Your plays for the track |
+    | `{proper(track.plays)}` | Track plays (formatted) |
+    | `{track.spotify_url}` | Spotify track URL |
+    | `{track.release_date}` | Release date (Spotify) |
+    | `{track.duration}` | Duration (Spotify) |
+    | `{artist.name}` | Artist name |
+    | `{lower(artist.name)}` | Artist name in lowercase |
+    | `{artist.plays}` | Your plays for the artist |
+    | `{proper(artist.plays)}` | Artist plays (formatted) |
+    | `{artist.url}` | Last.fm artist URL |
+    | `{artist.image}` | Artist image (Spotify) |
+    | `{album.name}` | Album title |
+    | `{lower(album.name)}` | Album title in lowercase |
+    | `{album.url}` | Last.fm album URL |
+    | `{album.cover}` | Album cover |
+    | `{user.display_name}` | Discord display name |
+    | `{user.name}` | Discord username |
+    | `{user.mention}` | Discord @mention |
+    | `{user.avatar}` | Discord avatar URL |
   </Tab>
 </Tabs>
