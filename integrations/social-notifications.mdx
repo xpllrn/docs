@@ -1,0 +1,157 @@
+---
+title: "Social Notifications"
+description: "Channel alerts for YouTube, TikTok, Instagram, Twitter, Reddit, SoundCloud, Pinterest, Twitch, and Kick."
+icon: bell
+---
+
+## Overview
+
+Social notifications post to a Discord channel when a creator uploads content or goes live. Each platform is its own command group. Feeds are checked about every **5 minutes**.
+
+<Info>
+  Social notifications are a [Personal Premium](/overview/donator-perks) perk. Setup still requires `Manage Server`.
+</Info>
+
+## Shared subcommands
+
+Most platforms share the same pattern:
+
+| Subcommand | Purpose |
+| ---------- | ------- |
+| `add (channel) (target)` | Start notifying in a channel |
+| `remove (channel) (target)` | Stop notifying |
+| `list` | Show all subscriptions |
+| `message (target) (message) --pingable (on\|off)` | Custom embed / text |
+| `message view (target)` | Preview the template |
+
+`--pingable on` allows role and user mentions in the notification message.
+
+---
+
+## YouTube
+
+Dispatched when a channel uploads a video or short (RSS feed).
+
+```javascript
+,youtube add #videos https://youtube.com/@MrBeast
+,youtube remove #videos @MrBeast
+,youtube list
+,youtube message @MrBeast {embed}$v{title: {youtube.video.title}} --pingable on
+,youtube message view @MrBeast
+```
+
+Default template example:
+
+```text
+{embed}$v{message: **{youtube.channel.name}** uploaded a __**New Video**__!}$v{author: {youtube.channel.name} && {youtube.channel.icon}}$v{title: {youtube.video.title}}$v{url: {youtube.video.url}}$v{color: #FF0000}$v{image: {youtube.video.thumbnail_url}}$v{button: {youtube.video.url} && Video && /e && enabled}$v{button: {youtube.channel.url} && Channel && /e && enabled}
+```
+
+## TikTok
+
+```javascript
+,tiktok add #clips charlidamelio
+,tiktok remove #clips charlidamelio
+,tiktok list
+,tiktok live charlidamelio on
+,tiktok message charlidamelio New TikTok! --pingable on
+,tiktok message view charlidamelio
+```
+
+## Instagram
+
+```javascript
+,instagram add #feed shaq
+,instagram remove #feed shaq
+,instagram list
+,instagram stories shaq on
+,instagram story shaq on
+,instagram highlights shaq on
+,instagram message shaq New post! --pingable on
+,instagram message view shaq
+```
+
+Profile lookup moved to `,instagramuser` / `,iguser`.
+
+## Twitter / X
+
+```javascript
+,twitter add #tweets elonmusk
+,twitter remove #tweets elonmusk
+,twitter list
+,twitter retweets #tweets elonmusk no
+,twitter message elonmusk New tweet! --pingable on
+,twitter message view elonmusk
+```
+
+## Subreddit
+
+```javascript
+,subreddit add #posts python
+,subreddit remove #posts python
+,subreddit list
+,subreddit message python New post in r/python! --pingable on
+,subreddit message view python
+```
+
+## SoundCloud
+
+```javascript
+,soundcloud add #posts hamed
+,soundcloud remove #posts hamed
+,soundcloud list
+,soundcloud message hamed @bros --pingable on
+,soundcloud message view hamed
+```
+
+## Pinterest
+
+```javascript
+,pinterest add #pins bossom
+,pinterest remove #pins bossom
+,pinterest list
+,pinterest embeds #pins yes
+,pinterest message bossom @Notis --pingable on
+,pinterest message view bossom
+```
+
+## Twitch
+
+```javascript
+,twitch add #stream xqc
+,twitch remove #stream xqc
+,twitch list
+,twitch message xqc @stans --pingable on
+,twitch message view xqc
+```
+
+## Kick
+
+Uses `,kicker` so it does not clash with moderation `,kick`.
+
+```javascript
+,kicker add #stream xQc
+,kicker remove #stream xQc
+,kicker list
+,kicker message xQc @stans --pingable on
+,kicker message view xQc
+```
+
+---
+
+## How it works
+
+| Platform | Free source | Interval |
+| -------- | ----------- | -------- |
+| YouTube | Public Atom / RSS feed | ~5 min |
+| TikTok | Existing scraper / TikWM | ~5 min |
+| Instagram | Existing Instagram service | ~5 min |
+| Twitter | FxTwitter | ~5 min |
+| Subreddit | Reddit `.json` | ~5 min |
+| SoundCloud | Public page scrape | ~5 min |
+| Pinterest | Public board scrape | ~5 min |
+| Twitch | Public page live check | ~5 min |
+| Kick | Public Kick API | ~5 min |
+
+No paid third-party APIs are required.
+
+See all template variables under [Variables → Notifications](/resources/scripting/variables#youtube).

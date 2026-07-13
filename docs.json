@@ -98,7 +98,8 @@
         "group": "Integrations",
         "pages": [
           "integrations/spotify",
-          "integrations/lastfm"
+          "integrations/lastfm",
+          "integrations/social-notifications"
         ]
       },
       {
