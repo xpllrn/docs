@@ -33,6 +33,7 @@ Most platforms share the same pattern:
 Dispatched when a channel uploads a video or short (RSS feed).
 
 ```javascript
+,youtube never gonna give you up
 ,youtube add #videos https://youtube.com/@MrBeast
 ,youtube remove #videos @MrBeast
 ,youtube list
@@ -60,17 +61,21 @@ Default template example:
 ## Instagram
 
 ```javascript
+,instagram xpllrne
 ,instagram add #feed shaq
 ,instagram remove #feed shaq
 ,instagram list
+,instagram story shaq
 ,instagram stories shaq on
-,instagram story shaq on
-,instagram highlights shaq on
+,instagram highlight shaq
 ,instagram message shaq New post! --pingable on
 ,instagram message view shaq
 ```
 
-Profile lookup moved to `,instagramuser` / `,iguser`.
+- `,instagram (username)` — view a profile
+- `story` — view active stories
+- `stories (username) on|off` — toggle story notifications (requires an existing `add` subscription)
+- `highlight` — view highlight reels (no autopost)
 
 ## Twitter / X
 
