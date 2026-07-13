@@ -47,6 +47,33 @@ Upon completion, you'll have these roles:
 | `,purge (amount)` | Bulk delete messages |
 | `,stripstaff (user)` | Emergency: strip all mod roles and fake perms |
 
+## Invoke messages
+
+Customize the channel response and DM sent when a moderation command runs.
+
+The following actions can be customized:
+
+`jail`, `unjail`, `kick`, `ban`, `softban`, `hardban`, `unban`, `timeout`, `untimeout`, `warn`, `mute`, `unmute`, `imute`, `iunmute`, `rmute`, & `runmute`.
+
+<Tip>
+  The message can be raw text or an [embed](/resources/scripting/embeds) with dynamic [variables](/resources/scripting/variables).
+  Punishment templates support `{reason}`, `{duration}`, `{invite_url}`, `{moderator.color}`, `{moderator.mention}`, and the rest of the [Punishments](/resources/scripting/variables#punishments) variables.
+</Tip>
+
+```javascript
+,invoke (command) message (message)
+,invoke (command) dm (message)
+```
+
+```javascript
+,invoke jail message {user.mention} has been jailed for {reason}
+,invoke jail dm you have been jailed for {reason}
+,invoke unjail dm view
+,invoke unjail message view
+```
+
+Use `view` to preview a template, or `none` / `clear` / `reset` to restore the default.
+
 ## Case history
 
 adore tracks every moderation action with case numbers:

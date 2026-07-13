@@ -4,11 +4,7 @@ description: "Global variables available in adore embed and message templates."
 icon: "signature"
 ---
 
-These variables work anywhere adore supports embed code or custom messages - for example `welcome`, `leave`, `boost`, and vanity claim notifications.
-
-<Note>
-  Command-specific variables (bump reminders, level-up messages, punishment DMs, Roblox, YouTube, etc.) are handled by those commands directly.
-</Note>
+These variables are accessible throughout adore and can be used in any command context which contains a `message` or `embed code` parameter (e.g. `welcome`, `leave`, `boost`, and vanity claim notifications).
 
 <Tabs>
   <Tab title="Guild">
@@ -147,5 +143,60 @@ These variables work anywhere adore supports embed code or custom messages - for
     | `{user.name}` | Discord username |
     | `{user.mention}` | Discord @mention |
     | `{user.avatar}` | Discord avatar URL |
+  </Tab>
+  <Tab title="Leveling">
+    <Info>
+      Only available for `,levels message` level-up templates.
+    </Info>
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{level}` | The member's new level |
+    | `{xp}` | The member's total XP |
+    | `{level.new_rank}` | Member's server rank at time of level up |
+    | `{level.user_xp}` | Member's current XP |
+  </Tab>
+  <Tab title="Boost">
+    <Info>
+      Only available for `,boost` messages.
+    </Info>
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{boost.count}` | Amount of times the user has boosted this server |
+    | `{guild.boost_count}` | Overall guild boost count |
+  </Tab>
+  <Tab title="Bump Reminder">
+    <Info>
+      Only available for `,bumpreminder` thank-you and reminder messages.
+    </Info>
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{bumpreminder.last_user_bump}` | The last user to bump the server |
+    | `{bumpreminder.next_bump}` | A relative timestamp for the next bump |
+  </Tab>
+  <Tab title="Punishments">
+    <Info>
+      Only available for `,invoke` channel responses and DMs (e.g. `,invoke ban dm`, `,invoke kick message`).
+    </Info>
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{moderator}` | Moderator name who performed the action |
+    | `{moderator.name}` | Moderator username |
+    | `{moderator.tag}` | Moderator discriminator (always `0` after Discord's username change) |
+    | `{moderator.avatar}` | Moderator avatar |
+    | `{moderator.bot}` | `True` or `False` if the moderator is a bot |
+    | `{moderator.color}` | Moderator's highest role color |
+    | `{moderator.mention}` | Mention the moderator |
+    | `{moderator.created_at}` | Moderator Discord creation date |
+    | `{moderator.id}` | Moderator ID |
+    | `{reason}` | Reason for the punishment |
+    | `{duration}` | Duration for punishments that use it |
+    | `{invite_url}` | Invite URL generated for softban rejoins |
+    | `{action}` | Formatted action name (e.g. `Banned`) |
+
+    Standard [user](#user) and [guild](#guild) variables also work. `{user}` is the punished member.
   </Tab>
 </Tabs>

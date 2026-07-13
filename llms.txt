@@ -5,6 +5,7 @@
 ## Premium plans
 
 - [Premium plans](https://wiki.adore.rest/overview/premium): Personal Premium ($5/mo), Server Premium ($15/mo), and Private Instance ($30 one-time or $10/mo).
+- [Donator perks](https://wiki.adore.rest/overview/donator-perks): Personal Premium command reference (Grok, Last.fm mode, transparent, selfprefix, etc.).
 - **Payment methods:** PayPal, Bank Transfer, Bitcoin / Ethereum / Litecoin.
 - [Live pricing](https://adore.rest/premium): `#pricing` - `#personal-premium`, `#private-instance`, `#server-premium`
 - [Customization](https://wiki.adore.rest/overview/customization): Custom bot avatar, banner, bio and nickname per server.

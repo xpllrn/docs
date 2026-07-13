@@ -24,26 +24,39 @@ keywords: ["adore premium", "server premium", "personal premium", "private insta
 
 ## Plans
 
-adore is **free** for the full moderation, security, economy, leveling, tickets, and integration toolkit. Premium tiers unlock extras.
+<Info>
+  adore is **free** for the full moderation, security, economy, leveling, tickets, and integration toolkit. Premium tiers unlock extras.
+</Info>
 
-| Tier | Price | What you get |
-| ---- | ----- | ------------ |
-| **Free** | $0 | Full moderation, security, economy, leveling, tickets, integrations |
-| **Personal Premium** | $5/mo | Personal prefix, aliases, Grok AI, transcription, background removal, Last.fm custom embed, and more, perks follow your account everywhere |
-| **Private Instance** | $30 one-time or $10/mo | Your own private adore instance with custom branding, dedicated hosting, 24/7 priority support, and 3 transfers |
-| **Server Premium** | $15/mo | Higher limits, bot customization, premium automod, anti-raid modules, backups, ticket embeds, voicemaster scripts, and full server perks |
+<CardGroup cols={2}>
+  <Card title="Free" icon="gift">
+    **Price:** \$0
 
-<CardGroup cols={3}>
-  <Card title="Personal Premium" icon="user" href="#personal-premium">
-  **$5/mo** - Perks that follow your account everywhere.
+    Full moderation, security, economy, leveling, tickets, and integrations — no paywall on core features.
+  </Card>
+  <Card title="Personal Premium" icon="user" href="/overview/donator-perks">
+    **Price:** \$5/mo
+
+    Personal prefix, aliases, Grok AI, transcription, background removal, Last.fm custom embed, and more. Perks follow your account everywhere.
   </Card>
   <Card title="Private Instance" icon="server" href="#private-instance">
-  **$30** one-time or **$10/mo** - Your own private adore instance. **Most popular.**
+    **Price:** \$30 one-time or \$10/mo · **Most popular**
+
+    Your own private adore instance with custom branding, dedicated hosting, 24/7 priority support, and 3 transfers.
   </Card>
   <Card title="Server Premium" icon="building" href="#server-premium">
-  **$15/mo** - Supercharge one Discord server with premium modules and higher limits.
+    **Price:** \$15/mo
+
+    Higher limits, bot customization, premium automod, anti-raid modules, backups, ticket embeds, voicemaster scripts, and full server perks.
   </Card>
 </CardGroup>
+
+| Tier | Price | Highlights |
+| ---- | ----- | ---------- |
+| Free | \$0 | Moderation, security, economy, leveling, tickets, integrations |
+| Personal Premium | \$5/mo | Account-wide prefix, aliases, Grok AI, transcription, Last.fm embed |
+| Private Instance | \$30 once or \$10/mo | Dedicated instance, custom branding, priority support, 3 transfers |
+| Server Premium | \$15/mo | Higher limits, premium automod, anti-raid, backups, ticket embeds |
 
 <Info>
   **Payment methods:** PayPal · Bank Transfer · Bitcoin / Ethereum / Litecoin
@@ -55,106 +68,15 @@ adore is **free** for the full moderation, security, economy, leveling, tickets,
 
 ## Personal Premium {#personal-premium}
 
-Perks that follow you everywhere - tied to your **account**, not a single guild.
+Perks that follow you everywhere — tied to your **account**, not a single guild.
 
 | | |
 | --- | --- |
-| **Price** | $5/mo |
+| **Price** | \$5/mo |
 
-<AccordionGroup>
-  <Accordion title="What's included" defaultOpen>
-    - **3× rate limits** (15/5s)
-    - **1.5× economy multiplier**
-    - **Personal prefix** - `,selfprefix`
-    - **Personal aliases** - `,selfalias`
-    - **Grok AI** - `,grok`
-    - **Voice transcription** - `,transcribe`
-    - **Background removal** - `,transparent`
-    - **Instagram command**
-    - **Selfpurge command**
-    - **Custom AFK embeds**
-    - **Extra giveaway entries**
-    - **Snipe protection**
-    - **Premium badge**
-    - **Priority support**
-    - **Custom command**
-    - **Custom Last.fm embed**
-    - **AI command access**
-    - **Social notifications** (Instagram, TikTok, YouTube, Twitch)
-  </Accordion>
-
-  <Accordion title="Custom Last.fm embed">
-    Replace the default now-playing card with your own [embed](/resources/scripting/embeds) or [container](/resources/scripting/containers) template. Also unlocks `,lastfm customcommand` (`cc`).
-    See the full variable list on the [Last.fm integration page](/integrations/lastfm#custom-now-playing-embed-personal-premium).
-    <CodeGroup>
-    ```javascript Syntax
-    ,lastfm mode (embed)
-    ,lastfm cc (trigger)
-    ```
-    ```javascript Example
-    ,lastfm mode {embed}$v{title: {track.name}}$v{description: {artist.name} • {proper(track.plays)} plays}$v{thumbnail: {album.cover}}
-    ,lastfm cc .
-    ```
-    </CodeGroup>
-  </Accordion>
-
-  <Accordion title="Self prefix">
-    Set your own command prefix across all servers.
-    <CodeGroup>
-    ```javascript Syntax
-    ,selfprefix (prefix)
-    ```
-    ```javascript Example
-    ,selfprefix !
-    ```
-    </CodeGroup>
-  </Accordion>
-
-  <Accordion title="Self aliases">
-    Create personal command aliases that work in any server.
-    <CodeGroup>
-    ```javascript Syntax
-    ,selfalias add (alias) (command)
-    ```
-    ```javascript Example
-    ,selfalias add b balance
-    ```
-    </CodeGroup>
-  </Accordion>
-
-  <Accordion title="Grok AI">
-    Chat with Grok-powered AI via `,grok`.
-    <CodeGroup>
-    ```javascript Syntax
-    ,grok (question)
-    ```
-    ```javascript Example
-    ,grok explain quantum computing simply
-    ```
-    </CodeGroup>
-  </Accordion>
-
-  <Accordion title="Voice transcription">
-    Transcribe voice messages with `,transcribe`.
-    <CodeGroup>
-    ```javascript Syntax
-    ,transcribe (reply to voice message)
-    ```
-    </CodeGroup>
-  </Accordion>
-
-  <Accordion title="Background removal">
-    Remove the background from an image.
-    <CodeGroup>
-    ```javascript Syntax
-    ,transparent (image URL)
-    ```
-    ```javascript Example
-    ,transparent https://adore.rest/example.png
-    ```
-    </CodeGroup>
-  </Accordion>
-</AccordionGroup>
+<Card title="Donator Perks" icon="medal" href="/overview/donator-perks">
+  Full command reference with syntax and examples for every Personal Premium perk — Grok, Last.fm customization, background removal, self prefix, and more.
+</Card>
 
 ---
 
@@ -166,8 +88,8 @@ Perks that follow you everywhere - tied to your **account**, not a single guild.
 
 | | |
 | --- | --- |
-| **One-time** | $30 |
-| **Monthly** | $10/mo |
+| **One-time** | \$30 |
+| **Monthly** | \$10/mo |
 
 <AccordionGroup>
   <Accordion title="What's included" defaultOpen>
@@ -191,7 +113,7 @@ Premium features for your **entire server** - higher limits, customization, and 
 
 | | |
 | --- | --- |
-| **Price** | $15/mo |
+| **Price** | \$15/mo |
 
 <AccordionGroup>
   <Accordion title="What's included" defaultOpen>

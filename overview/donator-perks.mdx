@@ -1,0 +1,197 @@
+---
+title: "Donator Perks"
+description: "Personal Premium perks for adore donors — rewards that follow your account everywhere."
+icon: medal
+keywords: ["adore donator", "personal premium", "donator perks", "selfprefix", "transparent"]
+---
+
+Donator perks are rewards given to [Personal Premium](/overview/premium) subscribers. They are tied to your **account**, not a single server.
+
+## How to obtain Donator Perks
+
+Personal Premium can be purchased by opening a ticket in our [Support Server](https://discord.gg/q3e53k4qKQ).
+
+<Info>
+  **Price:** \$5/mo · **Payment methods:** PayPal · Bank Transfer · Bitcoin / Ethereum / Litecoin
+
+  See [Premium Plans](/overview/premium) and live pricing at [adore.rest/premium](https://adore.rest/premium).
+</Info>
+
+## Grok AI
+
+Chat with Grok-powered AI.
+
+<CodeGroup>
+
+```javascript Syntax
+,grok (question)
+```
+
+```javascript Example
+,grok explain how Discord bots work
+```
+
+</CodeGroup>
+
+## Last.fm Mode
+
+Customize the embed layout of the `nowplaying` command.
+
+<CodeGroup>
+
+```javascript Syntax
+,lastfm mode (embed script)
+,lastfm mode (check|reset)
+```
+
+```javascript Example
+,lastfm mode {embed}$v{title: Now Playing}$v{description: {track.name}}$v{thumbnail: {album.cover}}
+```
+
+</CodeGroup>
+
+See the full variable list on the [Last.fm integration page](/integrations/lastfm#custom-now-playing-embed-personal-premium).
+
+## Last.fm Custom Reactions
+
+Customize the reactions that appear under the `nowplaying` command.
+
+<CodeGroup>
+
+```javascript Syntax
+,lastfm reaction (upvote emoji) (downvote emoji)
+```
+
+```javascript Example
+,lastfm reaction 👍 👎
+```
+
+</CodeGroup>
+
+## Last.fm Custom Command
+
+Set a custom trigger message that shows your now playing.
+
+<CodeGroup>
+
+```javascript Syntax
+,lastfm cc (message)
+```
+
+```javascript Example
+,lastfm cc .
+```
+
+</CodeGroup>
+
+## Background Removal
+
+Remove the background from an image.
+
+<CodeGroup>
+
+```javascript Syntax
+,transparent (user/url/attachment)
+```
+
+```javascript Example
+,transparent https://adore.rest/example.png
+```
+
+</CodeGroup>
+
+## Voice Transcription
+
+Transcribe voice messages or audio files to text.
+
+<CodeGroup>
+
+```javascript Syntax
+,transcribe (reply to voice message)
+```
+
+```javascript Example
+,transcribe
+```
+
+</CodeGroup>
+
+## VoiceMaster Ghost
+
+Hide your temporary VoiceMaster channel.
+
+<CodeGroup>
+
+```javascript Syntax
+,voicemaster hide
+```
+
+```javascript Example
+,voicemaster hide
+```
+
+</CodeGroup>
+
+## Custom Prefix
+
+Set your own custom command prefix across all servers that use adore.
+
+<CodeGroup>
+
+```javascript Syntax
+,selfprefix (prefix)
+```
+
+```javascript Example
+,selfprefix !
+```
+
+</CodeGroup>
+
+## Self Aliases
+
+Create personal command aliases that work in any server.
+
+<CodeGroup>
+
+```javascript Syntax
+,selfalias add (shortcut) (command)
+```
+
+```javascript Example
+,selfalias add b balance
+```
+
+</CodeGroup>
+
+## Instagram
+
+View Instagram profiles and stories from Discord.
+
+<CodeGroup>
+
+```javascript Syntax
+,instagram (username)
+,instagram story (username)
+```
+
+```javascript Example
+,instagram jonathan
+```
+
+</CodeGroup>
+
+## Additional perks
+
+Personal Premium also includes account-wide benefits that do not require a command:
+
+- **3× rate limits** (15/5s)
+- **1.5× economy multiplier**
+- **Selfpurge command**
+- **Custom AFK embeds**
+- **Extra giveaway entries**
+- **Snipe protection**
+- **Premium badge**
+- **Priority support**
+- **Custom command**
+- **Social notifications** (Instagram, TikTok, YouTube, Twitch)
