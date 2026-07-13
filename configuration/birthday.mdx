@@ -1,0 +1,111 @@
+---
+title: "Birthday"
+description: "Celebrate member birthdays with server announcements, temporary roles, and personal DMs from adore."
+icon: cake-candles
+---
+
+Members can set their birthday once with `,birthday set`. Server admins can enable automatic celebrations that post in a channel, assign a temporary role, and ping the server.
+
+<Info>
+  On their birthday, every member with a birthday set also receives a **personal DM from adore** with a birthday message and **one week of Personal Premium** — regardless of whether your server has birthday notifications enabled.
+</Info>
+
+## Setup
+
+```javascript
+,birthday channel #general
+,birthday role @Birthday Boy
+,birthday message @everyone wish {user.mention} a happy birthday!! ({birthday.date}) --mention
+,birthday enable
+```
+
+| Step | Command | Description |
+| ---- | ------- | ----------- |
+| 1 | `,birthday channel (channel)` | Channel for birthday announcements |
+| 2 | `,birthday role (role)` | Role given for **24 hours** on a member's birthday |
+| 3 | `,birthday message (message)` | Custom announcement (optional) |
+| 4 | `,birthday enable` | Turn on celebrations |
+
+Use `,birthday disable` to turn celebrations off without removing your configuration.
+
+## Member commands
+
+| Command | Description |
+| ------- | ----------- |
+| `,birthday` | View your birthday |
+| `,birthday (user)` | View another member's birthday |
+| `,birthday set (date)` | Set your birthday (e.g. `2 oct`, `october 2`) |
+| `,birthday list` | List upcoming birthdays in the server |
+
+<Tip>
+  Date formats like `2 oct`, `oct 2`, `10/2`, and `October 2nd` are all accepted.
+</Tip>
+
+## Server commands
+
+Requires **Manage Server** permission.
+
+| Command | Description |
+| ------- | ----------- |
+| `,birthday enable` | Enable birthday celebrations |
+| `,birthday disable` | Disable birthday celebrations |
+| `,birthday channel (channel)` | Set the announcement channel |
+| `,birthday role (role)` | Set the temporary birthday role |
+| `,birthday message (message)` | Set or preview the announcement message |
+| `,birthday overview` | View current birthday settings |
+
+## Customizing the announcement
+
+Messages support plain text or [embed scripts](/resources/scripting/embeds) with [variables](/resources/scripting/variables).
+
+```javascript Example
+,birthday message @everyone wish {user.mention} a very happy birthday!! --mention
+```
+
+```javascript Embed example
+,birthday message {embed}$v{title: Happy Birthday {user.display_name}!}$v{description: Everyone wish {user.mention} a great day in {guild.name}!} --mention
+```
+
+<Info>
+  Append `--mention` to allow `@everyone`, role, and user pings — same as [system messages](/configuration/messages/system). Without `--mention`, mentions in your message will not notify anyone.
+</Info>
+
+The default message (when none is set) is:
+
+```javascript
+@everyone wish {user.mention} a very happy birthday!!
+```
+
+Default messages have mentions enabled automatically.
+
+## Birthday variables
+
+In addition to standard [user](/resources/scripting/variables#user) and [guild](/resources/scripting/variables#guild) variables:
+
+| Variable | Output |
+| -------- | ------ |
+| `{birthday.date}` | The member's birthday (e.g. October 2) |
+| `{birthday.month}` | Birthday month name |
+| `{birthday.day}` | Birthday day of month |
+| `{birthday.days_until}` | Days until the member's next birthday |
+| `{birthday.role}` | Configured birthday role mention |
+| `{birthday.role.name}` | Configured birthday role name |
+| `{birthday.channel}` | Configured announcement channel mention |
+
+Run `,birthday message` with no arguments to preview your current message and see available variables.
+
+## What happens on a birthday
+
+When a member's birthday arrives:
+
+1. **Server** (if enabled) — adore posts your announcement in the configured channel
+2. **Role** (if set) — the birthday role is assigned for **24 hours**, then removed automatically
+3. **DM** — adore sends the member a personal birthday message with a **Claim** button and **one week of Personal Premium**
+
+## View configuration
+
+```javascript
+,birthday overview
+```
+
+Shows whether celebrations are enabled, the configured channel, role, message, and how many members have birthdays set.

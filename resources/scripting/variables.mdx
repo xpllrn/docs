@@ -4,7 +4,7 @@ description: "Global variables available in adore embed and message templates."
 icon: "signature"
 ---
 
-These variables are accessible throughout adore and can be used in any command context which contains a `message` or `embed code` parameter (e.g. `welcome`, `leave`, `boost`, and vanity claim notifications).
+These variables are accessible throughout adore and can be used in any command context which contains a `message` or `embed code` parameter (e.g. `welcome`, `leave`, `boost`, `birthday`, and vanity claim notifications).
 
 <Tabs>
   <Tab title="Guild">
@@ -175,6 +175,23 @@ These variables are accessible throughout adore and can be used in any command c
     | -------- | ------ |
     | `{bumpreminder.last_user_bump}` | The last user to bump the server |
     | `{bumpreminder.next_bump}` | A relative timestamp for the next bump |
+  </Tab>
+  <Tab title="Birthday">
+    <Info>
+      Only available for `,birthday message` guild announcements.
+    </Info>
+
+    | Variable | Output |
+    | -------- | ------ |
+    | `{birthday.date}` | The member's birthday (e.g. October 2) |
+    | `{birthday.month}` | Birthday month name |
+    | `{birthday.day}` | Birthday day of month |
+    | `{birthday.days_until}` | Days until the member's next birthday |
+    | `{birthday.role}` | Configured birthday role mention |
+    | `{birthday.role.name}` | Configured birthday role name |
+    | `{birthday.channel}` | Configured birthday announcement channel |
+
+    Standard [user](#user) and [guild](#guild) variables also work.
   </Tab>
   <Tab title="Punishments">
     <Info>
