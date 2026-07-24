@@ -179,5 +179,13 @@
       "destination": "https://discord.gg/q3e53k4qKQ"
     }
   ],
-  "description": "Elevate your community, streamline server ops, and unlock premium tools for every necessity."
+  "description": "Elevate your community, streamline server ops, and unlock premium tools for every necessity.",
+  "logo": {
+    "light": "/images/NewProject.png",
+    "dark": "/images/NewProject.png"
+  },
+  "favicon": {
+    "light": "/images/NewProject.png",
+    "dark": "/images/NewProject.png"
+  }
 }
