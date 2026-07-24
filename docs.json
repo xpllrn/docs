@@ -7,7 +7,6 @@
     "light": "#6fa3a6",
     "dark": "#456a6d"
   },
-  "favicon": "favicon.png",
   "navigation": {
     "groups": [
       {
@@ -132,10 +131,6 @@
       }
     ]
   },
-  "logo": {
-    "light": "/logo/logo.png",
-    "dark": "/logo/logo.png"
-  },
   "appearance": {
     "default": "dark",
     "strict": true
@@ -183,5 +178,6 @@
       "source": "/discord",
       "destination": "https://discord.gg/q3e53k4qKQ"
     }
-  ]
+  ],
+  "description": "Elevate your community, streamline server ops, and unlock premium tools for every necessity."
 }
